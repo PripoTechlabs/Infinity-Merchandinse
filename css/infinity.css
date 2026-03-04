@@ -82,6 +82,115 @@
     transform: translateY(-1px);
 }
 
+/* ---------------- World Map Background ---------------- */
+.im-world-map-bg {
+    position: relative;
+    background: linear-gradient(135deg, var(--im-navy) 0%, var(--im-navy-dark) 100%);
+    overflow: hidden;
+}
+
+.im-world-map-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(196,154,46,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/><g opacity="0.15"><circle cx="200" cy="150" r="80" fill="none" stroke="%23C49A2E" stroke-width="2"/><circle cx="1000" cy="450" r="100" fill="none" stroke="%23C49A2E" stroke-width="2"/><path d="M200 150 Q600 300 1000 450" fill="none" stroke="%23C49A2E" stroke-width="1" stroke-dasharray="5,5"/></g></svg>');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.im-world-map-bg .rt-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* ---------------- Vision & Mission Section ---------------- */
+.im-vision-mission {
+    padding: 5rem 0;
+    background: var(--im-off-white);
+}
+
+.im-vision-mission-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.im-vision-mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.im-vision-card, .im-mission-card {
+    background: white;
+    padding: 3rem;
+    border-radius: var(--im-radius);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.im-vision-card::before, .im-mission-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--im-gold);
+}
+
+.im-vision-card h3, .im-mission-card h3 {
+    color: var(--im-navy);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.im-vision-card p, .im-mission-card p {
+    color: var(--im-text-dark);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.im-mission-list {
+    list-style: none;
+    padding: 0;
+}
+
+.im-mission-list li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--im-text-dark);
+    line-height: 1.6;
+}
+
+.im-mission-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--im-gold);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .im-vision-mission-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .im-vision-card, .im-mission-card {
+        padding: 2rem;
+    }
+}
+
 /* ---------------- WhatsApp Float Button ---------------- */
 .im-whatsapp-btn {
     position: fixed;
@@ -1324,8 +1433,6 @@
     font-weight: 800;
     flex-shrink: 0;
 }
-
-.im-az-content {}
 
 .im-az-title {
     font-size: 1rem;
