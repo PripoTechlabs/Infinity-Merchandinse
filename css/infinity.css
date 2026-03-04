@@ -60,6 +60,22 @@
     color: var(--im-navy);
 }
 
+/* Navbar Logo Sizing Overrides */
+.rt-nav-logo-inner-box {
+    max-width: 150px;
+}
+
+.rt-nav-logo {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 991px) {
+    .rt-nav-logo-inner-box {
+        max-width: 100px;
+    }
+}
+
 /* ---------------- Navbar CTA Button ---------------- */
 .im-nav-cta {
     display: inline-flex;
@@ -127,16 +143,18 @@
     margin-top: 3rem;
 }
 
-.im-vision-card, .im-mission-card {
+.im-vision-card,
+.im-mission-card {
     background: white;
     padding: 3rem;
     border-radius: var(--im-radius);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
 }
 
-.im-vision-card::before, .im-mission-card::before {
+.im-vision-card::before,
+.im-mission-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -146,14 +164,16 @@
     background: var(--im-gold);
 }
 
-.im-vision-card h3, .im-mission-card h3 {
+.im-vision-card h3,
+.im-mission-card h3 {
     color: var(--im-navy);
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
 }
 
-.im-vision-card p, .im-mission-card p {
+.im-vision-card p,
+.im-mission-card p {
     color: var(--im-text-dark);
     line-height: 1.6;
     margin-bottom: 2rem;
@@ -185,8 +205,9 @@
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
-    .im-vision-card, .im-mission-card {
+
+    .im-vision-card,
+    .im-mission-card {
         padding: 2rem;
     }
 }
