@@ -1467,3 +1467,20 @@
     color: #666;
     line-height: 1.65;
 }
+
+/* Navbar Logo Resize */
+.rt-nav-logo-inner-box {
+    max-width: 130px;
+    /* Reduced from default to make it look elegant */
+}
+
+.rt-nav-logo {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 991px) {
+    .rt-nav-logo-inner-box {
+        max-width: 90px;
+    }
+}
