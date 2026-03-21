@@ -2216,60 +2216,12 @@
                 <!-- Interactive Map (Desktop ≥1024px) -->
                 <div class="im-ptm-map-wrap" aria-label="Interactive world market map">
                     <!-- Simplified world map SVG (decorative backdrop) -->
-                    <svg class="im-ptm-map-svg" viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                        <!-- Grid / graticule lines -->
-                        <line x1="0" y1="240" x2="1000" y2="240" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="6,4"/>
-                        <line x1="200" y1="0" x2="200" y2="480" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-                        <line x1="400" y1="0" x2="400" y2="480" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-                        <line x1="600" y1="0" x2="600" y2="480" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-                        <line x1="800" y1="0" x2="800" y2="480" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-                        <line x1="0" y1="120" x2="1000" y2="120" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-                        <line x1="0" y1="360" x2="1000" y2="360" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-                        <!-- North America -->
-                        <path d="M55 60 Q120 38 200 52 Q260 52 305 78 Q332 98 326 142 Q316 172 294 198 Q268 228 242 252 Q212 278 183 278 Q153 262 132 242 Q103 212 78 176 Q56 146 54 106 Z" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
-                        <!-- Mexico/C.America tail -->
-                        <path d="M242 252 Q238 272 226 290 Q216 305 209 296 Q206 283 218 267 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
-                        <!-- Greenland -->
-                        <path d="M205 18 Q240 10 258 22 Q265 34 252 42 Q238 48 218 40 Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-                        <!-- South America -->
-                        <path d="M192 285 Q232 270 268 288 Q296 308 299 360 Q298 408 276 448 Q252 468 222 464 Q192 458 176 428 Q160 398 162 352 Q163 312 192 285 Z" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
-                        <!-- Europe -->
-                        <path d="M432 48 Q464 40 514 50 Q548 58 562 84 Q570 108 554 128 Q536 144 510 150 Q482 154 458 142 Q436 128 426 108 Q418 84 432 48 Z" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
-                        <!-- Scandinavia -->
-                        <path d="M464 40 Q472 18 483 20 Q492 24 488 42 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
-                        <!-- UK / Ireland -->
-                        <path d="M418 68 Q426 62 434 68 Q438 76 430 82 Q422 80 418 68 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
-                        <!-- Africa -->
-                        <path d="M438 150 Q484 138 568 148 Q604 160 622 198 Q634 238 630 290 Q628 340 614 384 Q596 424 568 448 Q538 464 508 462 Q478 460 456 440 Q430 412 422 370 Q412 318 418 260 Q424 204 438 150 Z" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
-                        <!-- Madagascar -->
-                        <path d="M630 310 Q638 300 645 314 Q646 334 638 346 Q630 348 626 334 Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-                        <!-- Arabian Peninsula / Middle East -->
-                        <path d="M568 150 Q600 146 622 164 Q640 180 640 208 Q636 228 618 238 Q598 242 580 230 Q562 216 562 196 Q562 170 568 150 Z" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
-                        <!-- Asia main -->
-                        <path d="M560 44 Q660 32 782 40 Q864 44 914 72 Q954 94 960 134 Q964 168 942 196 Q912 222 868 235 Q822 248 762 252 Q702 254 646 244 Q595 234 568 208 Q546 184 544 152 Q542 112 560 44 Z" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
-                        <!-- Indian subcontinent -->
-                        <path d="M642 242 Q672 250 694 272 Q706 298 698 328 Q684 352 660 358 Q636 354 620 332 Q608 306 616 276 Q628 254 642 242 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.11)" stroke-width="1"/>
-                        <!-- SE Asia peninsula -->
-                        <path d="M735 244 Q762 252 778 274 Q784 298 772 322 Q756 338 736 332 Q716 324 708 300 Q704 274 720 254 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.11)" stroke-width="1"/>
-                        <!-- Japan -->
-                        <path d="M852 112 Q860 106 866 114 Q868 126 860 132 Q852 130 850 120 Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
-                        <!-- Australia -->
-                        <path d="M756 300 Q808 286 860 296 Q904 310 920 348 Q932 386 916 418 Q896 448 858 458 Q816 465 778 450 Q740 432 726 400 Q714 368 724 334 Q734 306 756 300 Z" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
-                        <!-- Trade route arcs (dashed gold lines) -->
-                        <path d="M 168 148 Q 310 62 472 106" stroke="rgba(196,154,46,0.18)" stroke-width="1.5" fill="none" stroke-dasharray="5,4"/>
-                        <path d="M 472 106 Q 522 120 578 194" stroke="rgba(196,154,46,0.18)" stroke-width="1.5" fill="none" stroke-dasharray="5,4"/>
-                        <path d="M 578 194 Q 660 160 744 192" stroke="rgba(196,154,46,0.18)" stroke-width="1.5" fill="none" stroke-dasharray="5,4"/>
-                        <!-- Trade node dots -->
-                        <circle cx="168" cy="148" r="3" fill="rgba(196,154,46,0.45)"/>
-                        <circle cx="472" cy="106" r="3" fill="rgba(196,154,46,0.35)"/>
-                        <circle cx="578" cy="194" r="3" fill="rgba(196,154,46,0.45)"/>
-                        <circle cx="744" cy="192" r="3" fill="rgba(196,154,46,0.35)"/>
-                    </svg>
+                    <img src="images/worldmap.svg" class="im-ptm-map-bg" alt="" aria-hidden="true">
 
                     <!-- ── Location Pins ── -->
 
                     <!-- United States -->
-                    <div class="im-ptm-pin-group" style="left:16.8%;top:31%;" data-region="us">
+                    <div class="im-ptm-pin-group" style="left:22.8%;top:28.9%;" data-region="us">
                         <button class="im-ptm-pin-btn im-ptm-pin-btn--us" aria-label="United States markets" aria-expanded="false" aria-haspopup="true">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 28" width="22" height="30" fill="currentColor" aria-hidden="true">
                                 <path d="M10 0C4.477 0 0 4.477 0 10c0 7.18 8.727 17.328 9.09 17.672A1.25 1.25 0 0010 28c.36 0 .7-.134.91-.328C11.273 27.328 20 17.18 20 10 20 4.477 15.523 0 10 0zm0 14a4 4 0 110-8 4 4 0 010 8z"/>
@@ -2296,7 +2248,7 @@
                     </div>
 
                     <!-- European Markets -->
-                    <div class="im-ptm-pin-group" style="left:47%;top:22%;" data-region="eu">
+                    <div class="im-ptm-pin-group" style="left:52.8%;top:21.7%;" data-region="eu">
                         <button class="im-ptm-pin-btn im-ptm-pin-btn--eu" aria-label="European markets" aria-expanded="false" aria-haspopup="true">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 28" width="22" height="30" fill="currentColor" aria-hidden="true">
                                 <path d="M10 0C4.477 0 0 4.477 0 10c0 7.18 8.727 17.328 9.09 17.672A1.25 1.25 0 0010 28c.36 0 .7-.134.91-.328C11.273 27.328 20 17.18 20 10 20 4.477 15.523 0 10 0zm0 14a4 4 0 110-8 4 4 0 010 8z"/>
@@ -2324,7 +2276,7 @@
                     </div>
 
                     <!-- GCC Markets -->
-                    <div class="im-ptm-pin-group" style="left:59%;top:43%;" data-region="gcc">
+                    <div class="im-ptm-pin-group" style="left:64.7%;top:36.7%;" data-region="gcc">
                         <button class="im-ptm-pin-btn im-ptm-pin-btn--gcc" aria-label="GCC markets" aria-expanded="false" aria-haspopup="true">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 28" width="22" height="30" fill="currentColor" aria-hidden="true">
                                 <path d="M10 0C4.477 0 0 4.477 0 10c0 7.18 8.727 17.328 9.09 17.672A1.25 1.25 0 0010 28c.36 0 .7-.134.91-.328C11.273 27.328 20 17.18 20 10 20 4.477 15.523 0 10 0zm0 14a4 4 0 110-8 4 4 0 010 8z"/>
@@ -2355,7 +2307,7 @@
                     </div>
 
                     <!-- Asia Pacific -->
-                    <div class="im-ptm-pin-group" style="left:74%;top:40%;" data-region="asia">
+                    <div class="im-ptm-pin-group" style="left:80%;top:42.2%;" data-region="asia">
                         <button class="im-ptm-pin-btn im-ptm-pin-btn--asia" aria-label="Asia Pacific markets" aria-expanded="false" aria-haspopup="true">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 28" width="22" height="30" fill="currentColor" aria-hidden="true">
                                 <path d="M10 0C4.477 0 0 4.477 0 10c0 7.18 8.727 17.328 9.09 17.672A1.25 1.25 0 0010 28c.36 0 .7-.134.91-.328C11.273 27.328 20 17.18 20 10 20 4.477 15.523 0 10 0zm0 14a4 4 0 110-8 4 4 0 010 8z"/>

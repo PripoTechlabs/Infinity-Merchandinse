@@ -1812,3 +1812,395 @@
         gap: 0.75rem;
     }
 }
+
+/* ==========================================================
+   PRODUCT-TO-MARKET MAPPING SECTION — im-ptm
+   Desktop: interactive world map with hover pins
+   Mobile/Tablet: accordion region cards
+   ========================================================== */
+
+.im-ptm-section {
+    background: var(--im-navy-dark);
+    padding: 6rem 1.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.im-ptm-container {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+/* ── Section Header ── */
+.im-ptm-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.im-ptm-title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.6rem;
+    line-height: 1.2;
+}
+
+.im-ptm-accent {
+    color: var(--im-gold);
+}
+
+.im-ptm-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+}
+
+/* ── Map Wrapper (Desktop) ── */
+.im-ptm-map-wrap {
+    position: relative;
+    width: 100%;
+    /* worldmap.svg native ratio: 2000×857 ≈ 2.335:1 */
+    aspect-ratio: 2000 / 857;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.02);
+    overflow: visible; /* allow popups to overflow map edges */
+}
+
+/* Real worldmap.svg — tinted white via CSS filter on dark bg */
+.im-ptm-map-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    object-fit: cover;
+    /* Turn all fills/strokes white, then lower opacity for subtle backdrop */
+    filter: brightness(0) invert(1);
+    opacity: 0.1;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── Pin Groups ── */
+.im-ptm-pin-group {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Pin button */
+.im-ptm-pin-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 11px; /* expands hit area to ≥44×44px */
+    transition: transform 0.2s ease-out, filter 0.2s;
+    touch-action: manipulation;
+    outline: none;
+}
+
+.im-ptm-pin-btn:focus-visible {
+    outline: 2px solid var(--im-gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Per-region pin colours */
+.im-ptm-pin-btn--us   { color: #3B82F6; filter: drop-shadow(0 3px 8px rgba(59,130,246,0.5)); }
+.im-ptm-pin-btn--eu   { color: #60A5FA; filter: drop-shadow(0 3px 8px rgba(96,165,250,0.5)); }
+.im-ptm-pin-btn--gcc  { color: var(--im-gold); filter: drop-shadow(0 3px 8px rgba(196,154,46,0.6)); }
+.im-ptm-pin-btn--asia { color: #34D399; filter: drop-shadow(0 3px 8px rgba(52,211,153,0.5)); }
+
+.im-ptm-pin-group:hover .im-ptm-pin-btn,
+.im-ptm-pin-group.active .im-ptm-pin-btn {
+    transform: scale(1.2) translateY(-3px);
+}
+
+/* Pulse ring */
+.im-ptm-pulse {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: im-ptm-pulse 2.4s ease-out infinite;
+}
+
+.im-ptm-pin-btn--us   .im-ptm-pulse { background: #3B82F6; }
+.im-ptm-pin-btn--eu   .im-ptm-pulse { background: #60A5FA; }
+.im-ptm-pin-btn--gcc  .im-ptm-pulse { background: var(--im-gold); }
+.im-ptm-pin-btn--asia .im-ptm-pulse { background: #34D399; }
+
+@keyframes im-ptm-pulse {
+    0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
+}
+
+/* ── Popup Cards ── */
+.im-ptm-popup {
+    position: absolute;
+    top: 50%;
+    min-width: 230px;
+    max-width: 270px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-50%) scale(0.9);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.im-ptm-popup--right {
+    left: calc(100% + 10px);
+    transform-origin: left center;
+}
+
+.im-ptm-popup--left {
+    right: calc(100% + 10px);
+    transform-origin: right center;
+}
+
+/* Show on hover or .active (tap) */
+.im-ptm-pin-group:hover .im-ptm-popup,
+.im-ptm-pin-group.active .im-ptm-popup {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) scale(1);
+}
+
+/* Popup header colour variants */
+.im-ptm-popup-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.9rem 1rem 0.75rem;
+    color: #fff;
+}
+
+.im-ptm-popup-head--us   { background: linear-gradient(135deg, #1E40AF, #1D4ED8); }
+.im-ptm-popup-head--eu   { background: linear-gradient(135deg, #1565C0, #0D47A1); }
+.im-ptm-popup-head--gcc  { background: linear-gradient(135deg, #B8860B, #C49A2E); }
+.im-ptm-popup-head--asia { background: linear-gradient(135deg, #065F46, #047857); }
+
+.im-ptm-popup-flag {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.im-ptm-popup-region {
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.im-ptm-popup-countries {
+    font-size: 0.68rem;
+    opacity: 0.8;
+    margin-top: 3px;
+    line-height: 1.4;
+}
+
+/* Popup product list */
+.im-ptm-popup-list {
+    list-style: none;
+    padding: 0.7rem 1rem 0.9rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.im-ptm-popup-list li {
+    font-size: 0.78rem;
+    color: #1E293B;
+    padding-left: 1.1rem;
+    position: relative;
+    line-height: 1.45;
+}
+
+.im-ptm-popup-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 9px;
+    height: 9px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%2316A34A' d='M13.7 3.3a1 1 0 0 1 0 1.4l-7.4 7.4a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4L5.6 10l6.7-6.7a1 1 0 0 1 1.4 0z'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+
+/* ── Mobile / Tablet Cards Grid (hidden on desktop) ── */
+.im-ptm-cards-grid {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.im-ptm-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.im-ptm-card-hdr {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    padding: 0.85rem 0.9rem;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: #fff;
+    touch-action: manipulation;
+    min-height: 44px;
+}
+
+.im-ptm-card-hdr--us   { background: linear-gradient(135deg, #1E40AF, #1D4ED8); }
+.im-ptm-card-hdr--eu   { background: linear-gradient(135deg, #1565C0, #0D47A1); }
+.im-ptm-card-hdr--gcc  { background: linear-gradient(135deg, #B8860B, #C49A2E); }
+.im-ptm-card-hdr--asia { background: linear-gradient(135deg, #065F46, #047857); }
+
+.im-ptm-card-flag {
+    font-size: 1.15rem;
+    flex-shrink: 0;
+}
+
+.im-ptm-card-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.im-ptm-card-region {
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.im-ptm-card-countries {
+    font-size: 0.62rem;
+    opacity: 0.8;
+    margin-top: 1px;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.im-ptm-chevron {
+    flex-shrink: 0;
+    margin-left: 4px;
+    transition: transform 0.22s ease-out;
+}
+
+.im-ptm-card-hdr[aria-expanded="true"] .im-ptm-chevron {
+    transform: rotate(180deg);
+}
+
+.im-ptm-card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.28s ease-out, padding 0.2s;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.im-ptm-card-list.open {
+    max-height: 320px;
+    padding: 0.7rem 0.9rem 0.8rem;
+}
+
+.im-ptm-card-list li {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.78);
+    padding-left: 1.1rem;
+    position: relative;
+    line-height: 1.5;
+}
+
+.im-ptm-card-list li + li {
+    margin-top: 0.28rem;
+}
+
+.im-ptm-card-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--im-gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* ── Footnote ── */
+.im-ptm-footnote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.78rem;
+    text-align: center;
+}
+
+/* ── Responsive Breakpoints ── */
+
+/* Tablet: hide map, show 2-col cards */
+@media (max-width: 1023px) {
+    .im-ptm-map-wrap {
+        display: none;
+    }
+
+    .im-ptm-cards-grid {
+        display: grid;
+    }
+}
+
+/* Mobile: 1-col cards */
+@media (max-width: 639px) {
+    .im-ptm-section {
+        padding: 4rem 1rem 3.5rem;
+    }
+
+    .im-ptm-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .im-ptm-card-countries {
+        white-space: normal;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .im-ptm-pulse {
+        animation: none;
+    }
+
+    .im-ptm-popup,
+    .im-ptm-pin-btn,
+    .im-ptm-card-list,
+    .im-ptm-chevron {
+        transition: none;
+    }
+}

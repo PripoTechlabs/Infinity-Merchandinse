@@ -6,6 +6,13 @@
     'use strict';
 
     /* --------------------------------------------------------
+       GOOGLE SHEETS ENDPOINT
+       Paste your deployed Apps Script Web App URL below.
+       See: google-apps-script.js for setup instructions.
+    -------------------------------------------------------- */
+    const GSHEET_URL = ''; // ← replace with your Apps Script URL after deploying
+
+    /* --------------------------------------------------------
        ENQUIRY MODAL
     -------------------------------------------------------- */
     const MODAL_OVERLAY = document.getElementById('im-enquiry-modal');
@@ -66,7 +73,7 @@
     if (enquiryMobile) enquiryMobile.addEventListener('click', () => openModal());
 
     /* --------------------------------------------------------
-       ENQUIRY FORM SUBMISSION (Formspree)
+       ENQUIRY FORM SUBMISSION → Google Sheets
     -------------------------------------------------------- */
     const enquiryForm = document.getElementById('im-enquiry-form');
     if (enquiryForm) {
@@ -77,36 +84,64 @@
             btn.textContent = 'Sending…';
             btn.disabled = true;
 
-            const formData = new FormData(this);
+            const fd = new FormData(this);
+
+            // Collect multi-select checkbox groups into comma-separated strings
+            const productInterests = [...this.querySelectorAll('input[name="product_interest"]:checked')].map(cb => cb.value).join(', ');
+            const services         = [...this.querySelectorAll('input[name="services_needed"]:checked')].map(cb => cb.value).join(', ');
+            const sourceMarkets    = [...this.querySelectorAll('input[name="source_market"]:checked')].map(cb => cb.value).join(', ');
+            const destinations     = [...this.querySelectorAll('input[name="destination"]:checked')].map(cb => cb.value).join(', ');
+
+            const payload = {
+                name:             fd.get('name')      || '',
+                email:            fd.get('email')     || '',
+                phone:            fd.get('phone')     || '',
+                company:          fd.get('company')   || '',
+                country:          fd.get('country')   || '',
+                role:             fd.get('role')      || '',
+                product_interests: productInterests,
+                quantity:         fd.get('quantity')  || '',
+                frequency:        fd.get('frequency') || '',
+                budget:           fd.get('budget')    || '',
+                timeline:         fd.get('timeline')  || '',
+                source_markets:   sourceMarkets,
+                destinations:     destinations,
+                services_needed:  services,
+                message:          fd.get('message')   || '',
+                how_heard:        fd.get('how_heard') || ''
+            };
+
+            if (!GSHEET_URL) {
+                console.warn('GSHEET_URL not set — form data logged to console only:', payload);
+                showSuccess();
+                return;
+            }
 
             try {
-                // Collect all checkbox values
-                const productInterests = [...this.querySelectorAll('input[name="product_interest"]:checked')].map(cb => cb.value).join(', ');
-                const services = [...this.querySelectorAll('input[name="services_needed"]:checked')].map(cb => cb.value).join(', ');
-                formData.set('product_interests', productInterests);
-                formData.set('services_needed', services);
-
-                const resp = await fetch(this.action, {
+                // Content-Type: text/plain avoids CORS preflight while still
+                // delivering the JSON body to Google Apps Script (e.postData.contents)
+                await fetch(GSHEET_URL, {
                     method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify(payload)
                 });
-
-                if (resp.ok) {
-                    enquiryForm.innerHTML = `
-                        <div style="text-align:center;padding:3rem 1rem;">
-                            <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
-                            <h3 style="color:#0B2641;margin-bottom:0.5rem;">Enquiry Received!</h3>
-                            <p style="color:#666;">Thank you for reaching out. Our sourcing team will contact you within 24 hours.</p>
-                        </div>
-                    `;
-                } else {
-                    throw new Error('Form submission failed');
-                }
+                // fetch resolves as long as the network request completes —
+                // GAS always returns 200 so we treat any resolved fetch as success
+                showSuccess();
             } catch (err) {
                 btn.textContent = originalText;
                 btn.disabled = false;
-                alert('Something went wrong. Please email us directly or reach us on WhatsApp.');
+                alert('Something went wrong. Please reach us on WhatsApp or email directly.');
+            }
+
+            function showSuccess() {
+                enquiryForm.innerHTML = `
+                    <div style="text-align:center;padding:3rem 1rem;">
+                        <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
+                        <h3 style="color:#0B2641;margin-bottom:0.5rem;">Enquiry Received!</h3>
+                        <p style="color:#555;">Thank you for reaching out.<br>Our sourcing team will contact you within 24 hours.</p>
+                    </div>
+                `;
             }
         });
     }
@@ -201,6 +236,61 @@
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    /* --------------------------------------------------------
+       PRODUCT-TO-MARKET MAP — pin click/tap toggle
+    -------------------------------------------------------- */
+    document.querySelectorAll('.im-ptm-pin-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const group = this.closest('.im-ptm-pin-group');
+            const isActive = group.classList.contains('active');
+            // Close all open pins
+            document.querySelectorAll('.im-ptm-pin-group.active').forEach(g => {
+                g.classList.remove('active');
+                g.querySelector('.im-ptm-pin-btn').setAttribute('aria-expanded', 'false');
+            });
+            // Toggle current
+            if (!isActive) {
+                group.classList.add('active');
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    // Close map pins on outside click
+    document.addEventListener('click', function () {
+        document.querySelectorAll('.im-ptm-pin-group.active').forEach(g => {
+            g.classList.remove('active');
+            g.querySelector('.im-ptm-pin-btn').setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // Prevent popup click from closing it
+    document.querySelectorAll('.im-ptm-popup').forEach(popup => {
+        popup.addEventListener('click', e => e.stopPropagation());
+    });
+
+    /* --------------------------------------------------------
+       PRODUCT-TO-MARKET CARDS — mobile accordion
+    -------------------------------------------------------- */
+    document.querySelectorAll('.im-ptm-card-hdr').forEach(hdr => {
+        hdr.addEventListener('click', function () {
+            const card = this.closest('.im-ptm-card');
+            const list = card.querySelector('.im-ptm-card-list');
+            const isOpen = this.getAttribute('aria-expanded') === 'true';
+            // Close all
+            document.querySelectorAll('.im-ptm-card-hdr').forEach(h => {
+                h.setAttribute('aria-expanded', 'false');
+                h.closest('.im-ptm-card').querySelector('.im-ptm-card-list').classList.remove('open');
+            });
+            // Toggle current
+            if (!isOpen) {
+                this.setAttribute('aria-expanded', 'true');
+                list.classList.add('open');
             }
         });
     });
