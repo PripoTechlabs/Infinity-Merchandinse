@@ -1608,34 +1608,29 @@
 
 .im-products-carousel-outer {
     width: 100%;
-    overflow: hidden;
+    overflow-x: scroll;
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE/Edge */
     padding: 2.5rem 0 3.5rem;
+    cursor: grab;
     /* Edge fade masks */
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.im-products-carousel-outer::-webkit-scrollbar {
+    display: none;
+}
+
+.im-products-carousel-outer:active {
+    cursor: grabbing;
 }
 
 .im-products-track {
     display: flex;
     gap: 1.25rem;
     width: max-content;
-    will-change: transform;
-    animation: im-carousel-scroll 28s linear infinite;
-}
-
-.im-products-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes im-carousel-scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .im-products-track {
-        animation: none;
-    }
+    /* No CSS animation — JS rAF scroll handles auto-scroll */
 }
 
 .im-product-slide {
@@ -1656,7 +1651,7 @@
     transition: transform 0.5s ease;
 }
 
-.im-products-track:hover .im-product-slide:hover img {
+.im-product-slide:hover img {
     transform: scale(1.06);
 }
 

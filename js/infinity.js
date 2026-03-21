@@ -20,13 +20,18 @@
 
     function openModal(category) {
         if (!MODAL_OVERLAY) return;
+        // Uncheck all product checkboxes first
+        MODAL_OVERLAY.querySelectorAll('input[name="product_interest"]').forEach(cb => {
+            cb.checked = false;
+        });
         MODAL_OVERLAY.classList.add('active');
         document.body.style.overflow = 'hidden';
         if (category && MODAL_CATEGORY_INPUT) {
             // Check the matching checkbox if it exists
             const checkboxes = MODAL_OVERLAY.querySelectorAll('input[name="product_interest"]');
             checkboxes.forEach(cb => {
-                if (cb.value.toLowerCase().includes(category.toLowerCase())) {
+                if (cb.value.toLowerCase().includes(category.toLowerCase()) ||
+                    category.toLowerCase().includes(cb.value.toLowerCase().split('&')[0].trim())) {
                     cb.checked = true;
                 }
             });
@@ -77,73 +82,85 @@
     -------------------------------------------------------- */
     const enquiryForm = document.getElementById('im-enquiry-form');
     if (enquiryForm) {
-        enquiryForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const btn = this.querySelector('[type="submit"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'Sending…';
-            btn.disabled = true;
+        // Save original form HTML so user can resubmit
+        const originalFormHTML = enquiryForm.innerHTML;
 
-            const fd = new FormData(this);
+        function attachFormHandler() {
+            enquiryForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const btn = this.querySelector('[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Sending…';
+                btn.disabled = true;
 
-            // Collect multi-select checkbox groups into comma-separated strings
-            const productInterests = [...this.querySelectorAll('input[name="product_interest"]:checked')].map(cb => cb.value).join(', ');
-            const services         = [...this.querySelectorAll('input[name="services_needed"]:checked')].map(cb => cb.value).join(', ');
-            const sourceMarkets    = [...this.querySelectorAll('input[name="source_market"]:checked')].map(cb => cb.value).join(', ');
-            const destinations     = [...this.querySelectorAll('input[name="destination"]:checked')].map(cb => cb.value).join(', ');
+                const fd = new FormData(this);
 
-            const payload = {
-                name:             fd.get('name')      || '',
-                email:            fd.get('email')     || '',
-                phone:            fd.get('phone')     || '',
-                company:          fd.get('company')   || '',
-                country:          fd.get('country')   || '',
-                role:             fd.get('role')      || '',
-                product_interests: productInterests,
-                quantity:         fd.get('quantity')  || '',
-                frequency:        fd.get('frequency') || '',
-                budget:           fd.get('budget')    || '',
-                timeline:         fd.get('timeline')  || '',
-                source_markets:   sourceMarkets,
-                destinations:     destinations,
-                services_needed:  services,
-                message:          fd.get('message')   || '',
-                how_heard:        fd.get('how_heard') || ''
-            };
+                // Collect multi-select checkbox groups into comma-separated strings
+                const productInterests = [...this.querySelectorAll('input[name="product_interest"]:checked')].map(cb => cb.value).join(', ');
+                const services         = [...this.querySelectorAll('input[name="services_needed"]:checked')].map(cb => cb.value).join(', ');
+                const sourceMarkets    = [...this.querySelectorAll('input[name="source_market"]:checked')].map(cb => cb.value).join(', ');
+                const destinations     = [...this.querySelectorAll('input[name="destination"]:checked')].map(cb => cb.value).join(', ');
 
-            if (!GSHEET_URL) {
-                console.warn('GSHEET_URL not set — form data logged to console only:', payload);
-                showSuccess();
-                return;
-            }
+                const payload = {
+                    name:             fd.get('name')      || '',
+                    email:            fd.get('email')     || '',
+                    phone:            fd.get('phone')     || '',
+                    company:          fd.get('company')   || '',
+                    country:          fd.get('country')   || '',
+                    role:             fd.get('role')      || '',
+                    product_interests: productInterests,
+                    quantity:         fd.get('quantity')  || '',
+                    frequency:        fd.get('frequency') || '',
+                    budget:           fd.get('budget')    || '',
+                    timeline:         fd.get('timeline')  || '',
+                    source_markets:   sourceMarkets,
+                    destinations:     destinations,
+                    services_needed:  services,
+                    message:          fd.get('message')   || '',
+                    how_heard:        fd.get('how_heard') || ''
+                };
 
-            try {
-                // Content-Type: text/plain avoids CORS preflight while still
-                // delivering the JSON body to Google Apps Script (e.postData.contents)
-                await fetch(GSHEET_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify(payload)
-                });
-                // fetch resolves as long as the network request completes —
-                // GAS always returns 200 so we treat any resolved fetch as success
-                showSuccess();
-            } catch (err) {
-                btn.textContent = originalText;
-                btn.disabled = false;
-                alert('Something went wrong. Please reach us on WhatsApp or email directly.');
-            }
+                if (!GSHEET_URL) {
+                    console.warn('GSHEET_URL not set — form data logged to console only:', payload);
+                    showSuccess();
+                    return;
+                }
 
-            function showSuccess() {
-                enquiryForm.innerHTML = `
-                    <div style="text-align:center;padding:3rem 1rem;">
-                        <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
-                        <h3 style="color:#0B2641;margin-bottom:0.5rem;">Enquiry Received!</h3>
-                        <p style="color:#555;">Thank you for reaching out.<br>Our sourcing team will contact you within 24 hours.</p>
-                    </div>
-                `;
-            }
-        });
+                try {
+                    // Content-Type: text/plain avoids CORS preflight while still
+                    // delivering the JSON body to Google Apps Script (e.postData.contents)
+                    await fetch(GSHEET_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: JSON.stringify(payload)
+                    });
+                    showSuccess();
+                } catch (err) {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    alert('Something went wrong. Please reach us on WhatsApp or email directly.');
+                }
+            });
+        }
+
+        function showSuccess() {
+            enquiryForm.innerHTML = `
+                <div style="text-align:center;padding:3rem 1rem;">
+                    <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
+                    <h3 style="color:#0B2641;margin-bottom:0.5rem;">Enquiry Received!</h3>
+                    <p style="color:#555;">Thank you for reaching out.<br>Our sourcing team will contact you within 24 hours.</p>
+                    <button id="im-new-enquiry-btn" style="margin-top:1.5rem;padding:0.7rem 1.75rem;background:#0B2641;color:#fff;border:none;border-radius:0.5rem;font-size:0.9rem;font-weight:600;cursor:pointer;letter-spacing:0.03em;">
+                        Submit Another Enquiry
+                    </button>
+                </div>
+            `;
+            document.getElementById('im-new-enquiry-btn').addEventListener('click', function () {
+                enquiryForm.innerHTML = originalFormHTML;
+                attachFormHandler();
+            });
+        }
+
+        attachFormHandler();
     }
 
     /* --------------------------------------------------------
@@ -167,6 +184,101 @@
         btn.addEventListener('click', function (e) {
             e.stopPropagation();
             openModal(this.dataset.category || '');
+        });
+    });
+
+    /* --------------------------------------------------------
+       PRODUCTS CAROUSEL — JS auto-scroll + drag (desktop & mobile)
+    -------------------------------------------------------- */
+    (function () {
+        const outer = document.querySelector('.im-products-carousel-outer');
+        const track = document.querySelector('.im-products-track');
+        if (!outer || !track) return;
+
+        let running = true;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragScrollLeft = 0;
+        let resumeTimer = null;
+
+        function halfWidth() {
+            return track.scrollWidth / 2;
+        }
+
+        // Auto-scroll loop via rAF
+        function tick() {
+            if (running && !isDragging) {
+                outer.scrollLeft += 1;
+                if (outer.scrollLeft >= halfWidth()) {
+                    outer.scrollLeft -= halfWidth();
+                }
+            }
+            requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+
+        function pause() {
+            running = false;
+            if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; }
+        }
+
+        function resume(delay) {
+            if (resumeTimer) clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => { running = true; }, delay || 0);
+        }
+
+        // Hover pause (desktop)
+        outer.addEventListener('mouseenter', () => pause());
+        outer.addEventListener('mouseleave', () => { if (!isDragging) resume(); });
+
+        // Mouse drag (desktop)
+        outer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            pause();
+            dragStartX = e.pageX - outer.getBoundingClientRect().left;
+            dragScrollLeft = outer.scrollLeft;
+            outer.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const x = e.pageX - outer.getBoundingClientRect().left;
+            const walk = x - dragStartX;
+            outer.scrollLeft = dragScrollLeft - walk;
+        });
+        document.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            outer.style.cursor = 'grab';
+            resume(2000);
+        });
+
+        // Touch drag (mobile)
+        outer.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            pause();
+            dragStartX = e.touches[0].pageX - outer.getBoundingClientRect().left;
+            dragScrollLeft = outer.scrollLeft;
+        }, { passive: true });
+        outer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - outer.getBoundingClientRect().left;
+            outer.scrollLeft = dragScrollLeft - (x - dragStartX);
+        }, { passive: true });
+        outer.addEventListener('touchend', () => {
+            isDragging = false;
+            resume(2000); // Resume auto-scroll 2s after user stops touching
+        }, { passive: true });
+    })();
+
+    /* --------------------------------------------------------
+       PRODUCT SLIDE CLICKS → open enquiry modal with product preselected
+    -------------------------------------------------------- */
+    document.querySelectorAll('.im-product-slide').forEach(slide => {
+        slide.addEventListener('click', function () {
+            const label = this.querySelector('.im-product-slide-label');
+            const category = label ? label.textContent.trim() : '';
+            openModal(category);
         });
     });
 
@@ -232,10 +344,19 @@
     -------------------------------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function (e) {
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            if (href === '#') return; // plain # links handled elsewhere
+            const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Close hamburger menu if open (click the Webflow close button)
+                const crossBtn = document.querySelector('.rt-hamburger-cross-icon-wrapper');
+                if (crossBtn && window.getComputedStyle(document.querySelector('.rt-nav-background') || document.body).display !== 'none') {
+                    crossBtn.click();
+                }
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
             }
         });
     });
