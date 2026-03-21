@@ -18,28 +18,79 @@
     --im-radius: 0.75rem;
 }
 
-/* ---------------- Hero CTA below tagline ---------------- */
+/* ---------------- Fix hero gradient circles (brand colors) ---------------- */
+.rt-circle-v1 {
+    background-color: var(--im-gold) !important;
+    opacity: 0.55;
+}
+
+.rt-circle-v1.rt-circle-v2 {
+    background-color: var(--im-navy) !important;
+    opacity: 0.7;
+}
+
+.rt-circle-v1.rt-circle-v3 {
+    background-color: var(--im-navy-dark) !important;
+    opacity: 0.8;
+}
+
+/* ---------------- Navbar logo size ---------------- */
+.rt-nav-logo {
+    height: 52px !important;
+    width: auto !important;
+    max-width: none !important;
+}
+
+/* ---------------- Hero height: fit within viewport ---------------- */
+.rt-hero-v1-main-wrapper {
+    height: 100vh !important;
+}
+
+@media (max-width: 767px) {
+    .rt-hero-v1-main-wrapper {
+         height: 45vh !important;
+    }
+}
+
+/* ---------------- Hero tagline + CTA: pinned to bottom of hero ---------------- */
+.im-hero-tagline {
+    position: absolute;
+    bottom: 18vh;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    width: 100%;
+    padding: 0 1rem;
+    text-align: center;
+    z-index: 10;
+}
+
+@media (max-width: 767px) {
+    .im-hero-tagline {
+        bottom: 10vh;
+    }
+}
+
 .im-hero-tagline-cta {
+    position: absolute;
+    bottom: 4vh;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     width: 100%;
-    padding-bottom: 2rem;
+    z-index: 10;
 }
 
 .im-hero-cta-center {
     display: none !important;
 }
 
+
 /* ---------------- Hero Tagline ---------------- */
-.im-hero-tagline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-    width: 100%;
-    padding: 0 1rem 2rem;
-    text-align: center;
-}
 
 .im-hero-tagline-rule {
     flex: 1;
@@ -1675,9 +1726,35 @@
 }
 
 .im-footer-logo {
-    height: 40px;
+    height: 56px;
     width: auto;
     object-fit: contain;
+}
+
+.im-footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+}
+
+.im-footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #4A5568;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.im-footer-contact-item:hover {
+    color: var(--im-navy);
+}
+
+.im-footer-contact-icon {
+    flex-shrink: 0;
+    color: var(--im-navy);
 }
 
 .im-footer-tagline {
