@@ -1611,7 +1611,7 @@
                 </div>
             </div>
         </section>
-        <section data-w-id="99f49c43-70d1-2151-ffe3-e1e352edcab2" class="rt-cards" id="products">
+        <!-- <section data-w-id="99f49c43-70d1-2151-ffe3-e1e352edcab2" class="rt-cards" id="products">
             <div class="w-layout-vflex rt-sticky-wrapper-v2">
                 <div class="rt-cards-outer-wrapper">
                     <div class="w-layout-hflex rt-cards-main-wrapper">
@@ -1734,6 +1734,151 @@
                             <div class="rt-text-style-h3 rt-card-main-title rt-card-main-title-v3">We elevate your
                                 vision into engaging digital brand experiences that last</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <style>
+        .im-process-section {
+            padding: 6rem 0;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .im-process-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .im-process-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .im-process-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #000;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .im-process-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: #000;
+            line-height: 1.2;
+        }
+        .im-process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        @media (max-width: 991px) {
+            .im-process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 767px) {
+            .im-process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .im-process-card {
+            background: #fdfdfd;
+            border: 1px solid #eaeaea;
+            border-radius: 1.25rem;
+            padding: 3rem 2rem;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .im-process-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            background: #fff;
+            border-color: #000;
+        }
+        .im-process-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: #000;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+        .im-process-card:hover::before {
+            transform: scaleX(1);
+        }
+        .im-process-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(0,0,0,0.05);
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            line-height: 1;
+            z-index: -1;
+            transition: color 0.3s ease;
+        }
+        .im-process-card:hover .im-process-number {
+            color: rgba(0,0,0,0.1);
+        }
+        .im-process-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .im-process-card-desc {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        </style>
+        <section class="im-process-section">
+            <div class="im-process-inner">
+                <div class="im-process-header">
+                    <span class="im-process-tag">How We Work</span>
+                    <h2 class="im-process-title">Our Expertise</h2>
+                </div>
+                <div class="im-process-grid">
+                    <div class="im-process-card">
+                        <div class="im-process-number">01</div>
+                        <h3 class="im-process-card-title">Global Sourcing Support</h3>
+                        <p class="im-process-card-desc">Source right. Source smart. Source at origin. We connect you with reliable manufacturers.</p>
+                    </div>
+                    <div class="im-process-card">
+                        <div class="im-process-number">02</div>
+                        <h3 class="im-process-card-title">Import & Export</h3>
+                        <p class="im-process-card-desc">From small consignments to large-scale trade, we handle all your import/export requirements.</p>
+                    </div>
+                    <div class="im-process-card">
+                        <div class="im-process-number">03</div>
+                        <h3 class="im-process-card-title">Quality Control</h3>
+                        <p class="im-process-card-desc">Quality checked before it reaches you. We ensure strict adherence to international standards.</p>
+                    </div>
+                    <div class="im-process-card">
+                        <div class="im-process-number">04</div>
+                        <h3 class="im-process-card-title">Logistics Support</h3>
+                        <p class="im-process-card-desc">Fast, flexible, and reliable air and sea delivery engineered for your timeline and budget.</p>
+                    </div>
+                    <div class="im-process-card">
+                        <div class="im-process-number">05</div>
+                        <h3 class="im-process-card-title">Business Setup</h3>
+                        <p class="im-process-card-desc">From idea to operation. End-to-end guidance to establish your enterprise smoothly.</p>
+                    </div>
+                    <div class="im-process-card">
+                        <div class="im-process-number">06</div>
+                        <h3 class="im-process-card-title">Market Strategy</h3>
+                        <p class="im-process-card-desc">Decisions backed by data, not assumptions. We provide in-depth market study and planning.</p>
                     </div>
                 </div>
             </div>
