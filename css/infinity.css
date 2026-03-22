@@ -70,7 +70,10 @@
 
 @media (max-width: 767px) {
     .im-hero-tagline {
-        bottom: 10vh;
+        position: relative;
+        bottom: auto;
+        margin-top: auto;
+        padding-bottom: 0.5rem;
     }
 }
 
