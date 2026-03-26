@@ -52,6 +52,24 @@
     }
 }
 
+/* Small phone hero fix — iPhone SE and similar (≤480px wide) */
+@media (max-width: 480px) {
+    .rt-hero-v1-main-wrapper {
+        height: 68vh !important;
+        min-height: 400px !important;
+    }
+
+    /* Webflow applies 7rem top + 5rem bottom padding at this breakpoint
+       and justify-content: flex-end, leaving almost no room in a 300px hero.
+       Center the content block vertically with comfortable padding. */
+    .rt-hero-v1-content {
+        padding-top: 4rem !important;
+        padding-bottom: 2rem !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+    }
+}
+
 /* ---------------- Hero tagline + CTA: pinned to bottom of hero ---------------- */
 .im-hero-tagline {
     position: absolute;
@@ -72,7 +90,7 @@
     .im-hero-tagline {
         position: relative;
         bottom: auto;
-        margin-top: auto;
+        margin-top: 10px;
         padding-bottom: 0.5rem;
     }
 }
