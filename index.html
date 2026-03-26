@@ -1095,7 +1095,7 @@
                         <div class="rt-navigation-outer-wrap">
                             <div class="w-layout-hflex rt-nav-logo-box"><a href="/" aria-current="page"
                                     class="rt-nav-logo-inner-box w-inline-block w--current"><img width="10" height="10"
-                                        alt="Vertora-white-logo" src="images/logo.png" loading="lazy"
+                                        alt="Vertora-white-logo" src="images/logo2.png" loading="lazy"
                                         class="rt-nav-logo"></a></div>
                             <div class="w-layout-hflex rt-nav-menu-button-wrapper">
                                 <div class="w-layout-hflex rt-nav-all-link-wrapper">
@@ -1783,8 +1783,36 @@
             }
         }
         @media (max-width: 767px) {
+            .im-process-section {
+                padding: 3.5rem 0;
+                overflow: visible;
+            }
+            .im-process-inner {
+                padding: 0;
+                overflow: hidden;
+            }
+            .im-process-header {
+                padding: 0 1.5rem;
+                margin-bottom: 2rem;
+            }
             .im-process-grid {
-                grid-template-columns: 1fr;
+                display: flex;
+                grid-template-columns: unset;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                gap: 1rem;
+                padding: 0.25rem 1.5rem 1.25rem;
+                scrollbar-width: none;
+            }
+            .im-process-grid::-webkit-scrollbar {
+                display: none;
+            }
+            .im-process-card {
+                flex: 0 0 82%;
+                min-width: 0;
+                scroll-snap-align: start;
+                padding: 2rem 1.5rem;
             }
         }
         .im-process-card {
@@ -1938,75 +1966,131 @@
                                     experiences that captivate audiences, communicate your brand message</p>
                             </div>
                         </div>
-                        <!-- Products Infinite Carousel -->
+                        <!-- Products Infinite Carousel — 15 products -->
                         <div class="im-products-carousel-outer">
                             <div class="im-products-track">
                                 <!-- Original set -->
-                                <div class="im-product-slide">
+                                <a href="product.html?id=textiles-apparel" class="im-product-slide">
                                     <img src="images/textile.png" alt="Textiles &amp; Apparel" loading="lazy">
                                     <div class="im-product-slide-label">Textiles &amp; Apparel</div>
-                                </div>
-                                <div class="im-product-slide">
+                                </a>
+                                <a href="product.html?id=shoes-footwear" class="im-product-slide">
                                     <img src="images/shoe.png" alt="Shoes &amp; Footwear" loading="lazy">
                                     <div class="im-product-slide-label">Shoes &amp; Footwear</div>
-                                </div>
-                                <div class="im-product-slide">
-                                    <img src="images/gifts.png" alt="Corporate Gifts &amp; Promotionals" loading="lazy">
-                                    <div class="im-product-slide-label">Corporate Gifts &amp; Promotionals</div>
-                                </div>
-                                <div class="im-product-slide">
+                                </a>
+                                <a href="product.html?id=textile-accessories" class="im-product-slide">
+                                    <img src="images/textile.png" alt="Textile Accessories" loading="lazy">
+                                    <div class="im-product-slide-label">Textile Accessories</div>
+                                </a>
+                                <a href="product.html?id=corporate-gifts" class="im-product-slide">
+                                    <img src="images/gifts.png" alt="Corporate Gifts" loading="lazy">
+                                    <div class="im-product-slide-label">Corporate Gifts</div>
+                                </a>
+                                <a href="product.html?id=stationery" class="im-product-slide">
                                     <img src="images/corporate.png" alt="Stationery Items" loading="lazy">
                                     <div class="im-product-slide-label">Stationery Items</div>
-                                </div>
-                                <div class="im-product-slide">
+                                </a>
+                                <a href="product.html?id=office-furniture" class="im-product-slide">
                                     <img src="images/br1.png" alt="Office Furniture" loading="lazy">
                                     <div class="im-product-slide-label">Office Furniture</div>
-                                </div>
-                                <div class="im-product-slide">
-                                    <img src="images/br2.png" alt="Small Electronics" loading="lazy">
+                                </a>
+                                <a href="product.html?id=wall-decor" class="im-product-slide">
+                                    <img src="images/br4.png" alt="Wall Paintings &amp; Home Décor" loading="lazy">
+                                    <div class="im-product-slide-label">Wall Paintings &amp; Décor</div>
+                                </a>
+                                <a href="product.html?id=dry-fruits" class="im-product-slide">
+                                    <img src="images/br5.png" alt="Dry Fruits &amp; Dates" loading="lazy">
+                                    <div class="im-product-slide-label">Dry Fruits &amp; Dates</div>
+                                </a>
+                                <a href="product.html?id=electronics" class="im-product-slide">
+                                    <img src="images/br2.png" alt="Small Electronics Items" loading="lazy">
                                     <div class="im-product-slide-label">Small Electronics</div>
-                                </div>
-                                <div class="im-product-slide">
-                                    <img src="images/br3.png" alt="Kitchen Utilities" loading="lazy">
+                                </a>
+                                <a href="product.html?id=kitchen-utilities" class="im-product-slide">
+                                    <img src="images/br3.png" alt="Kitchen Utilities &amp; Machineries" loading="lazy">
                                     <div class="im-product-slide-label">Kitchen Utilities</div>
-                                </div>
-                                <div class="im-product-slide">
-                                    <img src="images/br4.png" alt="Home Décor" loading="lazy">
-                                    <div class="im-product-slide-label">Home Décor</div>
-                                </div>
+                                </a>
+                                <a href="product.html?id=commercial-machinery" class="im-product-slide">
+                                    <img src="images/br1.png" alt="Imported Commercial Machinery" loading="lazy">
+                                    <div class="im-product-slide-label">Commercial Machinery</div>
+                                </a>
+                                <a href="product.html?id=toys" class="im-product-slide">
+                                    <img src="images/br6.png" alt="Toys" loading="lazy">
+                                    <div class="im-product-slide-label">Toys</div>
+                                </a>
+                                <a href="product.html?id=promotional-merchandise" class="im-product-slide">
+                                    <img src="images/gifts.png" alt="Promotional Merchandise" loading="lazy">
+                                    <div class="im-product-slide-label">Promotional Merchandise</div>
+                                </a>
+                                <a href="product.html?id=wholesale-goods" class="im-product-slide">
+                                    <img src="images/br4.png" alt="Wholesale Consumer Goods" loading="lazy">
+                                    <div class="im-product-slide-label">Wholesale Consumer Goods</div>
+                                </a>
+                                <a href="product.html?id=textile-machinery" class="im-product-slide">
+                                    <img src="images/textile.png" alt="Textile Machineries" loading="lazy">
+                                    <div class="im-product-slide-label">Textile Machineries</div>
+                                </a>
                                 <!-- Duplicate set for seamless infinite loop -->
-                                <div class="im-product-slide" aria-hidden="true">
+                                <a href="product.html?id=textiles-apparel" class="im-product-slide" aria-hidden="true" tabindex="-1">
                                     <img src="images/textile.png" alt="" loading="lazy">
                                     <div class="im-product-slide-label">Textiles &amp; Apparel</div>
-                                </div>
-                                <div class="im-product-slide" aria-hidden="true">
+                                </a>
+                                <a href="product.html?id=shoes-footwear" class="im-product-slide" aria-hidden="true" tabindex="-1">
                                     <img src="images/shoe.png" alt="" loading="lazy">
                                     <div class="im-product-slide-label">Shoes &amp; Footwear</div>
-                                </div>
-                                <div class="im-product-slide" aria-hidden="true">
+                                </a>
+                                <a href="product.html?id=textile-accessories" class="im-product-slide" aria-hidden="true" tabindex="-1">
+                                    <img src="images/textile.png" alt="" loading="lazy">
+                                    <div class="im-product-slide-label">Textile Accessories</div>
+                                </a>
+                                <a href="product.html?id=corporate-gifts" class="im-product-slide" aria-hidden="true" tabindex="-1">
                                     <img src="images/gifts.png" alt="" loading="lazy">
-                                    <div class="im-product-slide-label">Corporate Gifts &amp; Promotionals</div>
-                                </div>
-                                <div class="im-product-slide" aria-hidden="true">
+                                    <div class="im-product-slide-label">Corporate Gifts</div>
+                                </a>
+                                <a href="product.html?id=stationery" class="im-product-slide" aria-hidden="true" tabindex="-1">
                                     <img src="images/corporate.png" alt="" loading="lazy">
                                     <div class="im-product-slide-label">Stationery Items</div>
-                                </div>
-                                <div class="im-product-slide" aria-hidden="true">
+                                </a>
+                                <a href="product.html?id=office-furniture" class="im-product-slide" aria-hidden="true" tabindex="-1">
                                     <img src="images/br1.png" alt="" loading="lazy">
                                     <div class="im-product-slide-label">Office Furniture</div>
-                                </div>
-                                <div class="im-product-slide" aria-hidden="true">
+                                </a>
+                                <a href="product.html?id=wall-decor" class="im-product-slide" aria-hidden="true" tabindex="-1">
+                                    <img src="images/br4.png" alt="" loading="lazy">
+                                    <div class="im-product-slide-label">Wall Paintings &amp; Décor</div>
+                                </a>
+                                <a href="product.html?id=dry-fruits" class="im-product-slide" aria-hidden="true" tabindex="-1">
+                                    <img src="images/br5.png" alt="" loading="lazy">
+                                    <div class="im-product-slide-label">Dry Fruits &amp; Dates</div>
+                                </a>
+                                <a href="product.html?id=electronics" class="im-product-slide" aria-hidden="true" tabindex="-1">
                                     <img src="images/br2.png" alt="" loading="lazy">
                                     <div class="im-product-slide-label">Small Electronics</div>
-                                </div>
-                                <div class="im-product-slide" aria-hidden="true">
+                                </a>
+                                <a href="product.html?id=kitchen-utilities" class="im-product-slide" aria-hidden="true" tabindex="-1">
                                     <img src="images/br3.png" alt="" loading="lazy">
                                     <div class="im-product-slide-label">Kitchen Utilities</div>
-                                </div>
-                                <div class="im-product-slide" aria-hidden="true">
+                                </a>
+                                <a href="product.html?id=commercial-machinery" class="im-product-slide" aria-hidden="true" tabindex="-1">
+                                    <img src="images/br1.png" alt="" loading="lazy">
+                                    <div class="im-product-slide-label">Commercial Machinery</div>
+                                </a>
+                                <a href="product.html?id=toys" class="im-product-slide" aria-hidden="true" tabindex="-1">
+                                    <img src="images/br6.png" alt="" loading="lazy">
+                                    <div class="im-product-slide-label">Toys</div>
+                                </a>
+                                <a href="product.html?id=promotional-merchandise" class="im-product-slide" aria-hidden="true" tabindex="-1">
+                                    <img src="images/gifts.png" alt="" loading="lazy">
+                                    <div class="im-product-slide-label">Promotional Merchandise</div>
+                                </a>
+                                <a href="product.html?id=wholesale-goods" class="im-product-slide" aria-hidden="true" tabindex="-1">
                                     <img src="images/br4.png" alt="" loading="lazy">
-                                    <div class="im-product-slide-label">Home Décor</div>
-                                </div>
+                                    <div class="im-product-slide-label">Wholesale Consumer Goods</div>
+                                </a>
+                                <a href="product.html?id=textile-machinery" class="im-product-slide" aria-hidden="true" tabindex="-1">
+                                    <img src="images/textile.png" alt="" loading="lazy">
+                                    <div class="im-product-slide-label">Textile Machineries</div>
+                                </a>
                             </div>
                         </div>
                         <!-- end Products Infinite Carousel -->
@@ -3507,7 +3591,7 @@
                     <a href="/" class="im-footer-logo-link">
                         <img src="images/logo.png" alt="Infinity Merchandise" class="im-footer-logo">
                     </a>
-                    <p class="im-footer-tagline">Connecting Growing Supply<br>to Growing Business</p>
+                    <p class="im-footer-tagline">Connecting Global Supply<br>to Growing Business</p>
                     <div class="im-footer-contact">
                         <a href="mailto:info@infinitymerchandise.com" class="im-footer-contact-item">
                             <svg class="im-footer-contact-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -3593,6 +3677,8 @@
             <div class="im-modal-subtitle">Fill in the details below and our sourcing team will get back to you within
                 24 hours.</div>
             <form id="im-enquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <!-- Hidden: sub-product selection (populated when opened from product page) -->
+                <input type="hidden" id="im-subproduct" name="subproduct_interest" value="">
 
                 <!-- Section 1: Contact Details -->
                 <div class="im-form-section">
@@ -3663,6 +3749,10 @@
                                 value="Consumer Goods"> Wholesale Consumer Goods</label>
                         <label class="im-checkbox-item"><input type="checkbox" name="product_interest"
                                 value="Textile Machinery"> Textile Machinery</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest"
+                                value="Toys"> Toys</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest"
+                                value="Promotional Merchandise"> Promotional Merchandise</label>
                         <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Other">
                             Other (specify below)</label>
                     </div>
@@ -3723,34 +3813,14 @@
                     <div class="im-form-section-label">04 — Sourcing &amp; Destination</div>
                     <div class="im-form-grid">
                         <div class="im-form-group">
-                            <label>Preferred Source Market</label>
-                            <div class="im-checkbox-grid" style="margin-top:0.25rem">
-                                <label class="im-checkbox-item"><input type="checkbox" name="source_market"
-                                        value="India"> India</label>
-                                <label class="im-checkbox-item"><input type="checkbox" name="source_market"
-                                        value="China"> China</label>
-                                <label class="im-checkbox-item"><input type="checkbox" name="source_market"
-                                        value="Vietnam"> Vietnam</label>
-                                <label class="im-checkbox-item"><input type="checkbox" name="source_market"
-                                        value="Bangladesh"> Bangladesh</label>
-                                <label class="im-checkbox-item"><input type="checkbox" name="source_market"
-                                        value="No Preference"> No preference</label>
-                            </div>
+                            <label for="im-source-market">Preferred Source Market</label>
+                            <input type="text" id="im-source-market" name="source_market"
+                                placeholder="e.g. India, China, No preference">
                         </div>
                         <div class="im-form-group">
-                            <label>Delivery Destination</label>
-                            <div class="im-checkbox-grid" style="margin-top:0.25rem">
-                                <label class="im-checkbox-item"><input type="checkbox" name="destination" value="GCC">
-                                    GCC</label>
-                                <label class="im-checkbox-item"><input type="checkbox" name="destination"
-                                        value="Europe"> Europe</label>
-                                <label class="im-checkbox-item"><input type="checkbox" name="destination" value="USA">
-                                    USA</label>
-                                <label class="im-checkbox-item"><input type="checkbox" name="destination" value="Asia">
-                                    Asia</label>
-                                <label class="im-checkbox-item"><input type="checkbox" name="destination" value="Other">
-                                    Other</label>
-                            </div>
+                            <label for="im-destination">Delivery Destination</label>
+                            <input type="text" id="im-destination" name="destination"
+                                placeholder="e.g. UAE, Germany, USA">
                         </div>
                     </div>
                 </div>

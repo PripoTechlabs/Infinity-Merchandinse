@@ -1637,6 +1637,8 @@
 }
 
 .im-product-slide {
+    display: block;
+    text-decoration: none;
     position: relative;
     width: 300px;
     height: 400px;

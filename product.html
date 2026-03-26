@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Product — Infinity Merchandise</title>
+    <meta name="description" content="Explore our product range. Infinity Merchandise — global sourcing and trading partner.">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="css/LAoaahHINWYT.css" rel="stylesheet" type="text/css" crossorigin="anonymous">
+    <link href="css/infinity.css" rel="stylesheet" type="text/css">
+    <link href="css/product.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="im-pd-page">
+
+    <!-- ── Sticky navigation bar ───────────────────────────── -->
+    <nav class="im-pd-nav" role="navigation" aria-label="Product page navigation">
+        <a href="index.html#products" class="im-pd-back" aria-label="Back to all products">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 3L5 8l5 5"/>
+            </svg>
+            All Products
+        </a>
+        <a href="index.html">
+            <img src="images/logo.png" class="im-pd-nav-logo" alt="Infinity Merchandise" loading="eager">
+        </a>
+        <button id="im-pd-nav-cta" class="im-pd-nav-cta" type="button" data-im-open-modal aria-label="Make an enquiry">
+            Enquire Now
+        </button>
+    </nav>
+
+    <!-- ── Hero section ────────────────────────────────────── -->
+    <main>
+        <section class="im-pd-hero" aria-label="Product details">
+
+            <!-- Left: image -->
+            <div class="im-pd-image-zone">
+                <img id="im-pd-main-img" class="im-pd-main-img"
+                    src="" alt="" loading="eager" width="600" height="450">
+            </div>
+
+            <!-- Right: info -->
+            <div class="im-pd-info">
+                <!-- Breadcrumb -->
+                <nav class="im-pd-breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html#products">Products</a>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 2l4 4-4 4"/>
+                    </svg>
+                    <span id="im-pd-breadcrumb-product"></span>
+                </nav>
+
+                <h1 id="im-pd-title" class="im-pd-title"></h1>
+                <p id="im-pd-tagline" class="im-pd-tagline"></p>
+                <p id="im-pd-desc" class="im-pd-desc"></p>
+
+                <div class="im-pd-divider"></div>
+
+                <!-- Sub-products -->
+                <div class="im-pd-varieties-header">
+                    <span class="im-pd-varieties-label">Available Varieties</span>
+                    <span id="im-pd-varieties-count" class="im-pd-varieties-count"></span>
+                </div>
+                <div id="im-pd-pills" class="im-pd-pills" role="list" aria-label="Sub-product varieties"></div>
+
+                <!-- CTA (desktop only — mobile uses sticky bar) -->
+                <div class="im-pd-cta-group">
+                    <button id="im-pd-cta-primary" class="im-pd-cta-primary" type="button">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M9 2a7 7 0 100 14A7 7 0 009 2zM9 6v4M9 12v.5"/>
+                        </svg>
+                        Request a Quote
+                    </button>
+                    <p class="im-pd-cta-note">
+                        Our team responds within 24 hours.
+                        <a href="index.html#enquiry" data-im-open-modal>Open full enquiry form →</a>
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ── Sub-product image carousel ─────────────────────── -->
+        <section class="im-pd-carousel-section" aria-label="Sub-product varieties">
+            <div class="im-pd-carousel-header">
+                <div>
+                    <span class="im-pd-carousel-tag">Browse Varieties</span>
+                    <h2 id="im-pd-carousel-title" class="im-pd-carousel-title"></h2>
+                </div>
+                <div class="im-pd-carousel-nav" aria-label="Carousel navigation">
+                    <button id="im-pd-prev" class="im-pd-carousel-arrow" type="button" aria-label="Previous">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M13 4l-6 6 6 6"/>
+                        </svg>
+                    </button>
+                    <button id="im-pd-next" class="im-pd-carousel-arrow" type="button" aria-label="Next">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7 4l6 6-6 6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="im-pd-carousel-outer">
+                <div id="im-pd-carousel-track" class="im-pd-carousel-track" role="list"></div>
+            </div>
+            <!-- Dots -->
+            <div id="im-pd-carousel-dots" class="im-pd-carousel-dots" role="tablist" aria-label="Carousel position"></div>
+        </section>
+
+        <!-- ── Bottom CTA strip ─────────────────────────────── -->
+        <div class="im-pd-bottom">
+            <div class="im-pd-bottom-inner">
+                <h2 id="im-pd-bottom-title" class="im-pd-bottom-title"></h2>
+                <p class="im-pd-bottom-sub">
+                    Tell us your requirements and our sourcing team will connect you with the right suppliers, handle quality checks, and manage end-to-end logistics.
+                </p>
+                <button id="im-pd-bottom-cta" class="im-pd-bottom-cta" type="button">
+                    Start Your Enquiry
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 8h10M9 4l4 4-4 4"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- ── Sticky mobile CTA bar ────────────────────────────── -->
+    <div class="im-pd-mobile-bar" role="complementary" aria-label="Quick enquiry">
+        <button id="im-pd-mobile-btn" class="im-pd-mobile-bar-btn" type="button">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 2a7 7 0 100 14A7 7 0 009 2zM9 6v4M9 12v.5"/>
+            </svg>
+            Request a Quote
+        </button>
+    </div>
+
+    <!-- ── Enquiry Modal (same as index.html) ───────────────── -->
+    <div class="im-modal-overlay" id="im-enquiry-modal" role="dialog" aria-modal="true" aria-labelledby="im-modal-heading">
+        <div class="im-modal">
+            <button class="im-modal-close" id="im-modal-close" aria-label="Close enquiry form">✕</button>
+            <div id="im-modal-heading" class="im-modal-title">Make an Enquiry</div>
+            <div class="im-modal-subtitle">Fill in the details below and our sourcing team will get back to you within 24 hours.</div>
+            <form id="im-enquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+                <!-- Hidden field: sub-product selection from product page -->
+                <input type="hidden" id="im-subproduct" name="subproduct_interest" value="">
+
+                <!-- Section 1: Contact Details -->
+                <div class="im-form-section">
+                    <div class="im-form-section-label">01 — Contact Information</div>
+                    <div class="im-form-grid">
+                        <div class="im-form-group">
+                            <label for="im-name">Full Name <span>*</span></label>
+                            <input type="text" id="im-name" name="name" placeholder="Your full name" required autocomplete="name">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-company">Company / Business Name</label>
+                            <input type="text" id="im-company" name="company" placeholder="Company name (if applicable)" autocomplete="organization">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-email">Email Address <span>*</span></label>
+                            <input type="email" id="im-email" name="email" placeholder="you@example.com" required autocomplete="email">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-phone">WhatsApp / Phone Number <span>*</span></label>
+                            <input type="tel" id="im-phone" name="phone" placeholder="+91 9999999999" required autocomplete="tel">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-country">Country</label>
+                            <input type="text" id="im-country" name="country" placeholder="Your country" autocomplete="country-name">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-role">Your Role</label>
+                            <select id="im-role" name="role">
+                                <option value="">Select role</option>
+                                <option>Business Owner / Entrepreneur</option>
+                                <option>Procurement Manager</option>
+                                <option>Trader / Reseller</option>
+                                <option>Retailer</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Product Interest -->
+                <div class="im-form-section">
+                    <div class="im-form-section-label">02 — Product Interest</div>
+                    <div class="im-checkbox-grid">
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Textiles & Apparel"> Textiles &amp; Apparel</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Corporate Gifts"> Corporate Gifts &amp; Promo</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Office Furniture"> Office Furniture &amp; Décor</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Footwear"> Shoes &amp; Footwear</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Electronics"> Small Electronics &amp; Gadgets</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Machinery"> Machinery &amp; Industrial</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Kitchen Utilities"> Kitchen Utilities</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Dry Fruits"> Dry Fruits &amp; Food</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Stationery"> Stationery Items</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Home Decor"> Wall Paintings &amp; Décor</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Textile Accessories"> Textile Accessories</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Consumer Goods"> Wholesale Consumer Goods</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Textile Machinery"> Textile Machinery</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Toys"> Toys</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Promotional Merchandise"> Promotional Merchandise</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Other"> Other (specify below)</label>
+                    </div>
+                </div>
+
+                <!-- Section 3: Order Details -->
+                <div class="im-form-section">
+                    <div class="im-form-section-label">03 — Order Details</div>
+                    <div class="im-form-grid">
+                        <div class="im-form-group">
+                            <label for="im-quantity">Estimated Order Quantity</label>
+                            <select id="im-quantity" name="quantity">
+                                <option value="">Select range</option>
+                                <option>Small (1–50 units)</option>
+                                <option>Medium (51–500 units)</option>
+                                <option>Large (501–5,000 units)</option>
+                                <option>Bulk (5,000+ units)</option>
+                                <option>Ongoing / Monthly Supply</option>
+                            </select>
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-frequency">Order Frequency</label>
+                            <select id="im-frequency" name="frequency">
+                                <option value="">Select frequency</option>
+                                <option>One-time order</option>
+                                <option>Monthly</option>
+                                <option>Quarterly</option>
+                                <option>As needed</option>
+                            </select>
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-budget">Estimated Budget (USD)</label>
+                            <select id="im-budget" name="budget">
+                                <option value="">Select budget</option>
+                                <option>Under $1,000</option>
+                                <option>$1,000 – $5,000</option>
+                                <option>$5,000 – $20,000</option>
+                                <option>$20,000 – $100,000</option>
+                                <option>$100,000+</option>
+                            </select>
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-timeline">Required Timeline</label>
+                            <select id="im-timeline" name="timeline">
+                                <option value="">Select timeline</option>
+                                <option>ASAP (within 2 weeks)</option>
+                                <option>Within 1 month</option>
+                                <option>1–3 months</option>
+                                <option>3–6 months</option>
+                                <option>Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Source / Market -->
+                <div class="im-form-section">
+                    <div class="im-form-section-label">04 — Sourcing &amp; Destination</div>
+                    <div class="im-form-grid">
+                        <div class="im-form-group">
+                            <label for="im-source-market">Preferred Source Market</label>
+                            <input type="text" id="im-source-market" name="source_market"
+                                placeholder="e.g. India, China, No preference">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-destination">Delivery Destination</label>
+                            <input type="text" id="im-destination" name="destination"
+                                placeholder="e.g. UAE, Germany, USA">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Services Needed -->
+                <div class="im-form-section">
+                    <div class="im-form-section-label">05 — Services Required</div>
+                    <div class="im-checkbox-grid">
+                        <label class="im-checkbox-item"><input type="checkbox" name="services_needed" value="Sourcing"> Product Sourcing</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="services_needed" value="Quality Control"> Quality Control</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="services_needed" value="Import/Export"> Import / Export Handling</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="services_needed" value="Logistics"> Logistics &amp; Shipping</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="services_needed" value="Documentation"> Trade Documentation</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="services_needed" value="Custom Branding"> Custom Branding / Labels</label>
+                    </div>
+                </div>
+
+                <!-- Section 6: Additional Details -->
+                <div class="im-form-section">
+                    <div class="im-form-section-label">06 — Additional Information</div>
+                    <div class="im-form-group full-width">
+                        <label for="im-message">Describe your requirement in detail</label>
+                        <textarea id="im-message" name="message" placeholder="Describe what you need — product specs, quality standards, certifications, packaging requirements, etc."></textarea>
+                    </div>
+                    <div class="im-form-group" style="margin-top:1rem">
+                        <label for="im-how-heard">How did you hear about us?</label>
+                        <select id="im-how-heard" name="how_heard">
+                            <option value="">Select option</option>
+                            <option>Google Search</option>
+                            <option>Social Media</option>
+                            <option>Word of Mouth / Referral</option>
+                            <option>Trade Exhibition</option>
+                            <option>LinkedIn</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 7: Submit -->
+                <div class="im-form-submit">
+                    <button type="submit" class="im-btn-primary">Send Enquiry →</button>
+                    <button type="button" class="im-btn-secondary"
+                        onclick="document.getElementById('im-enquiry-modal').classList.remove('active');document.body.style.overflow='';">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ── Scripts ──────────────────────────────────────────── -->
+    <script src="js/product-data.js"></script>
+    <!-- Expose PRODUCT_DATA globally before infinity.js runs -->
+    <script>window.PRODUCT_DATA = PRODUCT_DATA;</script>
+    <script src="js/infinity.js" defer></script>
+    <script src="js/product-page.js" defer></script>
+
+</body>
+</html>

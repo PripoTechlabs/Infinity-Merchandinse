@@ -18,7 +18,7 @@
     const MODAL_OVERLAY = document.getElementById('im-enquiry-modal');
     const MODAL_CATEGORY_INPUT = document.getElementById('im-product-category');
 
-    function openModal(category) {
+    function openModal(category, subProduct) {
         if (!MODAL_OVERLAY) return;
         // Uncheck all product checkboxes first
         MODAL_OVERLAY.querySelectorAll('input[name="product_interest"]').forEach(cb => {
@@ -26,7 +26,7 @@
         });
         MODAL_OVERLAY.classList.add('active');
         document.body.style.overflow = 'hidden';
-        if (category && MODAL_CATEGORY_INPUT) {
+        if (category) {
             // Check the matching checkbox if it exists
             const checkboxes = MODAL_OVERLAY.querySelectorAll('input[name="product_interest"]');
             checkboxes.forEach(cb => {
@@ -36,10 +36,25 @@
                 }
             });
         }
+        // Populate sub-product hidden field (used on product.html)
+        const subProductField = document.getElementById('im-subproduct');
+        if (subProductField) {
+            subProductField.value = subProduct || '';
+        }
+        // Pre-fill message textarea with sub-product if provided
+        if (subProduct) {
+            const msg = document.getElementById('im-message');
+            if (msg && !msg.value) {
+                msg.value = 'Interested in: ' + subProduct;
+            }
+        }
         // Focus first input
         const firstInput = MODAL_OVERLAY.querySelector('input[type="text"]');
         if (firstInput) setTimeout(() => firstInput.focus(), 100);
     }
+
+    // Expose globally for product-page.js and other external callers
+    window.openModal = openModal;
 
     function closeModal() {
         if (!MODAL_OVERLAY) return;
@@ -272,15 +287,10 @@
     })();
 
     /* --------------------------------------------------------
-       PRODUCT SLIDE CLICKS → open enquiry modal with product preselected
+       PRODUCT SLIDE CLICKS → navigate to product detail page
+       Slides are now <a> tags; click handler removed.
+       Kept as no-op block for future extensibility.
     -------------------------------------------------------- */
-    document.querySelectorAll('.im-product-slide').forEach(slide => {
-        slide.addEventListener('click', function () {
-            const label = this.querySelector('.im-product-slide-label');
-            const category = label ? label.textContent.trim() : '';
-            openModal(category);
-        });
-    });
 
     /* --------------------------------------------------------
        WORLD MAP REGION TABS
