@@ -2453,23 +2453,55 @@
 
                 <!-- Section Header -->
                 <div class="im-ptm-header">
+                    <div class="im-ptm-header-tag">Global Trade Network</div>
                     <h2 class="im-ptm-title">Product-to-Market <span class="im-ptm-accent">Mapping</span></h2>
                     <p class="im-ptm-subtitle">Where we source, what we supply — by market</p>
                 </div>
 
                 <!-- Interactive Map (Desktop ≥1024px) -->
                 <div class="im-ptm-map-wrap" aria-label="Interactive world market map">
-                    <!-- Simplified world map SVG (decorative backdrop) -->
+                    <!-- World map silhouette -->
                     <img src="images/worldmap.svg" class="im-ptm-map-bg" alt="" aria-hidden="true">
 
-                    <!-- ── Location Pins ── -->
+                    <!-- Animated Trade Route Arcs -->
+                    <svg class="im-ptm-arcs-svg" viewBox="0 0 2000 857" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                        <!-- Source arcs: Asia → Dubai hub (gold) -->
+                        <path id="im-arc-1" class="im-ptm-arc im-ptm-arc--gold" d="M 1640 308 Q 1520 190 1294 314"/>
+                        <path id="im-arc-2" class="im-ptm-arc im-ptm-arc--gold im-ptm-arc--d1" d="M 1360 368 Q 1330 250 1294 314"/>
+                        <!-- Distribution arcs: Dubai hub → Markets (blue) -->
+                        <path id="im-arc-3" class="im-ptm-arc im-ptm-arc--blue im-ptm-arc--d2" d="M 1294 314 Q 1175 70 1056 186"/>
+                        <path id="im-arc-4" class="im-ptm-arc im-ptm-arc--blue im-ptm-arc--d3" d="M 1294 314 Q 875 40 456 248"/>
+                        <!-- Traveling particles (JS triggers begin) -->
+                        <circle class="im-ptm-particle im-ptm-particle--gold" r="4">
+                            <animateMotion dur="2.8s" repeatCount="indefinite" begin="indefinite"><mpath href="#im-arc-1"/></animateMotion>
+                        </circle>
+                        <circle class="im-ptm-particle im-ptm-particle--gold" r="3.5">
+                            <animateMotion dur="2.2s" repeatCount="indefinite" begin="indefinite"><mpath href="#im-arc-2"/></animateMotion>
+                        </circle>
+                        <circle class="im-ptm-particle im-ptm-particle--blue" r="4">
+                            <animateMotion dur="3.2s" repeatCount="indefinite" begin="indefinite"><mpath href="#im-arc-3"/></animateMotion>
+                        </circle>
+                        <circle class="im-ptm-particle im-ptm-particle--blue" r="4">
+                            <animateMotion dur="4s" repeatCount="indefinite" begin="indefinite"><mpath href="#im-arc-4"/></animateMotion>
+                        </circle>
+                    </svg>
+
+                    <!-- Source City Dots (decorative, non-interactive) -->
+                    <div class="im-ptm-source-city" style="left:82%;top:36%;" aria-hidden="true">
+                        <div class="im-ptm-source-dot"></div>
+                        <span class="im-ptm-source-label">Guangzhou</span>
+                    </div>
+                    <div class="im-ptm-source-city im-ptm-source-city--below" style="left:68%;top:43%;" aria-hidden="true">
+                        <div class="im-ptm-source-dot"></div>
+                        <span class="im-ptm-source-label">Mumbai</span>
+                    </div>
+
+                    <!-- ── Market Destination Pins ── -->
 
                     <!-- United States -->
                     <div class="im-ptm-pin-group" style="left:22.8%;top:28.9%;" data-region="us">
                         <button class="im-ptm-pin-btn im-ptm-pin-btn--us" aria-label="United States markets" aria-expanded="false" aria-haspopup="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 28" width="22" height="30" fill="currentColor" aria-hidden="true">
-                                <path d="M10 0C4.477 0 0 4.477 0 10c0 7.18 8.727 17.328 9.09 17.672A1.25 1.25 0 0010 28c.36 0 .7-.134.91-.328C11.273 27.328 20 17.18 20 10 20 4.477 15.523 0 10 0zm0 14a4 4 0 110-8 4 4 0 010 8z"/>
-                            </svg>
+                            <span class="im-ptm-dot"></span>
                             <span class="im-ptm-pulse"></span>
                         </button>
                         <div class="im-ptm-popup im-ptm-popup--right" role="region" aria-label="United States market details">
@@ -2494,9 +2526,7 @@
                     <!-- European Markets -->
                     <div class="im-ptm-pin-group" style="left:52.8%;top:21.7%;" data-region="eu">
                         <button class="im-ptm-pin-btn im-ptm-pin-btn--eu" aria-label="European markets" aria-expanded="false" aria-haspopup="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 28" width="22" height="30" fill="currentColor" aria-hidden="true">
-                                <path d="M10 0C4.477 0 0 4.477 0 10c0 7.18 8.727 17.328 9.09 17.672A1.25 1.25 0 0010 28c.36 0 .7-.134.91-.328C11.273 27.328 20 17.18 20 10 20 4.477 15.523 0 10 0zm0 14a4 4 0 110-8 4 4 0 010 8z"/>
-                            </svg>
+                            <span class="im-ptm-dot"></span>
                             <span class="im-ptm-pulse"></span>
                         </button>
                         <div class="im-ptm-popup im-ptm-popup--right" role="region" aria-label="European markets details">
@@ -2519,12 +2549,11 @@
                         </div>
                     </div>
 
-                    <!-- GCC Markets -->
+                    <!-- GCC Markets (Dubai HQ Hub) -->
                     <div class="im-ptm-pin-group" style="left:64.7%;top:36.7%;" data-region="gcc">
+                        <div class="im-ptm-hub-badge">HQ Hub</div>
                         <button class="im-ptm-pin-btn im-ptm-pin-btn--gcc" aria-label="GCC markets" aria-expanded="false" aria-haspopup="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 28" width="22" height="30" fill="currentColor" aria-hidden="true">
-                                <path d="M10 0C4.477 0 0 4.477 0 10c0 7.18 8.727 17.328 9.09 17.672A1.25 1.25 0 0010 28c.36 0 .7-.134.91-.328C11.273 27.328 20 17.18 20 10 20 4.477 15.523 0 10 0zm0 14a4 4 0 110-8 4 4 0 010 8z"/>
-                            </svg>
+                            <span class="im-ptm-dot"></span>
                             <span class="im-ptm-pulse"></span>
                         </button>
                         <div class="im-ptm-popup im-ptm-popup--left" role="region" aria-label="GCC market details">
@@ -2553,9 +2582,7 @@
                     <!-- Asia Pacific -->
                     <div class="im-ptm-pin-group" style="left:80%;top:42.2%;" data-region="asia">
                         <button class="im-ptm-pin-btn im-ptm-pin-btn--asia" aria-label="Asia Pacific markets" aria-expanded="false" aria-haspopup="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 28" width="22" height="30" fill="currentColor" aria-hidden="true">
-                                <path d="M10 0C4.477 0 0 4.477 0 10c0 7.18 8.727 17.328 9.09 17.672A1.25 1.25 0 0010 28c.36 0 .7-.134.91-.328C11.273 27.328 20 17.18 20 10 20 4.477 15.523 0 10 0zm0 14a4 4 0 110-8 4 4 0 010 8z"/>
-                            </svg>
+                            <span class="im-ptm-dot"></span>
                             <span class="im-ptm-pulse"></span>
                         </button>
                         <div class="im-ptm-popup im-ptm-popup--left" role="region" aria-label="Asia Pacific market details">
@@ -2670,7 +2697,7 @@
                 <!-- Footnote -->
                 <p class="im-ptm-footnote">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                    Cross-Market Products (High Global Demand) — hover a pin to explore the market
+                    Arcs show trade routes from source to market — hover a pin to explore each region
                 </p>
 
             </div><!-- end container -->

@@ -427,6 +427,42 @@
     });
 
     /* --------------------------------------------------------
+       PTM MAP — animate trade route arcs on scroll into view
+    -------------------------------------------------------- */
+    (function () {
+        var ptmSection = document.getElementById('global-reach');
+        if (!ptmSection) return;
+        var arcsSvg = ptmSection.querySelector('.im-ptm-arcs-svg');
+        if (!arcsSvg) return;
+
+        var animated = false;
+
+        function startArcs() {
+            if (animated) return;
+            animated = true;
+            arcsSvg.classList.add('im-ptm-arcs--animate');
+            // Start traveling particles after arcs finish drawing
+            var particles = arcsSvg.querySelectorAll('animateMotion');
+            var delays = [2000, 2300, 2800, 3100];
+            particles.forEach(function (anim, i) {
+                setTimeout(function () { anim.beginElement(); }, delays[i] || 2000);
+            });
+        }
+
+        if ('IntersectionObserver' in window) {
+            var ptmObserver = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) {
+                    startArcs();
+                    ptmObserver.disconnect();
+                }
+            }, { threshold: 0.15 });
+            ptmObserver.observe(ptmSection);
+        } else {
+            startArcs();
+        }
+    }());
+
+    /* --------------------------------------------------------
        STICKY NAVBAR (add background on scroll)
     -------------------------------------------------------- */
     const navbar = document.querySelector('.rt-navbar-v1');
