@@ -1775,6 +1775,12 @@
     color: var(--im-navy);
 }
 
+.im-footer-address {
+    align-items: flex-start;
+    cursor: default;
+    line-height: 1.55;
+}
+
 .im-footer-tagline {
     font-size: 0.875rem;
     color: #4A5568;
