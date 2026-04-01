@@ -2478,3 +2478,8 @@
     .im-ptm-popup, .im-ptm-pin-btn, .im-ptm-card-list, .im-ptm-chevron { transition: none; }
     .im-ptm-arc { stroke-dashoffset: 0 !important; animation: none !important; }
 }
+
+/* Remove strikethrough line from service list hover effect */
+.rt-line-v5 {
+    display: none !important;
+}
