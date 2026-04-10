@@ -463,6 +463,42 @@
     }());
 
     /* --------------------------------------------------------
+       PRODUCT CAROUSEL — lazy-load videos + play/pause on visibility
+    -------------------------------------------------------- */
+    (function () {
+        var videos = document.querySelectorAll('.im-product-slide-video');
+        if (!videos.length || !('IntersectionObserver' in window)) {
+            // Fallback: load & play all immediately (no IO support)
+            videos.forEach(function (v) {
+                if (v.dataset.src) { v.src = v.dataset.src; v.load(); v.play().catch(function(){}); }
+            });
+            return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                var v = entry.target;
+                if (entry.isIntersecting) {
+                    // Load source on first intersection
+                    if (!v.src && v.dataset.src) {
+                        v.src = v.dataset.src;
+                        v.load();
+                    }
+                    v.play().catch(function () {});
+                } else {
+                    v.pause();
+                }
+            });
+        }, {
+            root: document.querySelector('.im-products-carousel-outer'),
+            rootMargin: '0px 100px 0px 100px',
+            threshold: 0.1
+        });
+
+        videos.forEach(function (v) { observer.observe(v); });
+    }());
+
+    /* --------------------------------------------------------
        STICKY NAVBAR (add background on scroll)
     -------------------------------------------------------- */
     const navbar = document.querySelector('.rt-navbar-v1');

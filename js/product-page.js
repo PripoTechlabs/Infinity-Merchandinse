@@ -111,8 +111,9 @@
             card.setAttribute('role', 'listitem');
             card.style.animationDelay = (i * 60) + 'ms';
 
+            var cardImgSrc = (product.subImages && product.subImages[i]) ? product.subImages[i] : product.image;
             card.innerHTML =
-                '<img class="im-pd-carousel-card-img" src="' + product.image + '" ' +
+                '<img class="im-pd-carousel-card-img" src="' + cardImgSrc + '" ' +
                     'alt="' + sub + '" loading="lazy" width="260" height="195">' +
                 '<div class="im-pd-carousel-card-body">' +
                     '<div class="im-pd-carousel-card-name">' + sub + '</div>' +
