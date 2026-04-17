@@ -6406,7 +6406,7 @@ blockquote {
 }
 
 .rt-navbar-v1.rt-navbar-v2 {
-  border-bottom-color: #fff3;
+  /* border-bottom-color: #fff3; */
   padding-top: 1.5rem;
 }
 
