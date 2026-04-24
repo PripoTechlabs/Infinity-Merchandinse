@@ -1,6 +1,6 @@
 /* =============================================================
    INFINITY MERCHANDISE — Product Data
-   All 15 product categories with sub-products and descriptions.
+   Product categories with sub-products and descriptions.
    Used by product.html via product-page.js
    ============================================================= */
 
@@ -14,31 +14,30 @@ const PRODUCT_DATA = {
         checkboxValue: 'Textiles & Apparel',
         subProducts: [
             'Kids Wear', "Men's Wear", "Women's Wear", 'Western Wear', 'Winter Wear',
-            'Summer Wear', 'Indian Ethnic Wear', 'Sarees', 'European Style Wear', 'US Style Wear',
-            'Abayas & Modest Wear', 'Kurtis & Tunics', 'Indo-Western Wear', 'Swim Wear',
+            'Summer Wear', 'Indian Ethnic Wear', 'Sarees', 'US Style Wear',
+            'Abayas & Modest Wear', 'Kurtis & Tunics', 'Indo-Western Wear', 'Swimwear',
             'Gym & Active Wear', 'Casual Wear', 'Formal Wear', 'Party Wear',
             'Loungewear & Nightwear', 'Fashion & Designer Wear'
         ],
         subImages: [
             'images/compressed/dress/Kids Wear Boys Girls.webp',
             'images/compressed/dress/Mens Wear (1).webp',
+            'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=1080&q=80',
             'images/compressed/dress/European Wear (1).webp',
-            'images/compressed/dress/European Wear (1).webp',
-            'images/compressed/dress/Formal Wear (1).webp',
+            'https://images.unsplash.com/photo-1544923408-75c5cef46f14?w=1080&q=80',
             'images/compressed/dress/Casual Wear (1).webp',
             'images/compressed/dress/Indian Ethnic Wear (1).webp',
             'images/compressed/dress/Saree (1).webp',
-            'images/compressed/dress/European Wear (1).webp',
-            'images/compressed/dress/Casual Wear (1).webp',
+            'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?w=1080&q=80',
             'images/compressed/dress/Abaya (2).webp',
             'images/compressed/dress/Kurtis and Tunics (1).webp',
             'images/compressed/dress/Indo Western.webp',
+            'https://images.unsplash.com/photo-1570976447640-ac859083963f?w=1080&q=80',
             'images/compressed/dress/Gym Wear (1).webp',
-            'images/compressed/dress/Gym Wear (1).webp',
-            'images/compressed/dress/Casual Wear (1).webp',
+            'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1080&q=80',
+            'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1080&q=80',
             'images/compressed/dress/Formal Wear (1).webp',
-            'images/compressed/dress/Designer Wear.webp',
-            'images/compressed/dress/Casual Wear (1).webp',
+            'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=1080&q=80',
             'images/compressed/dress/Designer Wear.webp'
         ]
     },
@@ -64,18 +63,6 @@ const PRODUCT_DATA = {
             'images/compressed/Footwear/Kids Shoe (1).webp',
             'images/compressed/Footwear/Leather Shoe (1).webp',
             'images/compressed/Footwear/Designer Fashion.webp'
-        ]
-    },
-    'textile-accessories': {
-        id: 'textile-accessories',
-        name: 'Textile Accessories',
-        tagline: 'Finishing touches that define fashion.',
-        description: 'The right accessory completes every garment. We supply a full range of textile accessories — from buttons and zippers to embroidery threads — sourced directly from specialized manufacturers. Ideal for garment factories, fashion brands, and boutique studios seeking reliable bulk supply.',
-        image: 'images/textile.png',
-        checkboxValue: 'Textile Accessories',
-        subProducts: [
-            'Buttons & Zippers', 'Labels & Tags', 'Laces & Elastics',
-            'Threads & Yarns', 'Embroidery Accessories', 'Patches & Badges', 'Trimmings & Borders'
         ]
     },
     'corporate-gifts': {
@@ -124,26 +111,30 @@ const PRODUCT_DATA = {
             'images/compressed/Stationeries/Customised Items (1).webp'
         ]
     },
-    'office-furniture': {
-        id: 'office-furniture',
-        name: 'Office Furniture',
-        tagline: 'Functional design for productive workplaces.',
-        description: 'Outfit your workspace with durable, ergonomic furniture sourced from leading manufacturers. We cater to corporate offices, co-working spaces, hospitality setups, and institutions — providing everything from individual workstations to full office fit-outs at bulk pricing.',
+    'furnitures': {
+        id: 'furnitures',
+        name: 'Furnitures',
+        tagline: 'Functional design for homes, workplaces, and hospitality.',
+        description: 'Outfit any space with durable, well-crafted furniture sourced from leading manufacturers. We supply homes, offices, restaurants, and hotels — covering everything from individual workstations to full fit-outs at bulk pricing.',
         image: 'images/compressed/Furniture/Modular Office Furniture.webp',
-        checkboxValue: 'Office Furniture',
+        checkboxValue: 'Furnitures',
         subProducts: [
+            'Home Furniture', 'Restaurant Furniture', 'Hotel Furnitures', 'Luxury Sofas',
             'Office Chairs', 'Workstations & Cubicles', 'Office Tables & Desks',
             'Conference Tables', 'Storage Cabinets', 'Reception Furniture',
-            'Ergonomic Furniture', 'Modular Office Furniture'
+            'Modular Office Furniture'
         ],
         subImages: [
+            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1080&q=80',
+            'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1080&q=80',
+            'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=1080&q=80',
+            'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=1080&q=80',
             'images/compressed/Furniture/Office Chair.webp',
             'images/compressed/Furniture/Work Station.webp',
             'images/compressed/Furniture/Office Desk (1).webp',
             'images/compressed/Furniture/Conference Tables.webp',
             'images/compressed/Furniture/Storage Cabinets.webp',
             'images/compressed/Furniture/Reception Furnitures (1).webp',
-            'images/compressed/Furniture/Ergonomic Furniture (1).webp',
             'images/compressed/Furniture/Modular Office Furniture.webp'
         ]
     },
@@ -163,7 +154,7 @@ const PRODUCT_DATA = {
             'images/compressed/Wall Paintings and Decor/Framed Art (1).webp',
             'images/compressed/Wall Paintings and Decor/Abstract Art.webp',
             'images/compressed/Wall Paintings and Decor/Modern Wall Decor.webp',
-            'images/compressed/Wall Paintings and Decor/Traditional Cultural Art.webp',
+            'https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=1080&q=80',
             'images/compressed/Wall Paintings and Decor/Custom Wall Art.png.webp',
             'images/compressed/Wall Paintings and Decor/Office Home Decor.webp'
         ]
@@ -254,9 +245,9 @@ const PRODUCT_DATA = {
             'images/compressed/Imported Commercial Machinery/Construction Equipment.webp',
             'images/compressed/Imported Commercial Machinery/Material Handling Equipment.webp',
             'images/compressed/Imported Commercial Machinery/CNC Machines.webp',
+            'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1080&q=80',
             'images/compressed/Imported Commercial Machinery/Metal Fabrication Machines.webp',
-            'images/compressed/Imported Commercial Machinery/Metal Fabrication Machines.webp',
-            'images/compressed/Imported Commercial Machinery/Woodworking Machines.webp',
+            'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1080&q=80',
             'images/compressed/Imported Commercial Machinery/Cleaning and Maintenance Machines.webp',
             'images/compressed/Imported Commercial Machinery/Bakery Confectionery Machines.webp',
             'images/compressed/Imported Commercial Machinery/Hotel Restaurant Equipment.webp',
@@ -285,76 +276,27 @@ const PRODUCT_DATA = {
             'images/compressed/Toys/Promotional Gift Toys.webp'
         ]
     },
-    'promotional-merchandise': {
-        id: 'promotional-merchandise',
-        name: 'Promotional Merchandise',
-        tagline: 'Brand visibility through everyday products.',
-        description: 'Turn everyday items into powerful brand touchpoints. We source customized promotional merchandise for marketing campaigns, trade exhibitions, corporate events, and loyalty programs — combining competitive pricing with high-quality branding across a wide range of product categories.',
-        image: 'images/compressed/Promotional Merchandise/Event Exhibition Giveaways.webp',
-        checkboxValue: 'Promotional Merchandise',
+    'arcade-games': {
+        id: 'arcade-games',
+        name: 'Arcade Games',
+        tagline: 'Entertainment experiences for every venue.',
+        description: 'We source arcade and amusement equipment for entertainment centers, malls, hotels, and family venues. From classic coin-operated cabinets to modern VR and motion simulators, our supplier network delivers fully tested machines with installation and service support.',
+        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1080&q=80',
+        checkboxValue: 'Arcade Games',
         subProducts: [
-            'Branded Apparel', 'Promotional Bags', 'Customized Stationery',
-            'Drinkware (Mugs, Bottles, Tumblers)', 'Tech Promotional Items (USBs, Power Banks)',
-            'Office Desk Accessories', 'Eco-Friendly Promotional Products',
-            'Event & Exhibition Giveaways', 'Festival & Seasonal Merchandise', 'Premium Executive Gifts'
+            'Arcade Cabinets', 'Claw & Prize Machines', 'Racing Simulators',
+            'VR Arcade Games', 'Air Hockey & Table Games', 'Basketball & Sports Games',
+            'Coin-Operated Kids Rides', 'Redemption Game Machines'
         ],
         subImages: [
-            'images/compressed/Promotional Merchandise/Branded Apparel.webp',
-            'images/compressed/Promotional Merchandise/Promotional Bags.webp',
-            'images/compressed/Promotional Merchandise/Customized Stationery.webp',
-            'images/compressed/Promotional Merchandise/Drinkware Mugs Bottles Tumblers.webp',
-            'images/compressed/Promotional Merchandise/Tech Promotional Items.webp',
-            'images/compressed/Promotional Merchandise/Office Desk Accessories.webp',
-            'images/compressed/Promotional Merchandise/Eco-Friendly Promotional Products.webp',
-            'images/compressed/Promotional Merchandise/Event Exhibition Giveaways.webp',
-            'images/compressed/Promotional Merchandise/Festival Seasonal Merchandise.webp',
-            'images/compressed/Promotional Merchandise/ChatGPT Image Mar 27 2026.webp'
-        ]
-    },
-    'wholesale-goods': {
-        id: 'wholesale-goods',
-        name: 'Wholesale Consumer Goods',
-        tagline: 'High-demand products for bulk trade.',
-        description: 'We supply a broad range of high-turnover consumer goods for wholesalers, distributors, supermarkets, and e-commerce businesses. Our sourcing network delivers consistent quality across household products, personal care, and fast-moving consumer goods — at competitive bulk pricing with flexible order quantities.',
-        image: 'images/compressed/Wholesale Consumer Goods/Fast Moving Consumer Goods.webp',
-        checkboxValue: 'Consumer Goods',
-        subProducts: [
-            'Household Items', 'Daily Utility Products', 'Home & Living Products',
-            'Personal Care Items', 'Cleaning Products', 'Plastic & Storage Products',
-            'Travel & Lifestyle Accessories', 'Fast-Moving Consumer Goods (FMCG)', 'General Merchandise Items'
-        ],
-        subImages: [
-            'images/compressed/Wholesale Consumer Goods/Household Items.webp',
-            'images/compressed/Wholesale Consumer Goods/Daily Utility Products.webp',
-            'images/compressed/Wholesale Consumer Goods/Home Living Products.webp',
-            'images/compressed/Wholesale Consumer Goods/Personal Care Items.webp',
-            'images/compressed/Wholesale Consumer Goods/Cleaning Products.webp',
-            'images/compressed/Wholesale Consumer Goods/Plastic Storage Products.webp',
-            'images/compressed/Wholesale Consumer Goods/Travel Lifestyle Accessories.webp',
-            'images/compressed/Wholesale Consumer Goods/Fast Moving Consumer Goods.webp',
-            'images/compressed/Wholesale Consumer Goods/General Merchandise Items.webp'
-        ]
-    },
-    'textile-machinery': {
-        id: 'textile-machinery',
-        name: 'Textile Machineries',
-        tagline: 'Powering production with precision.',
-        description: 'We source and import textile machinery from established manufacturers across Asia and Europe. From spinning and weaving to dyeing and finishing — our machinery sourcing service supports textile mills, garment factories, and production facilities with reliable equipment, technical documentation, and after-sales support coordination.',
-        image: 'images/compressed/Textile Machineries/Textile Processing Equipment.webp',
-        checkboxValue: 'Textile Machinery',
-        subProducts: [
-            'Spinning Machines', 'Weaving Machines', 'Knitting Machines',
-            'Dyeing & Finishing Machines', 'Embroidery Machines',
-            'Cutting & Sewing Machines', 'Textile Processing Equipment'
-        ],
-        subImages: [
-            'images/compressed/Textile Machineries/Spinning Machines.webp',
-            'images/compressed/Textile Machineries/Weaving Machines.webp',
-            'images/compressed/Textile Machineries/Knitting Version (1).webp',
-            'images/compressed/Textile Machineries/Dyeing Finishing Machines.webp',
-            'images/compressed/Textile Machineries/Embroidery Machines.webp',
-            'images/compressed/Textile Machineries/Cutting and Sewing Machines.webp',
-            'images/compressed/Textile Machineries/Textile Processing Equipment.webp'
+            'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1080&q=80',
+            'https://images.unsplash.com/photo-1533236897111-3e94666b2edf?w=1080&q=80',
+            'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1080&q=80',
+            'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=1080&q=80',
+            'https://images.unsplash.com/photo-1511882150382-421056c89033?w=1080&q=80',
+            'https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=1080&q=80',
+            'https://images.unsplash.com/photo-1606503153255-59d8b2e4739f?w=1080&q=80',
+            'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1080&q=80'
         ]
     }
 };

@@ -7,7 +7,12 @@
     <title>Product — Infinity Merchandise</title>
     <meta name="description" content="Explore our product range. Infinity Merchandise — global sourcing and trading partner.">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <link href="css/LAoaahHINWYT.css" rel="stylesheet" type="text/css" crossorigin="anonymous">
+
+    <!-- Typography: Fraunces (editorial serif) + Manrope (body sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link href="css/infinity.css" rel="stylesheet" type="text/css">
     <link href="css/product.css" rel="stylesheet" type="text/css">
 </head>
@@ -196,20 +201,17 @@
                     <div class="im-form-section-label">02 — Product Interest</div>
                     <div class="im-checkbox-grid">
                         <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Textiles & Apparel"> Textiles &amp; Apparel</label>
-                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Corporate Gifts"> Corporate Gifts &amp; Promo</label>
-                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Office Furniture"> Office Furniture &amp; Décor</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Corporate Gifts"> Corporate Gifts</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Furnitures"> Furnitures</label>
                         <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Footwear"> Shoes &amp; Footwear</label>
-                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Electronics"> Small Electronics &amp; Gadgets</label>
-                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Machinery"> Machinery &amp; Industrial</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Electronics"> Small Electronics</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Machinery"> Imported Commercial Machinery</label>
                         <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Kitchen Utilities"> Kitchen Utilities</label>
-                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Dry Fruits"> Dry Fruits &amp; Food</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Dry Fruits"> Dry Fruits &amp; Dates</label>
                         <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Stationery"> Stationery Items</label>
                         <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Home Decor"> Wall Paintings &amp; Décor</label>
-                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Textile Accessories"> Textile Accessories</label>
-                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Consumer Goods"> Wholesale Consumer Goods</label>
-                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Textile Machinery"> Textile Machinery</label>
                         <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Toys"> Toys</label>
-                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Promotional Merchandise"> Promotional Merchandise</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Arcade Games"> Arcade Games</label>
                         <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Other"> Other (specify below)</label>
                     </div>
                 </div>
@@ -319,7 +321,7 @@
                 <div class="im-form-submit">
                     <button type="submit" class="im-btn-primary">Send Enquiry →</button>
                     <button type="button" class="im-btn-secondary"
-                        onclick="document.getElementById('im-enquiry-modal').classList.remove('active');document.body.style.overflow='';">Cancel</button>
+                        onclick="document.getElementById('im-enquiry-modal').classList.remove('active');document.body.style.overflow='';document.body.classList.remove('im-modal-open');">Cancel</button>
                 </div>
             </form>
         </div>

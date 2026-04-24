@@ -26,6 +26,7 @@
         });
         MODAL_OVERLAY.classList.add('active');
         document.body.style.overflow = 'hidden';
+        document.body.classList.add('im-modal-open');
         if (category) {
             // Check the matching checkbox if it exists
             const checkboxes = MODAL_OVERLAY.querySelectorAll('input[name="product_interest"]');
@@ -60,6 +61,7 @@
         if (!MODAL_OVERLAY) return;
         MODAL_OVERLAY.classList.remove('active');
         document.body.style.overflow = '';
+        document.body.classList.remove('im-modal-open');
     }
 
     // Close on overlay click
@@ -293,63 +295,6 @@
     -------------------------------------------------------- */
 
     /* --------------------------------------------------------
-       WORLD MAP REGION TABS
-    -------------------------------------------------------- */
-    const REGION_DATA = {
-        gcc: {
-            label: 'GCC Markets',
-            countries: 'UAE, Saudi Arabia, Qatar, Kuwait, Oman, Bahrain',
-            products: ['Textiles & Apparel', 'Corporate Gifts & Promotional Items', 'Office Furniture', 'Dry Fruits & Dates', 'Kitchen Utilities', 'Small Electronics', 'Wall Paintings & Home Décor', 'Stationery Items', 'Shoes & Footwear', 'Wholesale Consumer Goods']
-        },
-        eu: {
-            label: 'European Markets',
-            countries: 'Germany, France, Netherlands, UK, Spain, Italy & more',
-            products: ['Textiles & Apparel', 'Shoes & Footwear', 'Textile Accessories', 'Corporate Gifts', 'Promotional Merchandise', 'Wall Paintings & Home Décor', 'Wholesale Consumer Goods']
-        },
-        us: {
-            label: 'United States',
-            countries: 'USA — West Coast, East Coast, Midwest',
-            products: ['Promotional Merchandise', 'Corporate Gifts', 'Stationery Items', 'Small Electronics', 'Kitchen Utilities', 'Wholesale Consumer Goods']
-        },
-        asia: {
-            label: 'Asia Pacific',
-            countries: 'India, Vietnam, Bangladesh, South Korea, Japan, Singapore',
-            products: ['Textiles & Apparel', 'Textile Machinery', 'Imported Commercial Machinery', 'Textile Accessories', 'Shoes & Footwear', 'Kitchen Utilities & Machinery', 'Wholesale Consumer Goods']
-        }
-    };
-
-    function renderRegion(regionKey) {
-        const data = REGION_DATA[regionKey];
-        if (!data) return;
-
-        // Update active tab
-        document.querySelectorAll('.im-region-tab').forEach(tab => {
-            tab.classList.toggle('active', tab.dataset.region === regionKey);
-        });
-
-        // Update panel
-        const panel = document.getElementById('im-region-products');
-        if (!panel) return;
-
-        panel.innerHTML = `
-            <div class="im-region-product-list">
-                <div style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin-bottom:0.75rem;letter-spacing:0.05em;">${data.countries}</div>
-                ${data.products.map(p => `<div class="im-region-product-item">${p}</div>`).join('')}
-            </div>
-        `;
-    }
-
-    // Tab clicks
-    document.querySelectorAll('.im-region-tab').forEach(tab => {
-        tab.addEventListener('click', function () {
-            renderRegion(this.dataset.region);
-        });
-    });
-
-    // Init with GCC
-    renderRegion('gcc');
-
-    /* --------------------------------------------------------
        SMOOTH SCROLL for NAVBAR LINKS
     -------------------------------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -427,6 +372,137 @@
     });
 
     /* --------------------------------------------------------
+       PTM MAP — geographic pin placement + auto-built arcs
+
+       Each pin has data-lat / data-lng attributes. We project
+       geo coords to % positions over the worldmap.svg image
+       using an equirectangular projection with bounds tuned
+       to the SVG's visible content (trimmed Antarctica/arctic).
+
+       Tweak LAT_MAX / LAT_MIN / LON_MIN / LON_MAX below if the
+       underlying worldmap.svg is swapped for a different crop.
+    -------------------------------------------------------- */
+    (function () {
+        var mapWrap = document.querySelector('.im-ptm-map-wrap');
+        var arcsSvg = document.getElementById('im-ptm-arcs');
+        if (!mapWrap || !arcsSvg) return;
+
+        // Equirectangular projection bounds — tuned for the current worldmap.svg.
+        // SVG covers roughly -180°..180° longitude and ~83°N..-55°S (Antarctica trimmed).
+        // Tweak these if you swap the underlying map.
+        var LON_MIN = -180, LON_MAX = 180;
+        var LAT_MAX = 83,   LAT_MIN = -55;
+
+        // SVG viewBox (must match <svg viewBox="...">)
+        var SVG_W = 2000, SVG_H = 857;
+
+        function latLngToPercent(lat, lng) {
+            var xPct = (lng - LON_MIN) / (LON_MAX - LON_MIN) * 100;
+            var yPct = (LAT_MAX - lat) / (LAT_MAX - LAT_MIN) * 100;
+            return { x: xPct, y: yPct };
+        }
+
+        function latLngToSvg(lat, lng) {
+            var p = latLngToPercent(lat, lng);
+            return { x: p.x / 100 * SVG_W, y: p.y / 100 * SVG_H };
+        }
+
+        // 1) Position each pin by geo coords
+        var pins = Array.prototype.slice.call(mapWrap.querySelectorAll('.im-ptm-pin-group[data-lat][data-lng]'));
+        var hqs = []; // [{el, lat, lng, svg}]
+        var markets = []; // same shape but non-HQ
+
+        pins.forEach(function (el) {
+            var lat = parseFloat(el.dataset.lat);
+            var lng = parseFloat(el.dataset.lng);
+            if (isNaN(lat) || isNaN(lng)) return;
+            var p = latLngToPercent(lat, lng);
+            el.style.left = p.x.toFixed(3) + '%';
+            el.style.top  = p.y.toFixed(3) + '%';
+            var rec = { el: el, lat: lat, lng: lng, svg: latLngToSvg(lat, lng) };
+            if (el.dataset.hq) hqs.push(rec); else markets.push(rec);
+        });
+
+        // 2) Build arcs — each market → nearest HQ (great-circle distance), plus HQ1↔HQ2
+        var SVG_NS = 'http://www.w3.org/2000/svg';
+        var XLINK_NS = 'http://www.w3.org/1999/xlink';
+
+        function haversine(a, b) {
+            var toRad = Math.PI / 180;
+            var dLat = (b.lat - a.lat) * toRad;
+            var dLng = (b.lng - a.lng) * toRad;
+            var la1 = a.lat * toRad, la2 = b.lat * toRad;
+            var h = Math.sin(dLat/2)**2 + Math.cos(la1)*Math.cos(la2)*Math.sin(dLng/2)**2;
+            return 2 * Math.asin(Math.sqrt(h));
+        }
+
+        function quadPath(from, to, curve) {
+            // Control point offset perpendicular to the segment, scaled by length
+            var mx = (from.x + to.x) / 2;
+            var my = (from.y + to.y) / 2;
+            var dx = to.x - from.x, dy = to.y - from.y;
+            var len = Math.sqrt(dx*dx + dy*dy);
+            // Perpendicular unit vector (lifted upward)
+            var px = -dy / len, py = dx / len;
+            // Always lift arcs upward (negative y in SVG) when endpoints roughly horizontal
+            if (py > 0) { px = -px; py = -py; }
+            var lift = len * (curve || 0.22);
+            var cx = mx + px * lift;
+            var cy = my + py * lift;
+            return 'M ' + from.x.toFixed(1) + ' ' + from.y.toFixed(1) +
+                   ' Q ' + cx.toFixed(1) + ' ' + cy.toFixed(1) +
+                   ' ' + to.x.toFixed(1) + ' ' + to.y.toFixed(1);
+        }
+
+        function addArc(id, from, to, colorClass, delayClass) {
+            var path = document.createElementNS(SVG_NS, 'path');
+            path.setAttribute('id', id);
+            path.setAttribute('class', 'im-ptm-arc ' + colorClass + (delayClass ? ' ' + delayClass : ''));
+            path.setAttribute('d', quadPath(from, to));
+            arcsSvg.appendChild(path);
+
+            var circle = document.createElementNS(SVG_NS, 'circle');
+            var particleClass = colorClass.indexOf('blue') > -1 ? 'im-ptm-particle--blue' : 'im-ptm-particle--gold';
+            circle.setAttribute('class', 'im-ptm-particle ' + particleClass);
+            circle.setAttribute('r', '3.8');
+            var anim = document.createElementNS(SVG_NS, 'animateMotion');
+            var dist = Math.sqrt((to.x-from.x)**2 + (to.y-from.y)**2);
+            anim.setAttribute('dur', Math.max(2, dist / 260).toFixed(2) + 's');
+            anim.setAttribute('repeatCount', 'indefinite');
+            anim.setAttribute('begin', 'indefinite');
+            var mpath = document.createElementNS(SVG_NS, 'mpath');
+            mpath.setAttributeNS(XLINK_NS, 'xlink:href', '#' + id);
+            mpath.setAttribute('href', '#' + id);
+            anim.appendChild(mpath);
+            circle.appendChild(anim);
+            arcsSvg.appendChild(circle);
+        }
+
+        if (hqs.length >= 1 && markets.length) {
+            var delayClasses = ['', 'im-ptm-arc--d1', 'im-ptm-arc--d2', 'im-ptm-arc--d3', 'im-ptm-arc--d4', 'im-ptm-arc--d5'];
+            markets.forEach(function (m, i) {
+                // pick nearest HQ
+                var target = hqs[0];
+                if (hqs.length > 1) {
+                    var best = haversine(m, hqs[0]), idx = 0;
+                    for (var k = 1; k < hqs.length; k++) {
+                        var d = haversine(m, hqs[k]);
+                        if (d < best) { best = d; idx = k; }
+                    }
+                    target = hqs[idx];
+                }
+                var colorClass = target.el.dataset.hq === '2' ? 'im-ptm-arc--blue' : 'im-ptm-arc--gold';
+                addArc('im-arc-m' + i, m.svg, target.svg, colorClass, delayClasses[i % delayClasses.length]);
+            });
+
+            // HQ1 ↔ HQ2 link
+            if (hqs.length >= 2) {
+                addArc('im-arc-hq-link', hqs[0].svg, hqs[1].svg, 'im-ptm-arc--gold', 'im-ptm-arc--d4');
+            }
+        }
+    })();
+
+    /* --------------------------------------------------------
        PTM MAP — animate trade route arcs on scroll into view
     -------------------------------------------------------- */
     (function () {
@@ -443,9 +519,9 @@
             arcsSvg.classList.add('im-ptm-arcs--animate');
             // Start traveling particles after arcs finish drawing
             var particles = arcsSvg.querySelectorAll('animateMotion');
-            var delays = [2000, 2300, 2800, 3100];
+            var delays = [2000, 2200, 2400, 2600, 2800, 3000, 3200];
             particles.forEach(function (anim, i) {
-                setTimeout(function () { anim.beginElement(); }, delays[i] || 2000);
+                setTimeout(function () { anim.beginElement(); }, delays[i] || 2200 + i * 100);
             });
         }
 

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>The Catalogue — Infinity Merchandise</title>
+    <meta name="description" content="Explore every category we source — from textiles and furnishings to commercial machinery and arcade games. The complete Infinity Merchandise catalogue.">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="icon" type="image/svg+xml" href="images/Logo.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="css/infinity.css" rel="stylesheet" type="text/css">
+    <link href="css/all-products.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="im-cat-page">
+
+    <!-- Top nav -->
+    <nav class="im-cat-nav" role="navigation" aria-label="Catalogue navigation">
+        <a href="index.html" class="im-cat-back" aria-label="Back to homepage">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 3L5 8l5 5"/>
+            </svg>
+            <span>Home</span>
+        </a>
+        <a href="index.html" class="im-cat-brand">
+            <img src="images/logo.png" alt="Infinity Merchandise" class="im-cat-brand-logo">
+        </a>
+        <button class="im-cat-nav-cta" type="button" data-im-open-modal aria-label="Make an enquiry">
+            Enquire
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <header class="im-cat-hero">
+        <div class="im-cat-hero-inner">
+            <div class="im-cat-hero-meta">
+                <span class="im-cat-meta-rule"></span>
+                <span class="im-cat-meta-text">The Catalogue — Vol. 01</span>
+            </div>
+            <h1 class="im-cat-title">
+                Everything we <em>source,</em>
+                <span class="im-cat-title-break"></span>
+                in one complete index.
+            </h1>
+            <div class="im-cat-hero-footer">
+                <p class="im-cat-hero-blurb">
+                    A curated directory of every category in our global sourcing network.
+                    Each entry links to supplier specs, sample varieties, and a direct quote request.
+                </p>
+                <div class="im-cat-hero-stats" role="list" aria-label="Catalogue stats">
+                    <div class="im-cat-stat" role="listitem">
+                        <span class="im-cat-stat-num" id="im-cat-count">—</span>
+                        <span class="im-cat-stat-label">Categories</span>
+                    </div>
+                    <div class="im-cat-stat" role="listitem">
+                        <span class="im-cat-stat-num" id="im-cat-sub-count">—</span>
+                        <span class="im-cat-stat-label">Sub-products</span>
+                    </div>
+                    <div class="im-cat-stat" role="listitem">
+                        <span class="im-cat-stat-num">08</span>
+                        <span class="im-cat-stat-label">Market regions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filter bar -->
+    <div class="im-cat-filterbar" role="tablist" aria-label="Filter categories">
+        <button class="im-cat-chip is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="im-cat-chip" data-filter="apparel"    role="tab" aria-selected="false">Apparel &amp; Textiles</button>
+        <button class="im-cat-chip" data-filter="lifestyle"  role="tab" aria-selected="false">Lifestyle &amp; Gifting</button>
+        <button class="im-cat-chip" data-filter="home"       role="tab" aria-selected="false">Home &amp; Interiors</button>
+        <button class="im-cat-chip" data-filter="industrial" role="tab" aria-selected="false">Industrial &amp; Machinery</button>
+        <button class="im-cat-chip" data-filter="entertainment" role="tab" aria-selected="false">Entertainment</button>
+    </div>
+
+    <!-- Grid -->
+    <main class="im-cat-grid-wrap">
+        <div id="im-cat-grid" class="im-cat-grid" role="list" aria-label="Product categories"></div>
+    </main>
+
+    <!-- Bottom CTA -->
+    <section class="im-cat-bottom">
+        <div class="im-cat-bottom-inner">
+            <div class="im-cat-bottom-tag">Not sure where to start?</div>
+            <h2 class="im-cat-bottom-title">
+                Tell us what you need. <em>We'll source it.</em>
+            </h2>
+            <p class="im-cat-bottom-sub">
+                Send requirements for any product, category, or custom combination — our team reverts within 24 hours with verified suppliers, quality checks, and a landed cost estimate.
+            </p>
+            <button type="button" class="im-cat-bottom-cta" data-im-open-modal>
+                Start Enquiry
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 8h10M9 4l4 4-4 4"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Enquiry Modal (same markup as product.html) -->
+    <div class="im-modal-overlay" id="im-enquiry-modal" role="dialog" aria-modal="true" aria-labelledby="im-modal-heading">
+        <div class="im-modal">
+            <button class="im-modal-close" id="im-modal-close" aria-label="Close enquiry form">✕</button>
+            <div id="im-modal-heading" class="im-modal-title">Make an Enquiry</div>
+            <div class="im-modal-subtitle">Fill in the details below and our sourcing team will get back to you within 24 hours.</div>
+            <form id="im-enquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <input type="hidden" id="im-subproduct" name="subproduct_interest" value="">
+
+                <div class="im-form-section">
+                    <div class="im-form-section-label">01 — Contact Information</div>
+                    <div class="im-form-grid">
+                        <div class="im-form-group">
+                            <label for="im-name">Full Name <span>*</span></label>
+                            <input type="text" id="im-name" name="name" placeholder="Your full name" required autocomplete="name">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-company">Company / Business Name</label>
+                            <input type="text" id="im-company" name="company" placeholder="Company name (if applicable)" autocomplete="organization">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-email">Email Address <span>*</span></label>
+                            <input type="email" id="im-email" name="email" placeholder="you@example.com" required autocomplete="email">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-phone">WhatsApp / Phone Number <span>*</span></label>
+                            <input type="tel" id="im-phone" name="phone" placeholder="+91 9999999999" required autocomplete="tel">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-country">Country</label>
+                            <input type="text" id="im-country" name="country" placeholder="Your country" autocomplete="country-name">
+                        </div>
+                        <div class="im-form-group">
+                            <label for="im-role">Your Role</label>
+                            <select id="im-role" name="role">
+                                <option value="">Select role</option>
+                                <option>Business Owner / Entrepreneur</option>
+                                <option>Procurement Manager</option>
+                                <option>Trader / Reseller</option>
+                                <option>Retailer</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="im-form-section">
+                    <div class="im-form-section-label">02 — Product Interest</div>
+                    <div class="im-checkbox-grid">
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Textiles & Apparel"> Textiles &amp; Apparel</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Corporate Gifts"> Corporate Gifts</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Furnitures"> Furnitures</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Footwear"> Shoes &amp; Footwear</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Electronics"> Small Electronics</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Machinery"> Imported Commercial Machinery</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Kitchen Utilities"> Kitchen Utilities</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Dry Fruits"> Dry Fruits &amp; Dates</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Stationery"> Stationery Items</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Home Decor"> Wall Paintings &amp; Décor</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Toys"> Toys</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Arcade Games"> Arcade Games</label>
+                        <label class="im-checkbox-item"><input type="checkbox" name="product_interest" value="Other"> Other (specify below)</label>
+                    </div>
+                </div>
+
+                <div class="im-form-section">
+                    <div class="im-form-section-label">03 — Additional Information</div>
+                    <div class="im-form-group full-width">
+                        <label for="im-message">Describe your requirement in detail</label>
+                        <textarea id="im-message" name="message" placeholder="Describe what you need — product specs, quality standards, certifications, packaging requirements, etc."></textarea>
+                    </div>
+                </div>
+
+                <div class="im-form-submit">
+                    <button type="submit" class="im-btn-primary">Send Enquiry →</button>
+                    <button type="button" class="im-btn-secondary"
+                        onclick="document.getElementById('im-enquiry-modal').classList.remove('active');document.body.style.overflow='';document.body.classList.remove('im-modal-open');">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/product-data.js"></script>
+    <script>window.PRODUCT_DATA = PRODUCT_DATA;</script>
+    <script src="js/infinity.js" defer></script>
+    <script src="js/all-products.js" defer></script>
+</body>
+</html>
