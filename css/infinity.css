@@ -244,92 +244,370 @@
     z-index: 2;
 }
 
-/* ---------------- Vision & Mission Section ---------------- */
-.im-vision-mission {
-    padding: 5rem 0;
-    background: var(--im-off-white);
-}
+/* =========================================================
+   VISION & MISSION — editorial split panel
+   Dark vision panel + paper mission panel. Fraunces display,
+   Manrope body. Numbered index treatment, gold accents.
+   ========================================================= */
+.im-vm {
+    --vm-serif: "Fraunces", "Cormorant Garamond", ui-serif, Georgia, serif;
+    --vm-sans:  "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    --vm-navy:       #0B2641;
+    --vm-navy-deep:  #071829;
+    --vm-gold:       #D9A94A;
+    --vm-gold-soft:  #E8C160;
+    --vm-paper:      #F4EFE5;
+    --vm-cream:      #FBF8F2;
+    --vm-ink:        #0F1B2D;
+    --vm-ink-soft:   #3A4A63;
+    --vm-ink-mute:   rgba(11, 38, 65, 0.52);
+    --vm-line:       rgba(11, 38, 65, 0.14);
 
-.im-vision-mission-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.im-vision-mission-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-top: 3rem;
-}
-
-.im-vision-card,
-.im-mission-card {
-    background: white;
-    padding: 3rem;
-    border-radius: var(--im-radius);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     position: relative;
+    padding: 7rem 1.5rem 6rem;
+    background: var(--vm-cream);
+    background-image:
+        radial-gradient(ellipse 60% 40% at 85% 5%, rgba(217, 169, 74, 0.1), transparent 65%),
+        radial-gradient(ellipse 50% 40% at 10% 95%, rgba(11, 38, 65, 0.05), transparent 60%);
+    font-family: var(--vm-sans);
+    color: var(--vm-ink);
     overflow: hidden;
 }
 
-.im-vision-card::before,
-.im-mission-card::before {
-    content: '';
+.im-vm::before {
+    content: "";
     position: absolute;
-    top: 0;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.08   0 0 0 0 0.05   0 0 0 0 0.02   0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.55;
+    mix-blend-mode: multiply;
+}
+
+.im-vm-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* ── Header ── */
+.im-vm-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem 4rem;
+    align-items: end;
+    margin-bottom: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--vm-line);
+}
+
+.im-vm-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--vm-sans);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--vm-gold);
+    white-space: nowrap;
+}
+.im-vm-rule {
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: var(--vm-gold);
+}
+
+.im-vm-heading {
+    font-family: var(--vm-serif);
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 120, "SOFT" 30, "WONK" 0;
+    font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+    font-weight: 400;
+    color: var(--vm-navy);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin: 0;
+    max-width: 18ch;
+    justify-self: end;
+    text-align: right;
+}
+.im-vm-heading em {
+    font-style: italic;
+    font-variation-settings: "opsz" 120, "SOFT" 90, "WONK" 1;
+    color: var(--vm-gold);
+    font-weight: 400;
+}
+.im-vm-heading-line { display: block; }
+
+/* ── Grid (two panels, shared seam) ── */
+.im-vm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -40px rgba(11, 38, 65, 0.35);
+    position: relative;
+}
+
+/* Dashed vertical seam between the two panels */
+.im-vm-grid::before {
+    content: "";
+    position: absolute;
+    top: 6%;
+    bottom: 6%;
+    left: 50%;
+    width: 0;
+    border-left: 1px dashed rgba(244, 239, 229, 0.22);
+    transform: translateX(-50%);
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* ── Panel shared ── */
+.im-vm-panel {
+    position: relative;
+    padding: 3.5rem 3rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    overflow: hidden;
+    min-height: 520px;
+}
+
+/* Oversized background numeral */
+.im-vm-panel-num {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-family: var(--vm-serif);
+    font-variation-settings: "opsz" 144, "SOFT" 20, "WONK" 1;
+    font-style: italic;
+    font-size: 7.5rem;
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    opacity: 0.12;
+    pointer-events: none;
+    user-select: none;
+}
+
+.im-vm-panel-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--vm-sans);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+}
+.im-vm-panel-tag::before {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: var(--vm-gold);
+}
+
+.im-vm-panel-title {
+    font-family: var(--vm-serif);
+    font-variation-settings: "opsz" 72, "SOFT" 30, "WONK" 0;
+    font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 26ch;
+    position: relative;
+    z-index: 2;
+}
+.im-vm-panel-title em {
+    font-style: italic;
+    font-variation-settings: "opsz" 72, "SOFT" 90, "WONK" 1;
+    color: var(--vm-gold);
+    font-weight: 400;
+}
+
+/* ── Vision (dark) ── */
+.im-vm-panel--vision {
+    background: var(--vm-navy-deep);
+    background-image:
+        radial-gradient(circle at 20% 10%, rgba(217, 169, 74, 0.18), transparent 55%),
+        radial-gradient(circle at 85% 90%, rgba(11, 38, 65, 0.6), transparent 60%);
+    color: var(--vm-paper);
+}
+
+.im-vm-panel--vision .im-vm-panel-num { color: var(--vm-gold); }
+.im-vm-panel--vision .im-vm-panel-tag { color: var(--vm-gold); }
+.im-vm-panel--vision .im-vm-panel-title { color: #fff; }
+
+.im-vm-panel--vision .im-vm-panel-body {
+    font-family: var(--vm-sans);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: rgba(244, 239, 229, 0.78);
+    margin: 0;
+    max-width: 42ch;
+    position: relative;
+    z-index: 2;
+}
+
+.im-vm-panel-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid rgba(244, 239, 229, 0.14);
+    position: relative;
+    z-index: 2;
+}
+
+.im-vm-metric { display: flex; flex-direction: column; gap: 0.2rem; }
+.im-vm-metric-num {
+    font-family: var(--vm-serif);
+    font-variation-settings: "opsz" 96, "SOFT" 20;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--vm-gold);
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+.im-vm-metric-label {
+    font-family: var(--vm-sans);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 229, 0.55);
+}
+
+.im-vm-arrow {
+    color: var(--vm-gold);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.im-vm-panel--vision:hover .im-vm-arrow { transform: rotate(-45deg); }
+
+/* ── Mission (light) ── */
+.im-vm-panel--mission {
+    background: var(--vm-cream);
+    color: var(--vm-ink);
+    border-left: 1px solid var(--vm-line);
+}
+.im-vm-panel--mission .im-vm-panel-num { color: var(--vm-navy); }
+.im-vm-panel--mission .im-vm-panel-tag { color: var(--vm-navy); }
+.im-vm-panel--mission .im-vm-panel-title { color: var(--vm-navy); }
+
+.im-vm-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.im-vm-list-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.15rem;
+    align-items: start;
+    padding: 1.15rem 0;
+    border-bottom: 1px dashed var(--vm-line);
+    position: relative;
+    transition: padding 0.25s ease;
+}
+.im-vm-list-item:last-child { border-bottom: none; }
+.im-vm-list-item::after {
+    content: "";
+    position: absolute;
     left: 0;
     right: 0;
-    height: 4px;
-    background: var(--im-gold);
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(to right, var(--vm-gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.im-vm-list-item:hover {
+    padding-left: 0.35rem;
+}
+.im-vm-list-item:hover::after { transform: scaleX(1); }
+.im-vm-list-item:hover .im-vm-list-num {
+    color: var(--vm-gold);
+    transform: translateY(-2px);
 }
 
-.im-vision-card h3,
-.im-mission-card h3 {
-    color: var(--im-navy);
-    font-size: 2rem;
+.im-vm-list-num {
+    font-family: var(--vm-serif);
+    font-variation-settings: "opsz" 48, "SOFT" 20;
+    font-style: italic;
+    font-size: 1.45rem;
+    font-weight: 500;
+    color: var(--vm-ink-mute);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.15rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.im-vm-list-body { display: flex; flex-direction: column; gap: 0.3rem; }
+.im-vm-list-title {
+    font-family: var(--vm-sans);
+    font-size: 0.98rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    color: var(--vm-navy);
+    margin: 0;
+    letter-spacing: -0.005em;
 }
-
-.im-vision-card p,
-.im-mission-card p {
-    color: var(--im-text-dark);
+.im-vm-list-desc {
+    font-family: var(--vm-sans);
+    font-size: 0.89rem;
     line-height: 1.6;
-    margin-bottom: 2rem;
+    color: var(--vm-ink-soft);
+    margin: 0;
 }
 
-.im-mission-list {
-    list-style: none;
-    padding: 0;
-}
-
-.im-mission-list li {
-    position: relative;
-    padding-left: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--im-text-dark);
-    line-height: 1.6;
-}
-
-.im-mission-list li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--im-gold);
-    font-weight: bold;
-}
-
-@media (max-width: 768px) {
-    .im-vision-mission-grid {
+/* ── Responsive ── */
+@media (max-width: 991px) {
+    .im-vm { padding: 5rem 1.25rem 4.5rem; }
+    .im-vm-header {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
+        margin-bottom: 2.75rem;
     }
+    .im-vm-heading { justify-self: start; text-align: left; }
+    .im-vm-grid {
+        grid-template-columns: 1fr;
+    }
+    .im-vm-grid::before { display: none; }
+    .im-vm-panel { min-height: 0; padding: 2.75rem 2rem 2.75rem; }
+    .im-vm-panel--mission { border-left: none; border-top: 1px solid var(--vm-line); }
+}
 
-    .im-vision-card,
-    .im-mission-card {
-        padding: 2rem;
-    }
+@media (max-width: 560px) {
+    .im-vm { padding: 4rem 1rem 3.5rem; }
+    .im-vm-panel { padding: 2.25rem 1.5rem; }
+    .im-vm-panel-num { font-size: 6rem; top: 1.25rem; right: 1.25rem; }
+    .im-vm-metric-num { font-size: 2rem; }
+    .im-vm-list-num { font-size: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .im-vm-arrow,
+    .im-vm-list-item,
+    .im-vm-list-item::after,
+    .im-vm-list-num { transition: none !important; }
 }
 
 /* ---------------- WhatsApp Float Button ---------------- */
@@ -2898,4 +3176,41 @@ body.im-modal-open .im-pd-mobile-bar {
     }
     .im-products-cta-meta { width: 100%; justify-content: center; }
     .im-products-cta-label { flex: 1 1 auto; }
+}
+
+/* ==========================================================
+   WHAT WE DO — service card image overrides
+   Keeps Webflow's original scroll-reveal animation on
+   .rt-card-image-wrap-v2/v3/v4; only swaps generic stock
+   portraits with service-relevant imagery.
+   Card mapping:
+     02 Import & Export       → v2 (shipping containers)
+     03 Quality Control       → v3 (inspection)
+     04 Logistics Air & Sea   → v4 (cargo plane / ship)
+     06 Market Study          → v2 (reuses slot)
+   ========================================================== */
+#what-we-do .rt-card-image-wrap.rt-card-image-wrap-v2 {
+    background-image: url("https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=900&q=80") !important;
+}
+#what-we-do .rt-card-image-wrap.rt-card-image-wrap-v3 {
+    background-image: url("https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=80") !important;
+}
+#what-we-do .rt-card-image-wrap.rt-card-image-wrap-v4 {
+    background-image: url("https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=900&q=80") !important;
+}
+
+/* ── Slightly wider cards ── */
+#what-we-do .rt-card-wrapper {
+    max-width: 360px !important;
+}
+#what-we-do .rt-cards-left-wrapper,
+#what-we-do .rt-cards-right-wrapper {
+    width: 360px !important;
+    flex: 0 0 360px !important;
+}
+
+@media (max-width: 991px) {
+    #what-we-do .rt-card-wrapper { max-width: none !important; }
+    #what-we-do .rt-cards-left-wrapper,
+    #what-we-do .rt-cards-right-wrapper { width: auto !important; flex: 1 1 0 !important; }
 }
