@@ -3214,3 +3214,27 @@ body.im-modal-open .im-pd-mobile-bar {
     #what-we-do .rt-cards-left-wrapper,
     #what-we-do .rt-cards-right-wrapper { width: auto !important; flex: 1 1 0 !important; }
 }
+
+/* ── SEO/A11y: visually-hidden text (kept in DOM for screen readers + crawlers) ── */
+.im-sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* ── Hero "Trading" span styled to match the H1 it replaced (single-H1 SEO rule) ── */
+.rt-hero-text-wrap-right .im-h1-line {
+    display: block;
+    font-family: var(--font-family--heading-font);
+    font-size: var(--font-sizes--h1-size);
+    line-height: var(--line-heights--h1-heights);
+    font-weight: var(--font-weights--heading);
+    letter-spacing: var(--letter-spacing--h1-spacing);
+    margin: 0;
+}

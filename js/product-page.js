@@ -21,6 +21,67 @@
     /* ── Inject page title ───────────────────────────────────── */
     document.title = product.name + ' — Infinity Merchandise';
 
+    /* ── Inject per-product SEO (canonical, meta, OG, JSON-LD) ── */
+    (function injectSEO() {
+        const SITE = 'https://infinitymerchandise.com';
+        const url  = SITE + '/product?id=' + encodeURIComponent(productId);
+        const desc = (product.description || '').slice(0, 155) ||
+                     'Source ' + product.name + ' from Infinity Merchandise — Dubai global sourcing partner.';
+        const img  = product.image && product.image.startsWith('http')
+                     ? product.image
+                     : SITE + '/' + (product.image || 'images/og-image.jpg').replace(/^\//, '');
+
+        const setMeta = (sel, attr, val) => {
+            let el = document.querySelector(sel);
+            if (el) el.setAttribute(attr, val);
+        };
+        setMeta('link[rel="canonical"]', 'href', url);
+        setMeta('meta[name="description"]', 'content', desc);
+        setMeta('meta[property="og:title"]', 'content', document.title);
+        setMeta('meta[property="og:description"]', 'content', desc);
+        setMeta('meta[property="og:url"]', 'content', url);
+        setMeta('meta[property="og:image"]', 'content', img);
+        setMeta('meta[property="og:image:alt"]', 'content', product.name);
+        setMeta('meta[name="twitter:title"]', 'content', document.title);
+        setMeta('meta[name="twitter:description"]', 'content', desc);
+        setMeta('meta[name="twitter:image"]', 'content', img);
+
+        const bcEl = document.getElementById('im-pd-breadcrumb-jsonld');
+        if (bcEl) {
+            bcEl.textContent = JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home',      item: SITE + '/' },
+                    { '@type': 'ListItem', position: 2, name: 'Catalogue', item: SITE + '/all-products' },
+                    { '@type': 'ListItem', position: 3, name: product.name, item: url }
+                ]
+            });
+        }
+
+        const productLd = document.createElement('script');
+        productLd.type = 'application/ld+json';
+        productLd.textContent = JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: product.name,
+            description: desc,
+            image: img,
+            url: url,
+            brand: { '@type': 'Brand', name: 'Infinity Merchandise' },
+            offers: {
+                '@type': 'Offer',
+                availability: 'https://schema.org/InStock',
+                priceCurrency: 'AED',
+                price: '0',
+                priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'AED', valueAddedTaxIncluded: false },
+                seller: { '@id': SITE + '/#business' },
+                url: url
+            }
+        });
+        document.head.appendChild(productLd);
+    })();
+
     /* ── Render hero content ─────────────────────────────────── */
     const titleEl     = document.getElementById('im-pd-title');
     const taglineEl   = document.getElementById('im-pd-tagline');
