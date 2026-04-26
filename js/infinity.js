@@ -286,6 +286,29 @@
             isDragging = false;
             resume(2000); // Resume auto-scroll 2s after user stops touching
         }, { passive: true });
+
+        // Prev/Next arrow buttons — step by one slide width
+        function slideStep() {
+            const slide = track.querySelector('.im-product-slide');
+            if (!slide) return outer.clientWidth * 0.8;
+            const styles = window.getComputedStyle(track);
+            const gap = parseFloat(styles.columnGap || styles.gap || 0) || 0;
+            return slide.getBoundingClientRect().width + gap;
+        }
+        function step(dir) {
+            pause();
+            const half = halfWidth();
+            let next = outer.scrollLeft + dir * slideStep();
+            // Keep within the first set so the seamless loop logic stays valid
+            if (next < 0) next += half;
+            if (next >= half) next -= half;
+            outer.scrollTo({ left: next, behavior: 'smooth' });
+            resume(2500);
+        }
+        const prevBtn = document.getElementById('im-products-prev');
+        const nextBtn = document.getElementById('im-products-next');
+        if (prevBtn) prevBtn.addEventListener('click', () => step(-1));
+        if (nextBtn) nextBtn.addEventListener('click', () => step(1));
     })();
 
     /* --------------------------------------------------------

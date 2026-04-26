@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+  <defs>
+    <linearGradient id="qcBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B2641"/>
+      <stop offset="1" stop-color="#1d3a5f"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#qcBg)"/>
+  <g transform="translate(450 430)" stroke="#E8C160" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 -240 L180 -180 L180 60 Q 180 180 0 240 Q -180 180 -180 60 L -180 -180 Z"/>
+    <path d="M-80 -10 L -20 50 L 100 -80" stroke-width="14" stroke="#C49A2E"/>
+  </g>
+  <text x="450" y="800" text-anchor="middle" fill="#fff" font-family="Inter Tight, sans-serif" font-size="44" font-weight="700" letter-spacing="2">QUALITY CONTROL</text>
+</svg>

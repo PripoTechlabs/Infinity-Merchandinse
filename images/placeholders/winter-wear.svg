@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="wwBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d3a5f"/>
+      <stop offset="1" stop-color="#0B2641"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#wwBg)"/>
+  <g opacity="0.18" fill="#E8C160">
+    <circle cx="180" cy="220" r="6"/>
+    <circle cx="320" cy="120" r="4"/>
+    <circle cx="900" cy="180" r="5"/>
+    <circle cx="780" cy="320" r="6"/>
+    <circle cx="160" cy="780" r="5"/>
+    <circle cx="980" cy="900" r="4"/>
+  </g>
+  <g transform="translate(540 480)" stroke="#E8C160" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-160 -160 L-100 -220 L100 -220 L160 -160 L160 60 L120 60 L120 220 L-120 220 L-120 60 L-160 60 Z"/>
+    <path d="M0 -220 L0 220" stroke-dasharray="10 16"/>
+    <circle cx="-50" cy="-100" r="6" fill="#E8C160"/>
+    <circle cx="50" cy="-50" r="6" fill="#E8C160"/>
+    <circle cx="-50" cy="20" r="6" fill="#E8C160"/>
+    <circle cx="50" cy="80" r="6" fill="#E8C160"/>
+    <circle cx="-50" cy="160" r="6" fill="#E8C160"/>
+  </g>
+  <text x="540" y="940" text-anchor="middle" fill="#fff" font-family="Inter Tight, Inter, sans-serif" font-size="68" font-weight="700" letter-spacing="2">WINTER WEAR</text>
+  <text x="540" y="1000" text-anchor="middle" fill="#C49A2E" font-family="Inter Tight, Inter, sans-serif" font-size="28" font-weight="500" letter-spacing="6">INFINITY MERCHANDISE</text>
+</svg>

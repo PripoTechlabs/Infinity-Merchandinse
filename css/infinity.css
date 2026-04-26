@@ -3238,3 +3238,70 @@ body.im-modal-open .im-pd-mobile-bar {
     letter-spacing: var(--letter-spacing--h1-spacing);
     margin: 0;
 }
+
+/* ── What We Do — brand imagery overrides for cards 1, 3, 6 ──
+   Webflow exported these with stock placeholder images. Override here
+   so re-exports from Webflow won't clobber. To swap images, edit only
+   the background-image URLs below. */
+#what-we-do .rt-card-image-wrap.im-wd-img-1 {
+    background-image: url("../images/placeholders/wd-global-sourcing.svg");
+}
+#what-we-do .rt-card-image-wrap.im-wd-img-3 {
+    background-image: url("../images/placeholders/wd-quality-control.svg");
+}
+#what-we-do .rt-card-image-wrap.im-wd-img-5 {
+    background-image: url("../images/im-card-setup.webp");
+}
+#what-we-do .rt-card-image-wrap.im-wd-img-6 {
+    background-image: url("../images/im-card-strategy.webp");
+}
+
+/* ── Hero heading colour enforcement (per client mockup) ── */
+.rt-hero-heading-wrap h1,
+.rt-hero-heading-wrap h1.rt-text-color-white,
+.rt-hero-text-wrap-left h1,
+.rt-hero-text-wrap-right .im-h1-line {
+    color: #ffffff !important;
+}
+
+/* ── Our Products carousel — prev/next arrow controls ── */
+.im-products-nav {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 1.25rem;
+    align-self: flex-end;
+}
+.im-products-nav-btn {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--im-navy, #0B2641);
+    background: transparent;
+    color: var(--im-navy, #0B2641);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+    flex: 0 0 auto;
+    padding: 0;
+}
+.im-products-nav-btn:hover,
+.im-products-nav-btn:focus-visible {
+    background: var(--im-navy, #0B2641);
+    color: #fff;
+    outline: none;
+}
+.im-products-nav-btn:active {
+    transform: scale(0.94);
+}
+.im-products-nav-btn svg {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+@media (max-width: 767px) {
+    .im-products-nav { gap: 0.5rem; padding-left: 0; }
+    .im-products-nav-btn { width: 2.5rem; height: 2.5rem; }
+}

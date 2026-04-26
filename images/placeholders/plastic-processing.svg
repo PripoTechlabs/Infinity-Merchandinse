@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="ppBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d3a5f"/>
+      <stop offset="1" stop-color="#0B2641"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#ppBg)"/>
+  <g opacity="0.10" stroke="#E8C160" stroke-width="1" fill="none">
+    <path d="M0 200 H 1080 M0 400 H 1080 M0 600 H 1080 M0 800 H 1080"/>
+    <path d="M200 0 V 1080 M400 0 V 1080 M600 0 V 1080 M800 0 V 1080"/>
+  </g>
+  <g transform="translate(540 460)" stroke="#E8C160" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-220" y="-120" width="200" height="220" rx="6"/>
+    <rect x="20" y="-120" width="200" height="220" rx="6"/>
+    <rect x="-180" y="-80" width="120" height="80" fill="#E8C160" opacity="0.6"/>
+    <rect x="60" y="-80" width="120" height="80" fill="#E8C160" opacity="0.6"/>
+    <path d="M-220 100 L 220 100"/>
+    <circle cx="-160" cy="160" r="30"/>
+    <circle cx="-80" cy="160" r="30"/>
+    <circle cx="80" cy="160" r="30"/>
+    <circle cx="160" cy="160" r="30"/>
+  </g>
+  <text x="540" y="940" text-anchor="middle" fill="#fff" font-family="Inter Tight, Inter, sans-serif" font-size="56" font-weight="700" letter-spacing="2">PLASTIC PROCESSING MACHINES</text>
+  <text x="540" y="1000" text-anchor="middle" fill="#C49A2E" font-family="Inter Tight, Inter, sans-serif" font-size="28" font-weight="500" letter-spacing="6">INFINITY MERCHANDISE</text>
+</svg>

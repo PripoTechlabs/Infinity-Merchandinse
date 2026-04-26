@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="rgBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d3a5f"/>
+      <stop offset="1" stop-color="#0B2641"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#rgBg)"/>
+  <g transform="translate(540 470)" stroke="#E8C160" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-240" y="-120" width="480" height="240" rx="20"/>
+    <path d="M-240 -60 Q -200 -30 -240 0"/>
+    <path d="M240 -60 Q 200 -30 240 0"/>
+    <path d="M-240 0 Q -200 30 -240 60"/>
+    <path d="M240 0 Q 200 30 240 60"/>
+    <path d="M-160 -80 L -160 80" stroke-dasharray="12 10"/>
+    <text x="0" y="20" text-anchor="middle" fill="#E8C160" font-family="Inter Tight, sans-serif" font-size="64" font-weight="800">100</text>
+    <path d="M-300 200 L 300 200" stroke-width="4"/>
+    <circle cx="-200" cy="200" r="8" fill="#E8C160"/>
+    <circle cx="0" cy="200" r="8" fill="#E8C160"/>
+    <circle cx="200" cy="200" r="8" fill="#E8C160"/>
+  </g>
+  <text x="540" y="940" text-anchor="middle" fill="#fff" font-family="Inter Tight, Inter, sans-serif" font-size="64" font-weight="700" letter-spacing="2">REDEMPTION GAME MACHINES</text>
+  <text x="540" y="1000" text-anchor="middle" fill="#C49A2E" font-family="Inter Tight, Inter, sans-serif" font-size="28" font-weight="500" letter-spacing="6">INFINITY MERCHANDISE</text>
+</svg>

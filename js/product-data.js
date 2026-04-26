@@ -24,7 +24,7 @@ const PRODUCT_DATA = {
             'images/compressed/dress/Mens Wear (1).webp',
             'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=1080&q=80',
             'images/compressed/dress/European Wear (1).webp',
-            'https://images.unsplash.com/photo-1544923408-75c5cef46f14?w=1080&q=80',
+            'images/placeholders/winter-wear.svg',
             'images/compressed/dress/Casual Wear (1).webp',
             'images/compressed/dress/Indian Ethnic Wear (1).webp',
             'images/compressed/dress/Saree (1).webp',
@@ -32,12 +32,12 @@ const PRODUCT_DATA = {
             'images/compressed/dress/Abaya (2).webp',
             'images/compressed/dress/Kurtis and Tunics (1).webp',
             'images/compressed/dress/Indo Western.webp',
-            'https://images.unsplash.com/photo-1570976447640-ac859083963f?w=1080&q=80',
+            'images/placeholders/swimwear.svg',
             'images/compressed/dress/Gym Wear (1).webp',
             'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1080&q=80',
             'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1080&q=80',
             'images/compressed/dress/Formal Wear (1).webp',
-            'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=1080&q=80',
+            'images/placeholders/loungewear.svg',
             'images/compressed/dress/Designer Wear.webp'
         ]
     },
@@ -245,9 +245,9 @@ const PRODUCT_DATA = {
             'images/compressed/Imported Commercial Machinery/Construction Equipment.webp',
             'images/compressed/Imported Commercial Machinery/Material Handling Equipment.webp',
             'images/compressed/Imported Commercial Machinery/CNC Machines.webp',
-            'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1080&q=80',
+            'images/placeholders/plastic-processing.svg',
             'images/compressed/Imported Commercial Machinery/Metal Fabrication Machines.webp',
-            'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1080&q=80',
+            'images/compressed/Imported Commercial Machinery/Woodworking Machines.webp',
             'images/compressed/Imported Commercial Machinery/Cleaning and Maintenance Machines.webp',
             'images/compressed/Imported Commercial Machinery/Bakery Confectionery Machines.webp',
             'images/compressed/Imported Commercial Machinery/Hotel Restaurant Equipment.webp',
@@ -281,7 +281,7 @@ const PRODUCT_DATA = {
         name: 'Arcade Games',
         tagline: 'Entertainment experiences for every venue.',
         description: 'We source arcade and amusement equipment for entertainment centers, malls, hotels, and family venues. From classic coin-operated cabinets to modern VR and motion simulators, our supplier network delivers fully tested machines with installation and service support.',
-        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1080&q=80',
+        image: 'images/placeholders/arcade-cabinets.svg',
         checkboxValue: 'Arcade Games',
         subProducts: [
             'Arcade Cabinets', 'Claw & Prize Machines', 'Racing Simulators',
@@ -289,14 +289,14 @@ const PRODUCT_DATA = {
             'Coin-Operated Kids Rides', 'Redemption Game Machines'
         ],
         subImages: [
-            'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1080&q=80',
+            'images/placeholders/arcade-cabinets.svg',
             'https://images.unsplash.com/photo-1533236897111-3e94666b2edf?w=1080&q=80',
             'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1080&q=80',
             'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=1080&q=80',
             'https://images.unsplash.com/photo-1511882150382-421056c89033?w=1080&q=80',
             'https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=1080&q=80',
-            'https://images.unsplash.com/photo-1606503153255-59d8b2e4739f?w=1080&q=80',
-            'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1080&q=80'
+            'images/placeholders/coin-operated-rides.svg',
+            'images/placeholders/redemption-game.svg'
         ]
     }
 };

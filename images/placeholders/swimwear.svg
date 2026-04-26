@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="swBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d3a5f"/>
+      <stop offset="1" stop-color="#0B2641"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#swBg)"/>
+  <g opacity="0.16" stroke="#E8C160" stroke-width="3" fill="none">
+    <path d="M0 720 Q 270 680 540 720 T 1080 720"/>
+    <path d="M0 780 Q 270 740 540 780 T 1080 780"/>
+    <path d="M0 840 Q 270 800 540 840 T 1080 840"/>
+  </g>
+  <g transform="translate(540 470)" stroke="#E8C160" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-180 -120 Q -180 -160 -140 -160 L -60 -160 Q -40 -160 -30 -140 L 0 -90 L 30 -140 Q 40 -160 60 -160 L 140 -160 Q 180 -160 180 -120 L 160 0 Q 140 80 100 110 L 60 140 Q 40 150 0 150 Q -40 150 -60 140 L -100 110 Q -140 80 -160 0 Z"/>
+    <path d="M-130 -90 L -130 -40" />
+    <path d="M130 -90 L 130 -40"/>
+  </g>
+  <text x="540" y="940" text-anchor="middle" fill="#fff" font-family="Inter Tight, Inter, sans-serif" font-size="80" font-weight="700" letter-spacing="2">SWIMWEAR</text>
+  <text x="540" y="1000" text-anchor="middle" fill="#C49A2E" font-family="Inter Tight, Inter, sans-serif" font-size="28" font-weight="500" letter-spacing="6">INFINITY MERCHANDISE</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="lwBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d3a5f"/>
+      <stop offset="1" stop-color="#0B2641"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#lwBg)"/>
+  <g opacity="0.14" stroke="#E8C160" stroke-width="2" fill="none">
+    <circle cx="200" cy="200" r="80"/>
+    <circle cx="900" cy="220" r="60"/>
+    <circle cx="880" cy="880" r="100"/>
+  </g>
+  <g transform="translate(540 480)" stroke="#E8C160" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-90 -200 L-160 -130 L-200 60 L-150 60 L-150 240 L150 240 L150 60 L200 60 L160 -130 L90 -200 Z"/>
+    <path d="M-90 -200 L0 -110 L90 -200"/>
+    <path d="M0 -110 L0 240"/>
+    <path d="M-90 -100 L-50 -40"/>
+    <path d="M90 -100 L50 -40"/>
+  </g>
+  <text x="540" y="940" text-anchor="middle" fill="#fff" font-family="Inter Tight, Inter, sans-serif" font-size="62" font-weight="700" letter-spacing="2">LOUNGEWEAR &amp; NIGHTWEAR</text>
+  <text x="540" y="1000" text-anchor="middle" fill="#C49A2E" font-family="Inter Tight, Inter, sans-serif" font-size="28" font-weight="500" letter-spacing="6">INFINITY MERCHANDISE</text>
+</svg>
