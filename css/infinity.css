@@ -3244,16 +3244,16 @@ body.im-modal-open .im-pd-mobile-bar {
    so re-exports from Webflow won't clobber. To swap images, edit only
    the background-image URLs below. */
 #what-we-do .rt-card-image-wrap.im-wd-img-1 {
-    background-image: url("../images/placeholders/wd-global-sourcing.svg");
+    background-image: url("https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=900&q=80") !important;
 }
 #what-we-do .rt-card-image-wrap.im-wd-img-3 {
     background-image: url("../images/placeholders/wd-quality-control.svg");
 }
 #what-we-do .rt-card-image-wrap.im-wd-img-5 {
-    background-image: url("../images/im-card-setup.webp");
+    background-image: url("https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80") !important;
 }
 #what-we-do .rt-card-image-wrap.im-wd-img-6 {
-    background-image: url("../images/im-card-strategy.webp");
+    background-image: url("https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80") !important;
 }
 
 /* ── Hero heading colour enforcement (per client mockup) ── */
@@ -3304,4 +3304,47 @@ body.im-modal-open .im-pd-mobile-bar {
 @media (max-width: 767px) {
     .im-products-nav { gap: 0.5rem; padding-left: 0; }
     .im-products-nav-btn { width: 2.5rem; height: 2.5rem; }
+}
+
+/* ── Hamburger menu — narrow right-side panel (per client) ── */
+.rt-hamburger-nav-block .rt-navigation .rt-navigation-inner {
+    justify-content: flex-end;
+}
+.rt-hamburger-nav-block .rt-nav-content-wrap {
+    width: 100%;
+    max-width: 26rem;
+    padding-top: 5.5rem;
+}
+.rt-hamburger-nav-block .rt-nav-background {
+    width: 100%;
+    max-width: 26rem;
+    margin-left: auto;
+    box-shadow: -1.25rem 0 3rem rgba(0,0,0,0.18);
+}
+.rt-hamburger-nav-block .rt-hamburger-menu-top-wrap .rt-text-style-h2,
+.rt-hamburger-nav-block .rt-hamburger-menu-link {
+    font-size: 1.35rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+}
+.rt-hamburger-nav-block .rt-hamburger-menu-top-wrap {
+    grid-row-gap: 0.4rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.8rem;
+}
+.rt-hamburger-nav-block .rt-menu-bottom-line {
+    height: 0.0625rem;
+    bottom: 0.15rem;
+}
+@media (max-width: 600px) {
+    .rt-hamburger-nav-block .rt-nav-content-wrap,
+    .rt-hamburger-nav-block .rt-nav-background {
+        max-width: 22rem;
+    }
+}
+@media (max-width: 420px) {
+    .rt-hamburger-nav-block .rt-nav-content-wrap,
+    .rt-hamburger-nav-block .rt-nav-background {
+        max-width: 100%;
+    }
 }

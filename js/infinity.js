@@ -598,6 +598,12 @@
     }());
 
     /* --------------------------------------------------------
+       FOOTER YEAR — auto-update copyright
+    -------------------------------------------------------- */
+    const footerYear = document.getElementById('im-footer-year');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+    /* --------------------------------------------------------
        STICKY NAVBAR (add background on scroll)
     -------------------------------------------------------- */
     const navbar = document.querySelector('.rt-navbar-v1');
