@@ -598,6 +598,64 @@
     }());
 
     /* --------------------------------------------------------
+       WHAT WE DO — mobile interactivity
+       Reveal cards on scroll, auto-activate the most centered
+       card, and toggle on tap. Desktop hover is untouched.
+    -------------------------------------------------------- */
+    (function () {
+        const section = document.getElementById('what-we-do');
+        if (!section) return;
+        const cards = section.querySelectorAll('.rt-card-wrapper');
+        if (!cards.length) return;
+        const mq = window.matchMedia('(max-width: 991px)');
+        if (!mq.matches) return;
+
+        // Reveal on enter
+        if ('IntersectionObserver' in window) {
+            const reveal = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('im-wd-visible');
+                        reveal.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+            cards.forEach(function (c) { reveal.observe(c); });
+        } else {
+            cards.forEach(function (c) { c.classList.add('im-wd-visible'); });
+        }
+
+        // Auto-activate card closest to viewport center while scrolling
+        let ticking = false;
+        function updateActive() {
+            ticking = false;
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+            const center = vh / 2;
+            let best = null;
+            let bestDist = Infinity;
+            cards.forEach(function (c) {
+                const r = c.getBoundingClientRect();
+                if (r.bottom < 0 || r.top > vh) return;
+                const cardMid = r.top + r.height / 2;
+                const d = Math.abs(cardMid - center);
+                if (d < bestDist) { bestDist = d; best = c; }
+            });
+            cards.forEach(function (c) {
+                if (c === best && bestDist < vh * 0.35) c.classList.add('im-wd-active');
+                else c.classList.remove('im-wd-active');
+            });
+        }
+        function onScroll() {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(updateActive);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        updateActive();
+    })();
+
+    /* --------------------------------------------------------
        FOOTER YEAR — auto-update copyright
     -------------------------------------------------------- */
     const footerYear = document.getElementById('im-footer-year');
