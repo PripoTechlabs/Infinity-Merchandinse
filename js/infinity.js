@@ -678,4 +678,167 @@
         }, { passive: true });
     }
 
+    /* --------------------------------------------------------
+       SIX PILLARS — scroll reveal + card auto-cycle + 3D tilt
+    -------------------------------------------------------- */
+    (function () {
+        const section = document.getElementById('what-we-do');
+        if (!section) return;
+
+        // Cards sorted by number badge ascending (01,02,03,04,05,06)
+        var allCards = Array.from(section.querySelectorAll('.rt-card-wrapper')).sort(function (a, b) {
+            var numA = parseInt(a.querySelector('.rt-text-color-white')?.textContent || '0', 10);
+            var numB = parseInt(b.querySelector('.rt-text-color-white')?.textContent || '0', 10);
+            return numA - numB;
+        });
+        var cycleIdx = 0;
+        var paused = false;
+        var cycleTimer = null;
+        var enterTimer = null;
+
+        // SVG progress arc — tracks visited cards
+        var circleWrapper = section.querySelector('.rt-main-circle-wrapper');
+        var arcCircle = null;
+        var total = allCards.length;
+        var visited = new Set();
+
+        if (circleWrapper) {
+            var r = 156, circ = 2 * Math.PI * r;
+            var svgNS = 'http://www.w3.org/2000/svg';
+            var svg = document.createElementNS(svgNS, 'svg');
+            svg.setAttribute('class', 'im-pillar-arc-svg');
+            svg.setAttribute('viewBox', '0 0 340 340');
+            var trackEl = document.createElementNS(svgNS, 'circle');
+            trackEl.setAttribute('cx', '170'); trackEl.setAttribute('cy', '170');
+            trackEl.setAttribute('r', String(r)); trackEl.setAttribute('fill', 'none');
+            trackEl.setAttribute('stroke', 'rgba(196,154,46,0.12)'); trackEl.setAttribute('stroke-width', '3');
+            arcCircle = document.createElementNS(svgNS, 'circle');
+            arcCircle.setAttribute('cx', '170'); arcCircle.setAttribute('cy', '170');
+            arcCircle.setAttribute('r', String(r)); arcCircle.setAttribute('fill', 'none');
+            arcCircle.setAttribute('stroke', 'rgba(196,154,46,0.85)'); arcCircle.setAttribute('stroke-width', '3');
+            arcCircle.setAttribute('stroke-linecap', 'round');
+            arcCircle.setAttribute('stroke-dasharray', String(circ));
+            arcCircle.setAttribute('stroke-dashoffset', String(circ));
+            arcCircle.setAttribute('transform', 'rotate(-90 170 170)');
+            svg.appendChild(trackEl); svg.appendChild(arcCircle);
+            circleWrapper.appendChild(svg);
+        }
+
+        function updateArc() {
+            if (!arcCircle) return;
+            var r = 156, circ = 2 * Math.PI * r;
+            var pct = visited.size / total;
+            arcCircle.style.transition = 'stroke-dashoffset 0.5s ease';
+            arcCircle.setAttribute('stroke-dashoffset', String(circ * (1 - pct)));
+        }
+
+        function markVisited(idx) {
+            if (visited.has(idx)) return;
+            visited.add(idx);
+            updateArc();
+        }
+
+        // Center text cycling — restored
+        var texts = section.querySelectorAll('.rt-card-main-title-v1, .rt-card-main-title-v2, .rt-card-main-title-v3');
+        if (texts.length) {
+            var textIdx = 0;
+            texts[0].classList.add('im-pillar-text-active');
+            setInterval(function () {
+                texts[textIdx].classList.remove('im-pillar-text-active');
+                textIdx = (textIdx + 1) % texts.length;
+                texts[textIdx].classList.add('im-pillar-text-active');
+            }, 3000);
+        }
+
+        function highlightCard(idx) {
+            allCards.forEach(function (c) { c.classList.remove('im-pillar-active'); });
+            if (allCards[idx]) allCards[idx].classList.add('im-pillar-active');
+            markVisited(idx);
+        }
+
+        function stopCycle() {
+            clearInterval(cycleTimer);
+            clearTimeout(enterTimer);
+            cycleTimer = null;
+            cycleIdx = 0;
+            visited.clear();
+            allCards.forEach(function (c) { c.classList.remove('im-pillar-active'); });
+            if (arcCircle) {
+                var r = 156, circ = 2 * Math.PI * r;
+                arcCircle.style.transition = 'none';
+                arcCircle.setAttribute('stroke-dashoffset', String(circ));
+            }
+        }
+
+        function startCycle() {
+            cycleIdx = 0;
+            highlightCard(0);
+            cycleTimer = setInterval(function () {
+                if (paused) return;
+                cycleIdx = (cycleIdx + 1) % allCards.length;
+                highlightCard(cycleIdx);
+            }, 1800);
+        }
+
+
+        // Observer — fly in on enter, fly out on exit, every time
+        var sectionObserver = new IntersectionObserver(function (entries) {
+            var entry = entries[0];
+
+            if (entry.isIntersecting) {
+                // Fly cards in with stagger
+                allCards.forEach(function (card, i) {
+                    setTimeout(function () {
+                        card.classList.add('im-pillar-visible');
+                    }, i * 150);
+                });
+                // Start highlight after all cards settle
+                var delay = (allCards.length - 1) * 150 + 600;
+                enterTimer = setTimeout(startCycle, delay);
+            } else {
+                // Fly cards out — remove visible so CSS reverses the translate
+                stopCycle();
+                allCards.forEach(function (card) {
+                    card.classList.remove('im-pillar-visible');
+                });
+            }
+        }, { threshold: 0.3 });
+
+        sectionObserver.observe(section);
+
+        // Pause cycle on hover + mark visited; resume on leave
+        // Webflow IX2 sets inline style="background-color:..." via JS — override it directly
+        function applyDarkCard(card) {
+            card.style.setProperty('background-color', '#000000', 'important');
+            var title = card.querySelector('.rt-card-title');
+            var desc  = card.querySelector('.rt-card-description');
+            if (title) title.style.setProperty('color', '#ffffff', 'important');
+            if (desc)  desc.style.setProperty('color', 'rgba(255,255,255,0.65)', 'important');
+        }
+        function removeDarkCard(card) {
+            card.style.removeProperty('background-color');
+            var title = card.querySelector('.rt-card-title');
+            var desc  = card.querySelector('.rt-card-description');
+            if (title) title.style.removeProperty('color');
+            if (desc)  desc.style.removeProperty('color');
+        }
+
+        allCards.forEach(function (card, i) {
+            card.addEventListener('mouseenter', function () {
+                paused = true;
+                allCards.forEach(function (c) {
+                    c.classList.remove('im-pillar-active');
+                    removeDarkCard(c);
+                });
+                applyDarkCard(card);
+                markVisited(i);
+            });
+            card.addEventListener('mouseleave', function () {
+                removeDarkCard(card);
+                paused = false;
+            });
+        });
+
+    }());
+
 })();

@@ -2942,10 +2942,93 @@ body.im-modal-open .im-pd-mobile-bar {
     width: 100% !important;
     margin: 0 !important;
     padding: 1.5rem 1.25rem !important;
-    transform: none !important;
-    opacity: 1 !important;
     filter: none !important;
     align-self: auto !important;
+    opacity: 0;
+    transform: translateX(-36px);
+    transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+    border: 1px solid transparent;
+    will-change: transform, opacity;
+}
+
+#what-we-do .rt-cards-right-wrapper .rt-card-wrapper {
+    transform: translateX(36px);
+}
+
+#what-we-do .rt-card-wrapper.im-pillar-visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+/* Auto-highlight cycle */
+@keyframes im-pillar-zoom-pop {
+    0%   { transform: translateY(0) scale(1); }
+    40%  { transform: translateY(-10px) scale(1.04); }
+    70%  { transform: translateY(-6px) scale(1.01); }
+    100% { transform: translateY(-6px) scale(1); }
+}
+
+@keyframes im-badge-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(196,154,46,0.6); }
+    60%  { box-shadow: 0 0 0 12px rgba(196,154,46,0); }
+    100% { box-shadow: 0 0 0 0 rgba(196,154,46,0); }
+}
+
+#what-we-do .rt-card-wrapper.im-pillar-active {
+    animation: im-pillar-zoom-pop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards !important;
+    border-color: var(--im-gold) !important;
+    box-shadow: 0 16px 40px rgba(196, 154, 46, 0.25) !important;
+}
+
+#what-we-do .rt-card-wrapper.im-pillar-active .rt-number-wrapper {
+    animation: im-badge-ring 0.8s ease forwards !important;
+    background-color: var(--im-gold) !important;
+}
+
+/* Dark card hover — matches original Webflow black card style */
+#what-we-do .rt-card-wrapper {
+    overflow: hidden;
+    transition: opacity 0.55s ease, transform 0.55s ease,
+                background-color 0.35s ease, box-shadow 0.35s ease,
+                border-color 0.35s ease !important;
+}
+
+/* Image reveals on hover */
+#what-we-do .rt-card-image-wrap {
+    opacity: 0;
+    transition: opacity 0.35s ease !important;
+}
+#what-we-do .rt-card-wrapper:hover .rt-card-image-wrap {
+    opacity: 1 !important;
+}
+
+/* Card goes dark */
+#what-we-do .rt-card-wrapper:hover {
+    background-color: #000000 !important;
+    box-shadow: 0 24px 56px rgba(11, 38, 65, 0.45) !important;
+    border-color: var(--im-gold) !important;
+    transform: translateY(-6px) !important;
+}
+
+/* Text turns white */
+#what-we-do .rt-card-wrapper:hover .rt-card-title {
+    color: #ffffff !important;
+}
+#what-we-do .rt-card-wrapper:hover .rt-card-description {
+    color: rgba(255,255,255,0.65) !important;
+}
+
+/* Badge goes gold */
+#what-we-do .rt-card-wrapper:hover .rt-number-wrapper {
+    background-color: var(--im-gold) !important;
+    transform: scale(1.1) !important;
+    transition: background-color 0.25s ease, transform 0.25s ease !important;
+}
+
+/* Hover always wins dark bg over active state */
+#what-we-do .rt-card-wrapper.im-pillar-active:hover {
+    background-color: #000000 !important;
+    animation: none !important;
 }
 
 #what-we-do .rt-card-wrapper.rt-card-v2,
@@ -2967,7 +3050,9 @@ body.im-modal-open .im-pd-mobile-bar {
     height: 340px !important;
     margin: 0 !important;
     z-index: 2 !important;
-    background-color: #fff !important;
+    background: radial-gradient(circle at 40% 35%, #fffdf7 0%, #fff 55%, #f8f4ec 100%) !important;
+    border: 1.5px solid rgba(196,154,46,0.35) !important;
+    box-shadow: 0 0 0 6px rgba(196,154,46,0.06), inset 0 2px 20px rgba(196,154,46,0.07) !important;
 }
 
 #what-we-do .rt-circle-two {
@@ -2984,22 +3069,77 @@ body.im-modal-open .im-pd-mobile-bar {
     max-height: 500px !important;
 }
 
-/* Force-show only title v1; hide rotating v2/v3 */
-#what-we-do .rt-card-main-title-v1 {
-    position: relative !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    display: block !important;
-    font-size: 1.25rem !important;
-    line-height: 1.35 !important;
-    max-width: 260px !important;
+/* Circle animations */
+@keyframes im-pillar-spin {
+    to { transform: rotate(360deg); }
 }
 
+@keyframes im-pillar-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+#what-we-do .rt-circle-three {
+    animation: im-pillar-spin 10s linear infinite !important;
+    transform-origin: center center !important;
+    border: 1.5px dashed rgba(196,154,46,0.45) !important;
+}
+
+#what-we-do .rt-circle-two {
+    animation: im-pillar-pulse 4s ease-in-out infinite !important;
+    border: 1px solid rgba(196,154,46,0.2) !important;
+}
+
+/* Center text cycling — slide-up fade */
+#what-we-do .rt-service-v2-text-wrap {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+#what-we-do .rt-card-main-title-v1,
 #what-we-do .rt-card-main-title-v2,
 #what-we-do .rt-card-main-title-v3 {
-    display: none !important;
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    margin: auto !important;
+    width: 78% !important;
+    height: fit-content !important;
+    text-align: center !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    letter-spacing: -0.01em !important;
+    color: #0B2641 !important;
+    opacity: 0 !important;
+    transform: translateY(14px) !important;
+    transition: opacity 0.55s ease, transform 0.55s ease !important;
+    pointer-events: none;
+    filter: none !important;
 }
+
+#what-we-do .rt-card-main-title-v1.im-pillar-text-active,
+#what-we-do .rt-card-main-title-v2.im-pillar-text-active,
+#what-we-do .rt-card-main-title-v3.im-pillar-text-active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Progress arc SVG */
+.im-pillar-arc-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Center card display — hidden, replaced by cycling text */
+.im-pillar-center-display { display: none !important; }
+
 
 #what-we-do .rt-card-animation,
 #what-we-do .rt-card-animation > *,
