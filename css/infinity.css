@@ -709,14 +709,13 @@
 /* Overlay is the scroll container. Modal has natural height. Submit
    button uses position:sticky at bottom of overlay viewport. */
 .im-modal-overlay {
-    position: fixed;
+    position: fixed !important;
     inset: 0;
     background: rgba(7, 24, 41, 0.88);
     backdrop-filter: blur(4px);
-    z-index: 10000;
+    z-index: 10000 !important;
     display: none;
-    padding: 1.25rem;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
@@ -742,8 +741,8 @@ body.im-modal-open .im-pd-mobile-bar {
     border-radius: 1rem;
     max-width: 820px;
     width: 100%;
-    margin: 0 auto;
-    padding: 2rem 2.25rem 0;
+    margin: 1.25rem auto;
+    padding: 2rem 2.25rem;
     position: relative;
     animation: modalIn 0.35s ease;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);

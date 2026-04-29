@@ -25,6 +25,9 @@
             cb.checked = false;
         });
         MODAL_OVERLAY.classList.add('active');
+        MODAL_OVERLAY.scrollTop = 0;
+        const modalBox = MODAL_OVERLAY.querySelector('.im-modal');
+        if (modalBox) modalBox.scrollTop = 0;
         document.body.style.overflow = 'hidden';
         document.body.classList.add('im-modal-open');
         if (category) {
