@@ -724,12 +724,103 @@
             circleWrapper.appendChild(svg);
         }
 
+        var celebrationDone = false;
+
+        function burstCrackers() {
+            var canvas = document.createElement('canvas');
+            canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:99;';
+            section.style.position = section.style.position || 'relative';
+            section.appendChild(canvas);
+
+            var W = canvas.offsetWidth  || section.offsetWidth;
+            var H = canvas.offsetHeight || section.offsetHeight;
+            canvas.width  = W;
+            canvas.height = H;
+            var ctx = canvas.getContext('2d');
+
+            // Origin = center of section
+            var ox = W / 2, oy = H / 2;
+
+            var COLORS = ['#C49A2E','#E8C160','#ffffff','#0B2641','#F5D78E','#FFD700','#fffdf0'];
+            var SHAPES = ['rect','circle','ribbon'];
+            var particles = [];
+
+            for (var i = 0; i < 180; i++) {
+                var angle  = Math.random() * Math.PI * 2;
+                var speed  = 4 + Math.random() * 9;
+                var shape  = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+                particles.push({
+                    x: ox, y: oy,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - (Math.random() * 4),
+                    size: 5 + Math.random() * 8,
+                    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+                    shape: shape,
+                    rot: Math.random() * Math.PI * 2,
+                    rotV: (Math.random() - 0.5) * 0.25,
+                    alpha: 1,
+                    gravity: 0.18 + Math.random() * 0.12,
+                    drag: 0.97
+                });
+            }
+
+            var startTime = performance.now();
+            var DURATION = 2200;
+
+            function tick(now) {
+                var elapsed = now - startTime;
+                ctx.clearRect(0, 0, W, H);
+
+                var alive = false;
+                particles.forEach(function (p) {
+                    p.vx *= p.drag;
+                    p.vy  = p.vy * p.drag + p.gravity;
+                    p.x  += p.vx;
+                    p.y  += p.vy;
+                    p.rot += p.rotV;
+                    p.alpha = Math.max(0, 1 - elapsed / DURATION);
+
+                    if (p.alpha <= 0) return;
+                    alive = true;
+
+                    ctx.save();
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fillStyle = p.color;
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rot);
+
+                    if (p.shape === 'circle') {
+                        ctx.beginPath();
+                        ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else if (p.shape === 'ribbon') {
+                        ctx.fillRect(-p.size * 0.3, -p.size * 1.2, p.size * 0.6, p.size * 1.2);
+                    } else {
+                        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.55);
+                    }
+                    ctx.restore();
+                });
+
+                if (alive && elapsed < DURATION + 400) {
+                    requestAnimationFrame(tick);
+                } else {
+                    canvas.remove();
+                }
+            }
+            requestAnimationFrame(tick);
+        }
+
         function updateArc() {
             if (!arcCircle) return;
             var r = 156, circ = 2 * Math.PI * r;
             var pct = visited.size / total;
             arcCircle.style.transition = 'stroke-dashoffset 0.5s ease';
             arcCircle.setAttribute('stroke-dashoffset', String(circ * (1 - pct)));
+
+            if (visited.size === total && !celebrationDone) {
+                celebrationDone = true;
+                setTimeout(burstCrackers, 550); // fire after arc finishes drawing
+            }
         }
 
         function markVisited(idx) {
@@ -762,6 +853,7 @@
             cycleTimer = null;
             cycleIdx = 0;
             visited.clear();
+            celebrationDone = false;
             allCards.forEach(function (c) { c.classList.remove('im-pillar-active'); });
             if (arcCircle) {
                 var r = 156, circ = 2 * Math.PI * r;
