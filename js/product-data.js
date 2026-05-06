@@ -176,7 +176,7 @@ const PRODUCT_DATA = {
             'images/compressed/Dry Fruits and Nuts/Pistachios (1).webp',
             'images/compressed/Dry Fruits and Nuts/Walnuts (1).webp',
             'images/compressed/Dry Fruits and Nuts/Raisins (1).webp',
-            'images/placeholders/dry-fruits-dates.webp',
+            'images/compressed/Dry Fruits and Nuts/Image Converter Dates.webp',
             'images/compressed/Dry Fruits and Nuts/Mixed Dry Fruits (1).webp',
             'images/compressed/Dry Fruits and Nuts/Gift Packs and Bulk Supply.webp'
         ]
