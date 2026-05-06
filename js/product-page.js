@@ -248,14 +248,12 @@
         // ── Arrow buttons ───────────────────────────────────────
         if (prevBtn) {
             prevBtn.addEventListener('click', function () {
-                var newIdx = Math.max(0, activeDot - 1);
-                scrollToCard(newIdx);
+                track.scrollBy({ left: -CARD_WIDTH, behavior: 'smooth' });
             });
         }
         if (nextBtn) {
             nextBtn.addEventListener('click', function () {
-                var newIdx = Math.min(getTotalDots() - 1, activeDot + 1);
-                scrollToCard(newIdx);
+                track.scrollBy({ left: CARD_WIDTH, behavior: 'smooth' });
             });
         }
 

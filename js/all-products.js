@@ -27,7 +27,7 @@
     };
 
     var KICKERS = {
-        'apparel':       'Textile Division',
+        'apparel':       'Apparel Division',
         'lifestyle':     'Lifestyle & Gifting',
         'home':          'Home & Interiors',
         'industrial':    'Industrial & Machinery',
