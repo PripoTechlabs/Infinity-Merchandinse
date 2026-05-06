@@ -24,7 +24,7 @@ const PRODUCT_DATA = {
             'images/compressed/dress/Mens Wear (1).webp',
             'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=1080&q=80',
             'images/compressed/dress/European Wear (1).webp',
-            'images/compressed/dress/Winter Wear.webp',
+            'images/placeholders/winter-wear.webp',
             'images/compressed/dress/Casual Wear (1).webp',
             'images/compressed/dress/Indian Ethnic Wear (1).webp',
             'images/compressed/dress/Saree (1).webp',
@@ -32,12 +32,12 @@ const PRODUCT_DATA = {
             'images/compressed/dress/Abaya (2).webp',
             'images/compressed/dress/Kurtis and Tunics (1).webp',
             'images/compressed/dress/Indo Western.webp',
-            'images/compressed/dress/Swimwear.webp',
+            'images/placeholders/swimwear.webp',
             'images/compressed/dress/Gym Wear (1).webp',
             'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1080&q=80',
             'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1080&q=80',
             'images/compressed/dress/Formal Wear (1).webp',
-            'images/compressed/dress/Loungewear and Nightwear.webp',
+            'images/placeholders/loungewear.webp',
             'images/compressed/dress/Designer Wear.webp'
         ]
     },
@@ -176,7 +176,7 @@ const PRODUCT_DATA = {
             'images/compressed/Dry Fruits and Nuts/Pistachios (1).webp',
             'images/compressed/Dry Fruits and Nuts/Walnuts (1).webp',
             'images/compressed/Dry Fruits and Nuts/Raisins (1).webp',
-            'images/compressed/Dry Fruits and Nuts/Image Converter Dates.webp',
+            'images/placeholders/dry-fruits-dates.webp',
             'images/compressed/Dry Fruits and Nuts/Mixed Dry Fruits (1).webp',
             'images/compressed/Dry Fruits and Nuts/Gift Packs and Bulk Supply.webp'
         ]
@@ -245,7 +245,7 @@ const PRODUCT_DATA = {
             'images/compressed/Imported Commercial Machinery/Construction Equipment.webp',
             'images/compressed/Imported Commercial Machinery/Material Handling Equipment.webp',
             'images/compressed/Imported Commercial Machinery/CNC Machines.webp',
-            'images/placeholders/plastic-processing.svg',
+            'images/placeholders/plastic-processing.webp',
             'images/compressed/Imported Commercial Machinery/Metal Fabrication Machines.webp',
             'images/compressed/Imported Commercial Machinery/Woodworking Machines.webp',
             'images/compressed/Imported Commercial Machinery/Cleaning and Maintenance Machines.webp',
@@ -281,7 +281,7 @@ const PRODUCT_DATA = {
         name: 'Arcade Games',
         tagline: 'Entertainment experiences for every venue.',
         description: 'We source arcade and amusement equipment for entertainment centers, malls, hotels, and family venues. From classic coin-operated cabinets to modern VR and motion simulators, our supplier network delivers fully tested machines with installation and service support.',
-        image: 'images/placeholders/arcade-cabinets.jpg',
+        image: 'images/placeholders/arcade-cabinets.webp',
         checkboxValue: 'Arcade Games',
         subProducts: [
             'Arcade Cabinets', 'Claw & Prize Machines', 'Racing Simulators',
@@ -289,14 +289,14 @@ const PRODUCT_DATA = {
             'Coin-Operated Kids Rides', 'Redemption Game Machines'
         ],
         subImages: [
-            'images/placeholders/arcade-cabinets.jpg',
+            'images/placeholders/arcade-cabinets.webp',
             'https://images.unsplash.com/photo-1533236897111-3e94666b2edf?w=1080&q=80',
             'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1080&q=80',
             'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=1080&q=80',
             'https://images.unsplash.com/photo-1511882150382-421056c89033?w=1080&q=80',
             'https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=1080&q=80',
-            'images/placeholders/coin-operated-rides.svg',
-            'images/placeholders/redemption-game.svg'
+            'images/placeholders/coin-operated-rides.webp',
+            'images/placeholders/redemption-game.webp'
         ]
     }
 };
