@@ -10,7 +10,7 @@
        Paste your deployed Apps Script Web App URL below.
        See: google-apps-script.js for setup instructions.
     -------------------------------------------------------- */
-    const GSHEET_URL = 'https://script.google.com/macros/s/AKfycbzDgdVAyhkGWt5lkwnaf8Db6gpTIs7PzAsou43ID5lIXWPTgoUim5qL_M45-I47EZ8t/exec';
+    const GSHEET_URL = 'https://script.google.com/macros/s/AKfycbzpmVmVAYIuVtZ0nGkVaP8KTFk1DuK_nlQ9Kza50_Ure0su466kpwFR-YP2s09tT7bKNQ/exec';
 
     /* --------------------------------------------------------
        ENQUIRY MODAL
