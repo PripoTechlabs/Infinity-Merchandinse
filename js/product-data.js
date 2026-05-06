@@ -24,7 +24,7 @@ const PRODUCT_DATA = {
             'images/compressed/dress/Mens Wear (1).webp',
             'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=1080&q=80',
             'images/compressed/dress/European Wear (1).webp',
-            'images/winter wear.png',
+            'images/compressed/dress/Winter Wear.webp',
             'images/compressed/dress/Casual Wear (1).webp',
             'images/compressed/dress/Indian Ethnic Wear (1).webp',
             'images/compressed/dress/Saree (1).webp',
@@ -32,12 +32,12 @@ const PRODUCT_DATA = {
             'images/compressed/dress/Abaya (2).webp',
             'images/compressed/dress/Kurtis and Tunics (1).webp',
             'images/compressed/dress/Indo Western.webp',
-            'images/swim wear.png',
+            'images/compressed/dress/Swimwear.webp',
             'images/compressed/dress/Gym Wear (1).webp',
             'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1080&q=80',
             'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1080&q=80',
             'images/compressed/dress/Formal Wear (1).webp',
-            'images/Lounge_wear_or_night_wear.png',
+            'images/compressed/dress/Loungewear and Nightwear.webp',
             'images/compressed/dress/Designer Wear.webp'
         ]
     },
