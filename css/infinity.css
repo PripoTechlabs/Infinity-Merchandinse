@@ -2978,6 +2978,7 @@ body.im-modal-open .im-pd-mobile-bar {
     animation: im-pillar-zoom-pop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards !important;
     border-color: var(--im-gold) !important;
     box-shadow: 0 16px 40px rgba(196, 154, 46, 0.25) !important;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease !important;
 }
 
 #what-we-do .rt-card-wrapper.im-pillar-active .rt-number-wrapper {
