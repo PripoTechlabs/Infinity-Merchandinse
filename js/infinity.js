@@ -686,6 +686,7 @@
     (function () {
         const section = document.getElementById('what-we-do');
         if (!section) return;
+        if (window.matchMedia('(max-width: 991px)').matches) return;
 
         // Cards sorted by number badge ascending (01,02,03,04,05,06)
         var allCards = Array.from(section.querySelectorAll('.rt-card-wrapper')).sort(function (a, b) {
