@@ -2976,14 +2976,28 @@ body.im-modal-open .im-pd-mobile-bar {
 
 #what-we-do .rt-card-wrapper.im-pillar-active {
     animation: im-pillar-zoom-pop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards !important;
+    background-color: #000000 !important;
     border-color: var(--im-gold) !important;
-    box-shadow: 0 16px 40px rgba(196, 154, 46, 0.25) !important;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease !important;
+    box-shadow: 0 24px 56px rgba(11, 38, 65, 0.45) !important;
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+#what-we-do .rt-card-wrapper.im-pillar-active .rt-card-image-wrap {
+    opacity: 1 !important;
+}
+
+#what-we-do .rt-card-wrapper.im-pillar-active .rt-card-title {
+    color: #ffffff !important;
+}
+
+#what-we-do .rt-card-wrapper.im-pillar-active .rt-card-description {
+    color: rgba(255,255,255,0.65) !important;
 }
 
 #what-we-do .rt-card-wrapper.im-pillar-active .rt-number-wrapper {
     animation: im-badge-ring 0.8s ease forwards !important;
     background-color: var(--im-gold) !important;
+    transform: scale(1.1) !important;
 }
 
 /* Dark card hover — matches original Webflow black card style */
