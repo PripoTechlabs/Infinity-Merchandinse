@@ -10,7 +10,7 @@
        Paste your deployed Apps Script Web App URL below.
        See: google-apps-script.js for setup instructions.
     -------------------------------------------------------- */
-    const GSHEET_URL = ''; // ← replace with your Apps Script URL after deploying
+    const GSHEET_URL = ''; // Temporarily disabled — endpoint not responding
 
     /* --------------------------------------------------------
        ENQUIRY MODAL
@@ -147,15 +147,18 @@
                 }
 
                 try {
-                    // Content-Type: text/plain avoids CORS preflight while still
-                    // delivering the JSON body to Google Apps Script (e.postData.contents)
-                    await fetch(GSHEET_URL, {
+                    console.log('Submitting form to:', GSHEET_URL);
+                    const response = await fetch(GSHEET_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'text/plain' },
                         body: JSON.stringify(payload)
                     });
+                    console.log('Response status:', response.status);
+                    const text = await response.text();
+                    console.log('Response body:', text);
                     showSuccess();
                 } catch (err) {
+                    console.error('Fetch error:', err);
                     btn.textContent = originalText;
                     btn.disabled = false;
                     alert('Something went wrong. Please reach us on WhatsApp or email directly.');
@@ -592,7 +595,6 @@
                 }
             });
         }, {
-            root: document.querySelector('.im-products-carousel-outer'),
             rootMargin: '0px 100px 0px 100px',
             threshold: 0.1
         });
