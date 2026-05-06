@@ -2984,6 +2984,8 @@ body.im-modal-open .im-pd-mobile-bar {
 
 #what-we-do .rt-card-wrapper.im-pillar-active .rt-card-image-wrap {
     opacity: 1 !important;
+    width: 9.5rem !important;
+    height: 7.0625rem !important;
 }
 
 #what-we-do .rt-card-wrapper.im-pillar-active .rt-card-title {
