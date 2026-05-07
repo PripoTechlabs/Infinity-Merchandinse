@@ -3367,8 +3367,15 @@ body.im-modal-open .im-pd-mobile-bar {
 
 @media (max-width: 991px) {
     #what-we-do .rt-card-wrapper { max-width: none !important; }
+    #what-we-do .rt-cards-main-wrapper { flex-direction: column !important; align-items: stretch !important; }
     #what-we-do .rt-cards-left-wrapper,
-    #what-we-do .rt-cards-right-wrapper { width: auto !important; flex: 1 1 0 !important; }
+    #what-we-do .rt-cards-right-wrapper { display: contents !important; }
+    #what-we-do .rt-cards-left-wrapper .rt-card-wrapper:nth-child(1) { order: 1; }
+    #what-we-do .rt-cards-left-wrapper .rt-card-wrapper:nth-child(2) { order: 3; }
+    #what-we-do .rt-cards-left-wrapper .rt-card-wrapper:nth-child(3) { order: 5; }
+    #what-we-do .rt-cards-right-wrapper .rt-card-wrapper:nth-child(1) { order: 2; }
+    #what-we-do .rt-cards-right-wrapper .rt-card-wrapper:nth-child(2) { order: 4; }
+    #what-we-do .rt-cards-right-wrapper .rt-card-wrapper:nth-child(3) { order: 6; }
 }
 
 /* ==========================================================
