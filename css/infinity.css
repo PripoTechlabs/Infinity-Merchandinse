@@ -777,8 +777,8 @@ body.im-modal-open .im-pd-mobile-bar {
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
     border: none;
     background: var(--im-gray-light);
     border-radius: 50%;
@@ -868,7 +868,6 @@ body.im-modal-open .im-pd-mobile-bar {
     padding: 0.7rem 0.9rem;
     font-size: 0.875rem;
     color: var(--im-text-dark);
-    outline: none;
     transition: border-color 0.2s;
     font-family: inherit;
     background: #fff;
@@ -878,6 +877,14 @@ body.im-modal-open .im-pd-mobile-bar {
 .im-form-group select:focus,
 .im-form-group textarea:focus {
     border-color: var(--im-gold);
+    outline: none;
+}
+
+.im-form-group input:focus-visible,
+.im-form-group select:focus-visible,
+.im-form-group textarea:focus-visible {
+    outline: 2px solid var(--im-gold);
+    outline-offset: 2px;
 }
 
 .im-form-group textarea {
@@ -1524,7 +1531,7 @@ body.im-modal-open .im-pd-mobile-bar {
 }
 
 .im-roadmap-step-desc {
-    font-size: 0.775rem;
+    font-size: 0.85rem;
     color: #777;
     line-height: 1.55;
     padding: 0 0.25rem;
@@ -2337,7 +2344,7 @@ body.im-modal-open .im-pd-mobile-bar {
 
 .im-ptm-subtitle {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.62);
     margin: 0;
 }
 
@@ -2657,6 +2664,7 @@ body.im-modal-open .im-pd-mobile-bar {
 .im-ptm-popup-head--eu   { background: rgba(21, 101, 192, 0.5); }
 .im-ptm-popup-head--gcc  { background: rgba(184, 134, 11, 0.4); }
 .im-ptm-popup-head--asia { background: rgba(6, 95, 70, 0.5); }
+.im-ptm-popup-head--hq2  { background: rgba(14, 116, 144, 0.45); }
 
 .im-ptm-popup-flag {
     font-size: 1.4rem;
@@ -2731,17 +2739,18 @@ body.im-modal-open .im-pd-mobile-bar {
     background: transparent;
     cursor: pointer;
     text-align: left;
-    color: #fff;
+    color: oklch(97% 0.005 260);
     touch-action: manipulation;
     min-height: 44px;
-    border-left: 3px solid transparent;
     transition: background 0.2s;
 }
 
-.im-ptm-card-hdr--us   { border-left-color: #3B82F6; }
-.im-ptm-card-hdr--eu   { border-left-color: #60A5FA; }
-.im-ptm-card-hdr--gcc  { border-left-color: var(--im-gold); }
-.im-ptm-card-hdr--asia { border-left-color: #34D399; }
+/* Region color via top border on the card wrapper */
+.im-ptm-card--gcc  { border-top: 2px solid rgba(196, 154, 46, 0.7); }
+.im-ptm-card--us   { border-top: 2px solid rgba(59, 130, 246, 0.7); }
+.im-ptm-card--eu   { border-top: 2px solid rgba(96, 165, 250, 0.7); }
+.im-ptm-card--asia { border-top: 2px solid rgba(52, 211, 153, 0.7); }
+.im-ptm-card--hq2  { border-top: 2px solid rgba(125, 211, 252, 0.7); }
 
 .im-ptm-card-hdr:hover,
 .im-ptm-card-hdr[aria-expanded="true"] {
@@ -2833,7 +2842,7 @@ body.im-modal-open .im-pd-mobile-bar {
     justify-content: center;
     gap: 0.45rem;
     margin-top: 2rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.78rem;
     text-align: center;
 }
@@ -3440,6 +3449,13 @@ body.im-modal-open .im-pd-mobile-bar {
     }
 }
 
+/* Skip backdrop blur for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .im-modal-overlay {
+        backdrop-filter: none;
+    }
+}
+
 /* Respect reduced motion */
 @media (max-width: 991px) and (prefers-reduced-motion: reduce) {
     #what-we-do .rt-card-wrapper,
@@ -3541,7 +3557,7 @@ body.im-modal-open .im-pd-mobile-bar {
 }
 @media (max-width: 767px) {
     .im-products-nav { gap: 0.5rem; padding-left: 0; }
-    .im-products-nav-btn { width: 2.5rem; height: 2.5rem; }
+    .im-products-nav-btn { width: 2.75rem; height: 2.75rem; }
 }
 
 /* ── Hamburger menu — narrow right-side panel (per client) ── */
@@ -3584,5 +3600,52 @@ body.im-modal-open .im-pd-mobile-bar {
     .rt-hamburger-nav-block .rt-nav-content-wrap,
     .rt-hamburger-nav-block .rt-nav-background {
         max-width: 100%;
+    }
+}
+
+/* Roadmap section: desktop proportion fix */
+@media (min-width: 992px) {
+    .rt-service-v2 {
+        padding-top: 4rem;
+        padding-bottom: 5rem;
+    }
+    .rt-service-v2 .im-roadmap-header {
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+    .rt-service-v2 .im-roadmap-header .im-section-title {
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+@media (min-width: 1280px) {
+    .rt-service-v2 {
+        padding-top: 5rem;
+        padding-bottom: 6rem;
+    }
+}
+@media (min-width: 1440px) {
+    .rt-service-v2 {
+        padding-top: 5rem;
+        padding-bottom: 6rem;
+    }
+}
+@media (min-width: 1920px) {
+    .rt-service-v2 {
+        padding-top: 6rem;
+        padding-bottom: 7rem;
+    }
+}
+
+/* Mobile: reduce inner container gutters from 2rem to 1rem */
+@media (max-width: 767px) {
+    .im-products-inner,
+    .im-reviews-inner,
+    .im-roadmap-inner,
+    .im-map-inner,
+    .im-journals-inner {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }

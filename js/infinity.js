@@ -507,27 +507,37 @@
             arcsSvg.appendChild(circle);
         }
 
-        if (hqs.length >= 1 && markets.length) {
+        if (hqs.length >= 1) {
             var delayClasses = ['', 'im-ptm-arc--d1', 'im-ptm-arc--d2', 'im-ptm-arc--d3', 'im-ptm-arc--d4', 'im-ptm-arc--d5'];
-            markets.forEach(function (m, i) {
-                // pick nearest HQ
-                var target = hqs[0];
-                if (hqs.length > 1) {
-                    var best = haversine(m, hqs[0]), idx = 0;
-                    for (var k = 1; k < hqs.length; k++) {
-                        var d = haversine(m, hqs[k]);
-                        if (d < best) { best = d; idx = k; }
-                    }
-                    target = hqs[idx];
-                }
-                var colorClass = target.el.dataset.hq === '2' ? 'im-ptm-arc--blue' : 'im-ptm-arc--gold';
-                addArc('im-arc-m' + i, m.svg, target.svg, colorClass, delayClasses[i % delayClasses.length]);
-            });
 
-            // HQ1 ↔ HQ2 link
-            if (hqs.length >= 2) {
-                addArc('im-arc-hq-link', hqs[0].svg, hqs[1].svg, 'im-ptm-arc--gold', 'im-ptm-arc--d4');
+            // Identify HQ1 (Dubai) and HQ2 (Chennai) explicitly
+            var hq1 = null, hq2 = null;
+            hqs.forEach(function (h) {
+                if (h.el.dataset.hq === '1') hq1 = h;
+                else if (h.el.dataset.hq === '2') hq2 = h;
+            });
+            // Fallback: if only one HQ exists, treat it as HQ1
+            if (!hq1) hq1 = hqs[0];
+
+            var sources = markets.filter(function (m) { return m.el.dataset.source === 'true'; });
+            var destinations = markets.filter(function (m) { return m.el.dataset.source !== 'true'; });
+
+            // Stage 1: source regions → HQ2 Chennai (blue, inbound)
+            if (hq2) {
+                sources.forEach(function (m, i) {
+                    addArc('im-arc-src' + i, m.svg, hq2.svg, 'im-ptm-arc--blue', delayClasses[i % delayClasses.length]);
+                });
             }
+
+            // Stage 2: HQ2 Chennai → HQ1 Dubai (gold, relay)
+            if (hq1 && hq2) {
+                addArc('im-arc-hq-link', hq2.svg, hq1.svg, 'im-ptm-arc--gold', 'im-ptm-arc--d2');
+            }
+
+            // Stage 3: HQ1 Dubai → destination markets (gold, outbound)
+            destinations.forEach(function (m, i) {
+                addArc('im-arc-dst' + i, hq1.svg, m.svg, 'im-ptm-arc--gold', delayClasses[(i + 1) % delayClasses.length]);
+            });
         }
     })();
 
