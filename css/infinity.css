@@ -3214,9 +3214,7 @@ body.im-modal-open .im-pd-mobile-bar {
         padding: 3rem 0.75rem !important;
     }
     #what-we-do .rt-main-circle-wrapper {
-        width: 260px !important;
-        height: 260px !important;
-        min-height: 260px !important;
+        display: none !important;
     }
     #what-we-do .rt-card-main-title-v1 {
         font-size: 1.05rem !important;
@@ -3647,5 +3645,21 @@ body.im-modal-open .im-pd-mobile-bar {
     .im-journals-inner {
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+}
+
+/* Mobile: reduce section vertical padding (desktop 5–6rem → mobile 3rem) */
+@media (max-width: 767px) {
+    .im-products-section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    .im-reviews-section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    .im-roadmap-section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
 }
