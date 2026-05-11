@@ -3389,53 +3389,14 @@ body.im-modal-open .im-pd-mobile-bar {
 }
 
 /* ==========================================================
-   WHAT WE DO — mobile interactivity (no hover on touch)
-   Cards animate in on scroll + react on tap.
+   WHAT WE DO — mobile touch support
+   Desktop JS now runs on all viewports; these rules complement it.
    ========================================================== */
 @media (max-width: 991px) {
     #what-we-do .rt-card-wrapper {
-        opacity: 0;
-        transform: translateY(40px) scale(0.96);
-        transition:
-            opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-            box-shadow 0.4s ease,
-            background-color 0.4s ease;
         -webkit-tap-highlight-color: transparent;
     }
-    #what-we-do .rt-card-wrapper.im-wd-visible {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    #what-we-do .rt-card-wrapper.im-wd-active {
-        background-color: #fffaf0 !important;
-        box-shadow: 0 1.25rem 2.5rem rgba(11, 38, 65, 0.18);
-        transform: translateY(-4px) scale(1.015);
-    }
-    #what-we-do .rt-card-image-wrap {
-        transition:
-            transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-            box-shadow 0.45s ease;
-        will-change: transform;
-    }
-    #what-we-do .rt-card-wrapper.im-wd-active .rt-card-image-wrap {
-        transform: scale(1.18) rotate(-2deg);
-        box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.25);
-    }
-    #what-we-do .rt-number-wrapper {
-        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s ease;
-    }
-    #what-we-do .rt-card-wrapper.im-wd-active .rt-number-wrapper {
-        background-color: var(--im-gold, #C49A2E) !important;
-        transform: scale(1.12);
-    }
-    #what-we-do .rt-card-wrapper.im-wd-active .rt-card-title {
-        color: var(--im-navy, #0B2641) !important;
-    }
-    /* Pulse ring on active card */
-    #what-we-do .rt-card-wrapper {
-        position: relative;
-    }
+    /* Pulse ring on active card (touch) */
     #what-we-do .rt-card-wrapper::after {
         content: '';
         position: absolute;
@@ -3445,7 +3406,7 @@ body.im-modal-open .im-pd-mobile-bar {
         pointer-events: none;
         transition: border-color 0.4s ease;
     }
-    #what-we-do .rt-card-wrapper.im-wd-active::after {
+    #what-we-do .rt-card-wrapper.im-pillar-active::after {
         border-color: var(--im-gold, #C49A2E);
     }
 }

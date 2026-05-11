@@ -691,32 +691,12 @@
     }
 
     /* --------------------------------------------------------
-       WHAT WE DO — mobile circle text cycling
-       Desktop cycling block below returns early on mobile,
-       so we run text rotation here for touch viewports.
-    -------------------------------------------------------- */
-    (function () {
-        if (!window.matchMedia('(max-width: 991px)').matches) return;
-        var section = document.getElementById('what-we-do');
-        if (!section) return;
-        var texts = Array.from(section.querySelectorAll('.rt-card-main-title-v1, .rt-card-main-title-v2, .rt-card-main-title-v3'));
-        if (!texts.length) return;
-        var idx = 0;
-        texts[idx].classList.add('im-pillar-text-active');
-        setInterval(function () {
-            texts[idx].classList.remove('im-pillar-text-active');
-            idx = (idx + 1) % texts.length;
-            texts[idx].classList.add('im-pillar-text-active');
-        }, 3000);
-    })();
-
-    /* --------------------------------------------------------
        SIX PILLARS — scroll reveal + card auto-cycle + 3D tilt
+       Runs on both desktop and mobile.
     -------------------------------------------------------- */
     (function () {
         const section = document.getElementById('what-we-do');
         if (!section) return;
-        if (window.matchMedia('(max-width: 991px)').matches) return;
 
         // Cards sorted by number badge ascending (01,02,03,04,05,06)
         var allCards = Array.from(section.querySelectorAll('.rt-card-wrapper')).sort(function (a, b) {
@@ -962,6 +942,20 @@
                 removeDarkCard(card);
                 paused = false;
             });
+            card.addEventListener('touchstart', function (e) {
+                e.stopPropagation();
+                paused = true;
+                allCards.forEach(function (c) {
+                    c.classList.remove('im-pillar-active');
+                    removeDarkCard(c);
+                });
+                applyDarkCard(card);
+                markVisited(i);
+            }, { passive: true });
+            card.addEventListener('touchend', function () {
+                removeDarkCard(card);
+                paused = false;
+            }, { passive: true });
         });
 
     }());
