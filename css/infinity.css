@@ -3173,23 +3173,14 @@ body.im-modal-open .im-pd-mobile-bar {
     opacity: 1 !important;
 }
 
-/* Tablet: circle on top, cards stack in 2 cols below */
+/* Tablet/mobile: hide circle (no hover = empty) */
 @media (max-width: 991px) {
     #what-we-do .rt-cards-outer-wrapper {
         flex-direction: column !important;
         min-height: 0 !important;
         gap: 2rem !important;
     }
-    #what-we-do .rt-main-circle-wrapper {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        transform: none !important;
-        order: -1;
-        width: 300px !important;
-        height: 300px !important;
-        min-height: 300px !important;
-    }
+    #what-we-do .rt-main-circle-wrapper,
     #what-we-do .rt-circle-two,
     #what-we-do .rt-circle-three {
         display: none !important;
@@ -3213,7 +3204,9 @@ body.im-modal-open .im-pd-mobile-bar {
     #what-we-do.rt-cards {
         padding: 3rem 0.75rem !important;
     }
-    #what-we-do .rt-main-circle-wrapper {
+    #what-we-do .rt-main-circle-wrapper,
+    #what-we-do .rt-circle-two,
+    #what-we-do .rt-circle-three {
         display: none !important;
     }
     #what-we-do .rt-card-main-title-v1 {
