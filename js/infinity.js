@@ -691,6 +691,26 @@
     }
 
     /* --------------------------------------------------------
+       WHAT WE DO — mobile circle text cycling
+       Desktop cycling block below returns early on mobile,
+       so we run text rotation here for touch viewports.
+    -------------------------------------------------------- */
+    (function () {
+        if (!window.matchMedia('(max-width: 991px)').matches) return;
+        var section = document.getElementById('what-we-do');
+        if (!section) return;
+        var texts = Array.from(section.querySelectorAll('.rt-card-main-title-v1, .rt-card-main-title-v2, .rt-card-main-title-v3'));
+        if (!texts.length) return;
+        var idx = 0;
+        texts[idx].classList.add('im-pillar-text-active');
+        setInterval(function () {
+            texts[idx].classList.remove('im-pillar-text-active');
+            idx = (idx + 1) % texts.length;
+            texts[idx].classList.add('im-pillar-text-active');
+        }, 3000);
+    })();
+
+    /* --------------------------------------------------------
        SIX PILLARS — scroll reveal + card auto-cycle + 3D tilt
     -------------------------------------------------------- */
     (function () {

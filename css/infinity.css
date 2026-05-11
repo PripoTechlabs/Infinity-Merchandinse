@@ -3173,14 +3173,24 @@ body.im-modal-open .im-pd-mobile-bar {
     opacity: 1 !important;
 }
 
-/* Tablet/mobile: hide circle (no hover = empty) */
+/* Tablet/mobile: reflow circle above cards */
 @media (max-width: 991px) {
     #what-we-do .rt-cards-outer-wrapper {
         flex-direction: column !important;
         min-height: 0 !important;
         gap: 2rem !important;
     }
-    #what-we-do .rt-main-circle-wrapper,
+    #what-we-do .rt-main-circle-wrapper {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        order: -1;
+        width: 280px !important;
+        height: 280px !important;
+        min-height: 280px !important;
+        margin: 0 auto !important;
+    }
     #what-we-do .rt-circle-two,
     #what-we-do .rt-circle-three {
         display: none !important;
@@ -3204,10 +3214,10 @@ body.im-modal-open .im-pd-mobile-bar {
     #what-we-do.rt-cards {
         padding: 3rem 0.75rem !important;
     }
-    #what-we-do .rt-main-circle-wrapper,
-    #what-we-do .rt-circle-two,
-    #what-we-do .rt-circle-three {
-        display: none !important;
+    #what-we-do .rt-main-circle-wrapper {
+        width: 240px !important;
+        height: 240px !important;
+        min-height: 240px !important;
     }
     #what-we-do .rt-card-main-title-v1 {
         font-size: 1.05rem !important;
