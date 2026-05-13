@@ -3,6 +3,22 @@
    Brand: Navy Blue (#0B2641) + Gold (#C49A2E)
    ========================================================== */
 
+/* ---------------- FAQ items without Webflow IX2 data-w-id ---------------- */
+.rt-faq-item:not([data-w-id]) .rt-faq-v1-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s ease;
+}
+
+.rt-faq-item:not([data-w-id]) .rt-faq-icon-v2 {
+    transition: transform 0.3s ease;
+    transform: translate3d(0,0,0) rotateZ(90deg);
+}
+
+.rt-faq-item:not([data-w-id]).im-faq-open .rt-faq-icon-v2 {
+    transform: translate3d(0,0,0) rotateZ(0deg);
+}
+
 /* ---------------- Brand Tokens ---------------- */
 :root {
     --im-navy: #0B2641;

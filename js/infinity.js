@@ -961,6 +961,33 @@
     }());
 
     /* --------------------------------------------------------
+       FAQ ACCORDION — items without Webflow IX2 data-w-id
+    -------------------------------------------------------- */
+    (function () {
+        var items = document.querySelectorAll('.rt-faq-item:not([data-w-id])');
+        items.forEach(function (item) {
+            var content = item.querySelector('.rt-faq-v1-content');
+            if (!content) return;
+            item.addEventListener('click', function () {
+                var isOpen = item.classList.contains('im-faq-open');
+                if (isOpen) {
+                    content.style.height = content.scrollHeight + 'px';
+                    content.getBoundingClientRect(); // force reflow
+                    content.style.height = '0';
+                    item.classList.remove('im-faq-open');
+                } else {
+                    content.style.height = content.scrollHeight + 'px';
+                    content.addEventListener('transitionend', function onEnd() {
+                        content.style.height = 'auto';
+                        content.removeEventListener('transitionend', onEnd);
+                    });
+                    item.classList.add('im-faq-open');
+                }
+            });
+        });
+    }());
+
+    /* --------------------------------------------------------
        SCROLL TO TOP
     -------------------------------------------------------- */
     (function () {
