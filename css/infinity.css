@@ -645,6 +645,85 @@
     }
 }
 
+/* ---------------- "All Products" Catalogue Tab (Desktop) ---------------- */
+.im-catalogue-tab {
+    position: fixed;
+    left: -3.5rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: center center;
+    background: var(--im-navy);
+    color: var(--im-gold);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid rgba(196, 154, 46, 0.25);
+    z-index: 8999;
+    cursor: pointer;
+    transition: left 0.3s ease, background 0.2s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.im-catalogue-tab:hover {
+    left: -2.5rem;
+    background: var(--im-navy-dark);
+    color: var(--im-gold-light);
+}
+
+@media (max-width: 991px) {
+    .im-catalogue-tab {
+        display: none;
+    }
+}
+
+/* ---------------- Scroll to Top ---------------- */
+.im-back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--im-navy);
+    color: var(--im-gold);
+    border: 1px solid rgba(196, 154, 46, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 8998;
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, border-color 0.2s ease;
+    pointer-events: none;
+}
+
+.im-back-to-top.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.im-back-to-top:hover {
+    background: var(--im-navy-dark);
+    border-color: var(--im-gold);
+}
+
+@media (max-width: 767px) {
+    .im-back-to-top {
+        bottom: 5.5rem;
+        left: 1.25rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
 /* ---------------- "Make an Enquiry" Fixed Tab (Desktop) ---------------- */
 .im-enquiry-tab {
     position: fixed;
@@ -729,6 +808,8 @@
 body.im-modal-open .rt-navbar-v1,
 body.im-modal-open .im-pd-nav,
 body.im-modal-open .im-enquiry-tab,
+body.im-modal-open .im-catalogue-tab,
+body.im-modal-open .im-back-to-top,
 body.im-modal-open .im-enquiry-mobile,
 body.im-modal-open .im-whatsapp-btn,
 body.im-modal-open .im-pd-mobile-bar {

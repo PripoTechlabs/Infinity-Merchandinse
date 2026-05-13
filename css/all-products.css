@@ -615,3 +615,36 @@
     .im-cat-card-arrow,
     .im-cat-card { transition: none !important; }
 }
+
+/* ---------------- Scroll to Top ---------------- */
+.im-back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--cat-bg-soft);
+    color: var(--cat-gold);
+    border: 1px solid rgba(217, 169, 74, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 200;
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, border-color 0.2s ease;
+    pointer-events: none;
+}
+
+.im-back-to-top.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.im-back-to-top:hover {
+    background: var(--cat-bg-deep);
+    border-color: var(--cat-gold);
+}
